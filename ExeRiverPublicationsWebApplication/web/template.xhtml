@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Exe River</title>
+        <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="X-UA-Conpatible" content="IE=edge" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet> 
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <nav id="navbar-menu" class="navbar navbar-light bg-light">
+                <div class="col-md-10">
+                    <img src="resources/images/exeLogo.jpg" width="100px" alt="River Exe Logo"/>
+                    <img src="resources/images/ExeText.jpg" width="500px" alt="River Exe Publications"/>
+                </div>
+                <div class="col-md-2" style="margin-top: 25px;">
+                    <button type="submit" class="btn btn-primary float-right" action="#{loginBean.logout()}" id="submit" actionlistener="#{loginBean.updateId}">Logout <span class="glyphicon glyphicon-log-out"></span></button>
+                </div>
+            </nav>
+
+        </div>
+    </h:body>
+</html>
+
