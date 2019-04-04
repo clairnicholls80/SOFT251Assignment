@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Exe River</title>
+        <title>Exe River Publications</title>
         <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="X-UA-Conpatible" content="IE=edge" />
@@ -11,15 +11,15 @@
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
     </h:head>
     <h:body>
-        <div class="container-fluid">
+        <div class="container text-center">
             <div class="col-md-12 col-sm-10 text-center">
                 <img src="resources/images/ExeRiver.JPG" alt="Exe River Publications" width="300" /><br /><br />
-                <div class="offset-4 col-sm-4 text-center jumbotron">
+                <div class="col-md-6 col-md-offset-3 text-center jumbotron">
                     <p class="h3 mb-3 font-weight-normal">Please sign in</p> 
-                    <form class="form-horizontal" role="form" >
-                        <input type="*" class="form-control" id="username" placeholder="Enter your username" value="#{loginBean.username}"/><br />
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" value="#{loginBean.password}"/><br />
-                        <button type="submit" class="btn btn-dark" action="#{loginBean.login()}" id="submit" actionlistener="#{loginBean.updateId}">Login <span class="glyphicon glyphicon-log-in"></span></button>
+                    <form class="form-horizontal" role="form" id="loginForm" >                                              
+                        <input type="*" class="form-control" id="email" placeholder="Enter your email" value="#{loginBean.email}" required="true" requiredMessage="Please enter your email."/><br />
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" value="#{loginBean.password}" required="true" requiredMessage="Please enter your password."/><br />
+                        <button type="submit" class="btn btn-dark" action="#{loginBean.validateUserLogin()}" id="submit">Login <span class="glyphicon glyphicon-log-in"></span></button>
                     </form>
                 </div>   
             </div>  

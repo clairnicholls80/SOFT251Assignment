@@ -1,0 +1,19 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04-Apr-2019, 18:38:25
+    Author     : clair
+*/
+.ui-panelgrid .ui-panelgrid-cell{border: none!important;}
+.ui-widget-content{border:none;}
+.successText {color: #0c68b1;font-weight: bold;}
+.nolinkborder:hover{text-decoration: none!important;}
+.ui-widget-content{background: transparent!important;}    
+.ui-panelgrid {width: 100%;}
+.ui-panelgrid-cell{text-align: right;}
+.ui-inputfield{width:100%}
+.errorText {color: red; margin: 12px; font-weight: bold;}
+

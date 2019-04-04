@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Exe River</title>
+        <title>Exe River Publications</title>
         <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="X-UA-Conpatible" content="IE=edge" />
@@ -13,10 +13,11 @@
     <h:body>
         <div class="container">
             <nav id="navbar-menu" class="navbar navbar-light bg-light">
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <img src="resources/images/exeLogo.jpg" width="100px" alt="River Exe Logo"/>
                     <img src="resources/images/ExeText.jpg" width="500px" alt="River Exe Publications"/>
                 </div>
+                <div class="col-md-2"><h:outputLabel><h2>Hi, #{loginBean.email}. Nice to meet you.</h2></h:outputLabel></div>
                 <div class="col-md-2" style="margin-top: 25px;">
                     <button type="submit" class="btn btn-primary float-right" action="#{loginBean.logout()}" id="submit" actionlistener="#{loginBean.updateId}">Logout <span class="glyphicon glyphicon-log-out"></span></button>
                 </div>
