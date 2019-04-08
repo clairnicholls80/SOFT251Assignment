@@ -9,5 +9,34 @@ package com.jsf.Model;
  * @author clair
  */
 public interface BookInterface {
-    
+     
+    //methods to register and unregister observers
+
+    /**
+     *
+     * @param observer
+     */
+    public void register(UserInterface observer);
+
+    /**
+     *
+     * @param observer
+     */
+    public void unregister(UserInterface observer);
+ 
+    //method to notify observers of change
+
+    /**
+     *
+     */
+    public void notifyObservers();
+ 
+    //method to get updates from subject
+
+    /**
+     *
+     * @param observer
+     * @return
+     */
+    public Object getUpdate(UserInterface observer);
 }

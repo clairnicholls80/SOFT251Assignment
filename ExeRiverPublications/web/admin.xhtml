@@ -11,44 +11,56 @@
 <h:body>
     <div id="result" class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <a href="" class="nolinkborder">
                     <img src="resources/images/exeLogo.jpg" width="100px" alt="River Exe Logo"/>
                 </a>
                 <img src="resources/images/ExeText.jpg" width="500px" alt="River Exe Publications"/>
             </div>
-
-            <div class="col-md-4" style="margin-top: 25px;">
-                <nav class="navbar navbar-inverse">
-                    <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users
-                      <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="admin.xhtml">Administrator</a></li>
-                        <li><a href="#">Agent</a></li>
-                        <li><a href="#">Author</a></li>
-                        <li><a href="#">Editor</a></li>
-                        <li><a href="#">Reviewer</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                  </ul>
-                </nav>
-            </div>
-            <div class="col-md-2" style="margin-top: 25px;">
-                Logged in as:   <span id="userName"><h:outputLabel class="successText" value="#{loginBean.userName}" /></span>
-            </div>        
         </div>
 
-    </div>
-        
-        
-    <div>    
-        <h1>Administrator</h1>
-        <p>This page will add the admins</p>
+        <div>    
+            <h1>Administrator</h1>
+            <p>This page will add the admins</p>
+            <h:form id="createAdmin">
+                <p:panelGrid columns="2">                  
+                    <p:outputLabel for="forename" value="Forename: " />
+                    <p:inputText id="userName" value="#{adminBean.forename}" placeholder="Forename" />
+
+                    <p:outputLabel for="surname" value="Surname: " />
+                    <p:password id="surname" value="#{adminBean.surname}" placeholder="Surname" />
+                    
+                    <p:outputLabel for="email" value="Email " />
+                    <p:inputText id="email" value="#{adminBean.email}" placeholder="Email" />
+
+                    <p:outputLabel for="address" value="Address: " />
+                    <p:password id="address" value="#{adminBean.address}" placeholder="Address" />
+                    
+                    <p:outputLabel for="password" value="Password: " />
+                    <p:password id="password" value="#{adminBean.password}" placeholder="Password" />
+
+                    
+                    <p:commandButton value="Create Administrator" action="#{adminBean.createAdmin()}"  />
+                </p:panelGrid>
+                <p:dataTable var="car" value="#{adminBean.getAdmins()}">
+                    <p:column headerText="Id">
+                        <h:outputText value="#{car.id}" />
+                    </p:column>
+
+                    <p:column headerText="Year">
+                        <h:outputText value="#{car.year}" />
+                    </p:column>
+
+                    <p:column headerText="Brand">
+                        <h:outputText value="#{car.brand}" />
+                    </p:column>
+
+                    <p:column headerText="Color">
+                        <h:outputText value="#{car.color}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>   
+        </div>
     </div>
 </h:body>
 </html>
