@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Exe River Publications</title>
     <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet> 
@@ -42,23 +43,35 @@
                     
                     <p:commandButton value="Create Administrator" action="#{adminBean.createAdmin()}"  />
                 </p:panelGrid>
-                <p:dataTable var="car" value="#{adminBean.getAdmins()}">
-                    <p:column headerText="Id">
-                        <h:outputText value="#{car.id}" />
-                    </p:column>
+            </h:form>
+                
+                <h:form id="frmBooks">
+           <p:growl id="msgs" showDetail="true"/>
 
-                    <p:column headerText="Year">
-                        <h:outputText value="#{car.year}" />
-                    </p:column>
+           <p:dataTable id="books1" var="car" value="#{adminBean.books}" editable="true" style="margin-bottom:20px">
+               <f:facet name="header">
+                   Row Editing
+               </f:facet>
 
-                    <p:column headerText="Brand">
-                        <h:outputText value="#{car.brand}" />
-                    </p:column>
+               <p:column headerText="Id">
+                   <p:cellEditor>
+                       <f:facet name="output"><h:outputText value="#{book.id}" /></f:facet>
+                       <f:facet name="input"><p:inputText id="modelInput" value="#{book.id}" style="width:100%"/></f:facet>
+                   </p:cellEditor>
+               </p:column>
 
-                    <p:column headerText="Color">
-                        <h:outputText value="#{car.color}" />
-                    </p:column>
-                </p:dataTable>
+               <p:column headerText="Year">
+                   <p:cellEditor>
+                       <f:facet name="output"><h:outputText value="#{book.title}" /></f:facet>
+                       <f:facet name="input"><p:inputText value="#{book.title}" style="width:100%" label="Year"/></f:facet>
+                   </p:cellEditor>
+               </p:column>
+
+               <p:column style="width:35px">
+                   <p:rowEditor />
+               </p:column>
+           </p:dataTable>
+        
             </h:form>   
         </div>
     </div>

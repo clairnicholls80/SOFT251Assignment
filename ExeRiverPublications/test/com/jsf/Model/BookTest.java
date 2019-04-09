@@ -6,6 +6,7 @@
 package com.jsf.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -25,6 +26,7 @@ public class BookTest {
     private static Author author1, author2, author3;
     private static Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private static Agent agent1;
+    private static List<Book> books;
     
     /**
      *
@@ -96,6 +98,8 @@ public class BookTest {
         book8 = new Book(8, "Lines of order");
         book9 = new Book(9, "The story of my life");
         book10 = new Book(10, "Village life");
+        
+
         
         /* Create users */
         //create Administrator
@@ -448,10 +452,7 @@ public class BookTest {
         System.out.println("User = " + admin1.getUserDetails());
         System.out.println("Author1: " + author1.getName());
         System.out.println("User = " + author1.getUserDetails());    
-        
-        //System.out.println("Admin's book = " + admin1.book.getTitle());
-        //System.out.println("Author's book = " + author1.book.getTitle());
-        
+               
         System.out.println("Book1 is: " + book1.getTitle()); 
         System.out.println("Observers are:");
         book1.observers.forEach((o)->System.out.println(o));
@@ -492,6 +493,10 @@ public class BookTest {
         System.out.println("Observers are:");      
         book10.observers.forEach((o)->System.out.println(o));
         System.out.println("-----");
+        
+        System.out.println("Author1's books: ");
+        author1.book.getUpdate(author1);
+        
     
     }
     

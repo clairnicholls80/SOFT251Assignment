@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package com.jsf.Model;
+
+import java.util.List;
+
 /**
  *
  * @author clair
@@ -23,4 +26,6 @@ public interface UserInterface {
      * @param book
      */
     public void setSubject(Book book);
+    
+    
 }

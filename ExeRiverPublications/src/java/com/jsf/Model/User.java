@@ -2,6 +2,7 @@
 package com.jsf.Model;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -217,5 +218,5 @@ public abstract class User implements UserInterface{
     public String toString() {
         return name;
     }
-    
+        
 }

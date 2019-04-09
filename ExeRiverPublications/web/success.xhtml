@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Exe River Publications</title>
     <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet> 
@@ -43,6 +44,8 @@
             </div>        
         </div>
         <h:commandButton value="Admin" action="admin"></h:commandButton>
+        <p:button outcome="admin" value="Admin" icon="pi pi-star" style="margin-right:20px;"></p:button>
+        
     </div>
 </h:body>
 </html>

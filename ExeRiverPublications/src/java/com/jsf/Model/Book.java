@@ -1,6 +1,8 @@
 package com.jsf.Model;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 /**
  * @author clair
  */
@@ -19,12 +21,14 @@ public class Book implements BookInterface{
     private Feedback feedback;
     private Meeting meeting;
     ArrayList observers;
+    private static ArrayList books;
 
     /**
      *
      */
     public Book(){
         this.observers=new ArrayList<UserInterface>();
+        this.books=new ArrayList();
     }    
 
     /**
@@ -246,7 +250,7 @@ public class Book implements BookInterface{
     public String toString() {
         return title;
     }
-    
+    //declare variables for data initialisation
     private static Book book1, book2, book3, book4, book5, book6, book7, book8, book9, book10;
     private static Administrator admin1;
     private static Editor editor1, editor2;
@@ -254,7 +258,7 @@ public class Book implements BookInterface{
     private static Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private static Agent agent1;
     
-    public void initialiseData()
+    public static void initialiseData()
     {
         //create objects of books
         book1 = new Book(1, "The witch and the wand");
@@ -267,6 +271,7 @@ public class Book implements BookInterface{
         book8 = new Book(8, "Lines of order");
         book9 = new Book(9, "The story of my life");
         book10 = new Book(10, "Village life");
+        
         
         /* Create users */
         //create Administrator
@@ -377,5 +382,12 @@ public class Book implements BookInterface{
         book10.register(reviewer1);
         book10.register(reviewer4);
         book10.notifyObservers();
+    }
+        
+    public static ArrayList<Book> retrieveAllBooks() {
+        
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.addAll(books);
+        return books;
     }
 }
