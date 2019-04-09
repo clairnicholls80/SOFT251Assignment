@@ -27,5 +27,4 @@ public interface UserInterface {
      */
     public void setSubject(Book book);
     
-    
 }

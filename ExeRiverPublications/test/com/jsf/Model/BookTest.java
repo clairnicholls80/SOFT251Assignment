@@ -6,6 +6,7 @@
 package com.jsf.Model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -26,7 +27,8 @@ public class BookTest {
     private static Author author1, author2, author3;
     private static Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private static Agent agent1;
-    private static List<Book> books;
+    //private static ArrayList<String> bookList;
+    private static List<String> bookList;
     
     /**
      *
@@ -39,54 +41,7 @@ public class BookTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        /*admin1 = new Administrator("Clair", "Nicholls", "clair@gmail.com", "8 Copper Meadows, Redruth, TR152NX", "letmein");
-        admin1.setName(admin1.forename, admin1.surname);
-        
-        author1 = new Author("Coleen", "Cole", "ccole@gmail.com", "6 Castle Court, Exeter, EX1 1DS", "castles");
-        author1.setName(author1.forename, author1.surname);
-                
-        agent1 = new Agent("Philip", "Davey", "pdavey@publishinghouse.co.uk", "33 Station Road, Exeter EX1 1AB", "davesrbest");
-        agent1.setName(agent1.forename, agent1.surname);
-        
-        editor1 = new Editor("Phillipa", "Frost", "pfrost@exeriverpublishing.co.uk", "13 Prospect Street, Exeter EX2 4RR", "prospects");
-        editor1.setName(editor1.forename, editor1.surname);
-                
-        reviewer1 = new Reviewer("Sarah", "Barkins", "sbarkins@exeriverpublishing.co.uk", "47 Rockne Drive, Exeter EX3 7NV", "creative10");
-        reviewer1.setName(reviewer1.forename, reviewer1.surname);
-        
-        book1 = new Book(1, "The witch and the wand");
-        //admin1.setSubject(book1);  
-        //admin1.update();      
-        
-        book2 = new Book(2, "Darcy's Doughnuts");
-        //admin1.setSubject(book2);  
-        //admin1.update(); 
-        
-        //author1.setSubject(book1);
-        //author1.update();
-        
-        //agent1.setSubject(book2);
-        //agent1.update();
-        
-        //editor1.setSubject(book2);
-        //editor1.update();
-        
-        //reviewer1.setSubject(book2);
-        //reviewer1.update();
-        
-        book1.observers = new ArrayList();
-        book1.register(admin1);
-        book1.register(author1);
-        book1.register(agent1);
-        book1.notifyObservers();    
-        
-        book2.observers = new ArrayList();
-        book2.register(admin1);
-        book2.register(editor1);
-        book2.register(agent1);
-        book2.register(reviewer1);
-        book2.notifyObservers();   */
-        
+              
                 //create objects of books
         book1 = new Book(1, "The witch and the wand");
         book2 = new Book(2, "Darcy's Doughnuts");
@@ -273,6 +228,9 @@ public class BookTest {
         reviewer4.setSubject(book9);        
         reviewer4.setSubject(book10);  
         reviewer4.update();
+        
+        bookList = Arrays.asList( book1.getTitle(), book2.getTitle(), book3.getTitle(), book4.getTitle(), book5.getTitle());
+
     }
     
     /**
@@ -494,10 +452,8 @@ public class BookTest {
         book10.observers.forEach((o)->System.out.println(o));
         System.out.println("-----");
         
-        System.out.println("Author1's books: ");
-        author1.book.getUpdate(author1);
-        
-    
+        System.out.println("BookList: " + bookList);
+        //bookList.forEach((o)->System.out.println(o));
     }
     
 }

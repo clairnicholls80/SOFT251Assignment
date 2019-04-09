@@ -24,7 +24,7 @@ public class AdminBean implements Serializable{
     private List admins;
     
         
-    private List<Book> books;
+    private List<String> books;
     /**
      *
      * @return
@@ -52,7 +52,7 @@ public class AdminBean implements Serializable{
     }
         
      
-    public List<Book> getBooks() {
+    public List<String> getBooks() {
         return books;
     }
      /*

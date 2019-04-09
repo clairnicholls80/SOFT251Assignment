@@ -1,7 +1,10 @@
 package com.jsf.Model;
+import com.jsf.Controller.LoginBean;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 /**
  * @author clair
@@ -21,14 +24,13 @@ public class Book implements BookInterface{
     private Feedback feedback;
     private Meeting meeting;
     ArrayList observers;
-    private static ArrayList books;
 
     /**
      *
      */
     public Book(){
         this.observers=new ArrayList<UserInterface>();
-        this.books=new ArrayList();
+        bookList=new ArrayList();
     }    
 
     /**
@@ -53,6 +55,8 @@ public class Book implements BookInterface{
         this.title = title;
         this.fileName = fileName;
         this.location = location;
+        //bookList.add(this.title);
+        //bookList = Arrays.asList(this.title);
     }  
 
     /**
@@ -250,6 +254,8 @@ public class Book implements BookInterface{
     public String toString() {
         return title;
     }
+    
+    
     //declare variables for data initialisation
     private static Book book1, book2, book3, book4, book5, book6, book7, book8, book9, book10;
     private static Administrator admin1;
@@ -257,6 +263,7 @@ public class Book implements BookInterface{
     private static Author author1, author2, author3;
     private static Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private static Agent agent1;
+    private static List<LoginBean> bookList;
     
     public static void initialiseData()
     {
@@ -384,10 +391,14 @@ public class Book implements BookInterface{
         book10.notifyObservers();
     }
         
-    public static ArrayList<Book> retrieveAllBooks() {
-        
-        ArrayList<Book> books = new ArrayList<Book>();
-        books.addAll(books);
-        return books;
+
+    public static List<LoginBean> getAllBooks() {
+	//return bookList;
+        List<LoginBean> books = bookList;
+		if (books != null && books.size() > 0) {			
+			return books;
+		} else {
+			return null;
+		}
     }
 }

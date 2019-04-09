@@ -56,6 +56,11 @@ public abstract class User implements UserInterface{
      */
     protected String name;
 
+    
+    ArrayList bookList;
+
+
+    
     /**
      *
      * @return
@@ -202,6 +207,14 @@ public abstract class User implements UserInterface{
         this.book.register(this);
     }
     
+    public ArrayList getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(ArrayList bookList) {
+        this.bookList.add(this);
+    }
+
     /**
      *
      * @return
