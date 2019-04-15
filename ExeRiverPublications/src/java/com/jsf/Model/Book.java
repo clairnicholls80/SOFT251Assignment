@@ -14,12 +14,12 @@ public class Book implements BookInterface{
     private String message;
     private boolean changed;
     private final Object MUTEX= new Object(); 
-     
+    
     private int bookId;
     private String title;
     private String fileName;
     private String location;
-    private String state;
+    private State state = State.Registered;
     private Payment payment;
     private Feedback feedback;
     private Meeting meeting;
@@ -127,7 +127,7 @@ public class Book implements BookInterface{
      *
      * @return
      */
-    public String getState() {
+    public State getState() {
         return state;
     }
 
@@ -135,7 +135,7 @@ public class Book implements BookInterface{
      *
      * @param state
      */
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
 
@@ -230,7 +230,7 @@ public class Book implements BookInterface{
             this.changed=false;
         }
         for (UserInterface observer : observersLocal) {
-            observer.update();
+            observer.update(this.state);
         } 
     } 
 
@@ -254,8 +254,7 @@ public class Book implements BookInterface{
     public String toString() {
         return title;
     }
-    
-    
+        
     //declare variables for data initialisation
     private static Book book1, book2, book3, book4, book5, book6, book7, book8, book9, book10;
     private static Administrator admin1;

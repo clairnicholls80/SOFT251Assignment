@@ -17,7 +17,7 @@ public interface UserInterface {
     /**
      *
      */
-    public void update();
+    public void update(State state);
  
     //attach with subject to observe
 

@@ -37,7 +37,7 @@ public class Administrator extends User{
      *
      */
     @Override
-    public void update() {
+    public void update(State state) {
         String msg = (String) book.getUpdate(this);
         if(msg == null){
             System.out.println(name+":: No new message");

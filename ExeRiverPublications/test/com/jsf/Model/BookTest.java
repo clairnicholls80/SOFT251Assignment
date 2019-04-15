@@ -54,6 +54,7 @@ public class BookTest {
         book9 = new Book(9, "The story of my life");
         book10 = new Book(10, "Village life");
         
+        
 
         
         /* Create users */
@@ -172,19 +173,19 @@ public class BookTest {
         
         author1.setSubject(book1);
         author1.setSubject(book10);
-        author1.update();
+        //author1.update();
         
         author2.setSubject(book2);
         author2.setSubject(book3);
         author2.setSubject(book7);
         author2.setSubject(book9);
-        author2.update();
+        //author2.update();
         
         author3.setSubject(book4);
         author3.setSubject(book5);
         author3.setSubject(book6);
         author3.setSubject(book8);
-        author3.update();   
+        //author3.update();   
         
         agent1.setSubject(book1);
         agent1.setSubject(book2);
@@ -196,7 +197,7 @@ public class BookTest {
         agent1.setSubject(book8);
         agent1.setSubject(book9);
         agent1.setSubject(book10);
-        agent1.update();
+        //agent1.update();
         
         //editor1.setSubject(book2);
         //editor1.update();
@@ -206,20 +207,20 @@ public class BookTest {
         reviewer1.setSubject(book4);        
         reviewer1.setSubject(book8);        
         reviewer1.setSubject(book10);
-        reviewer1.update();
+        //reviewer1.update();
         
         reviewer2.setSubject(book1);        
         reviewer2.setSubject(book4);        
         reviewer2.setSubject(book5);        
         reviewer2.setSubject(book7);        
         reviewer2.setSubject(book8);
-        reviewer2.update();
+        //reviewer2.update();
                 
         reviewer3.setSubject(book2);        
         reviewer3.setSubject(book4);        
         reviewer3.setSubject(book6);        
         reviewer3.setSubject(book9); 
-        reviewer3.update();
+        //reviewer3.update();
         
         reviewer4.setSubject(book2);        
         reviewer4.setSubject(book3);        
@@ -227,7 +228,10 @@ public class BookTest {
         reviewer4.setSubject(book7);       
         reviewer4.setSubject(book9);        
         reviewer4.setSubject(book10);  
-        reviewer4.update();
+        //reviewer4.update();
+        
+        book1.setState(State.Accepted);
+        book1.notifyObservers();
         
         bookList = Arrays.asList( book1.getTitle(), book2.getTitle(), book3.getTitle(), book4.getTitle(), book5.getTitle());
 
