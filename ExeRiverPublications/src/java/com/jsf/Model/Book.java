@@ -1,5 +1,8 @@
 package com.jsf.Model;
 import com.jsf.Controller.LoginBean;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +12,7 @@ import javax.persistence.TypedQuery;
 /**
  * @author clair
  */
-public class Book implements BookInterface{
+public class Book implements BookInterface, Serializable{
     
     private String message;
     private boolean changed;
@@ -263,7 +266,7 @@ public class Book implements BookInterface{
     private static Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private static Agent agent1;
     private static List<LoginBean> bookList;
-    
+    //public ArrayList<User> = new ArrayList<>();
     public static void initialiseData()
     {
         //create objects of books
@@ -388,16 +391,28 @@ public class Book implements BookInterface{
         book10.register(reviewer1);
         book10.register(reviewer4);
         book10.notifyObservers();
+        
+        System.out.println("Data initialised");
+        
+        try {
+            FileOutputStream fs = new FileOutputStream("book1.ser");
+            ObjectOutputStream os = new ObjectOutputStream(fs);
+            os.writeObject(book1);
+            os.close();
+        } 
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
     }
         
 
     public static List<LoginBean> getAllBooks() {
 	//return bookList;
         List<LoginBean> books = bookList;
-		if (books != null && books.size() > 0) {			
-			return books;
-		} else {
-			return null;
-		}
+        if (books != null && books.size() > 0) {			
+                return books;
+        } else {
+                return null;
+        }
     }
 }

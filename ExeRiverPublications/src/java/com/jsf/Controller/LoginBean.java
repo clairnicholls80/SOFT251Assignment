@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.jsf.Controller;
  
 import com.jsf.Model.Administrator;
@@ -10,11 +5,16 @@ import com.jsf.Model.Author;
 import com.jsf.Model.Editor;
 import com.jsf.Model.Reviewer;
 import com.jsf.Model.Book;
+import com.jsf.Model.User;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.ServletContext;
  
 /**
  *
@@ -22,10 +22,11 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name="loginBean")
 @SessionScoped
-public class LoginBean {
+public class LoginBean implements Serializable {
     private String userName;
     private String password;
     private ArrayList bookList;
+    public Book book1;
     @PostConstruct
     public void init() {
         Book.initialiseData();
@@ -68,7 +69,7 @@ public class LoginBean {
      * @return
      */
     public String validateUserLogin() {
-        //System.out.println(setUpUsers());
+        System.out.println(setUpUsers());
         String navResult = "";
         System.out.println("Entered Username is= " + userName + ", password is= " + password);
         //book1.observers.forEach((o)->System.out.println(o));
@@ -78,6 +79,8 @@ public class LoginBean {
         } else {
             navResult = "failure";
         }
+        //Book.initialiseData();
+        //System.out.println("data created");
         return navResult;
     }
 
@@ -96,4 +99,31 @@ public class LoginBean {
     public List<LoginBean> books() {
 	return Book.getAllBooks();		
     }
+    
+    public String getBook(){
+        /*try{
+            ObjectInputStream os = new ObjectInputStream(new FileInputStream("book1.ser"));
+            book1 = (Book) os.readObject();;
+            os.close();
+            System.out.println(book1.getTitle());
+            return book1.getTitle();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        } */
+        return null;
+    }
+    
+    public void load(){
+        /*try{
+            ObjectInputStream os = new ObjectInputStream(new FileInputStream("book1.ser"));
+            Book book1 = (Book) os.readObject();;
+            os.close();
+            System.out.println(book1.getTitle());
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        } */
+    }
+    
 }

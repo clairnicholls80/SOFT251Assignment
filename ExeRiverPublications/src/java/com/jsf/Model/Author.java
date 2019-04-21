@@ -8,7 +8,7 @@ package com.jsf.Model;
  *
  * @author clair
  */
-public class Author extends User {
+public class Author extends User  implements UserInterface {
 
     /**
      *
@@ -51,5 +51,9 @@ public class Author extends User {
     @Override
     public void setSubject(Book copy) {
        this.book=copy;    
+    }
+    public void setBook(Book book) {
+        this.book = book;
+        this.book.register(this);
     }
 }

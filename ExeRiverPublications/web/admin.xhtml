@@ -19,61 +19,75 @@
                 <img src="resources/images/ExeText.jpg" width="500px" alt="River Exe Publications"/>
             </div>
         </div>
-
         <div>    
             <h1>Administrator</h1>
             <p>This page will add the admins</p>
-            <h:form id="createAdmin">
-                <p:panelGrid columns="2">                  
-                    <p:outputLabel for="forename" value="Forename: " />
-                    <p:inputText id="userName" value="#{adminBean.forename}" placeholder="Forename" />
+            <form>
+                Forename:<input type="text" value="forename" placeholder="forename" />
+                Surname:<input type="text" value="surname" placeholder="surname" />
+                Email:<input type="text" value="email" placeholder="email" />
+                Password:<input type="text" value="password" placeholder="password" />
+                <input type="submit" value="Submit" name="submit" />
+            </form>
+        </div>    
+            
+    </div>        
+            
+            
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
 
-                    <p:outputLabel for="surname" value="Surname: " />
-                    <p:password id="surname" value="#{adminBean.surname}" placeholder="Surname" />
-                    
-                    <p:outputLabel for="email" value="Email " />
-                    <p:inputText id="email" value="#{adminBean.email}" placeholder="Email" />
+        <p:dataTable id="admins" var="admin" value="#{dtEditView.admin}" editable="true" style="margin-bottom:20px">
+            <f:facet name="header">
+                Row Editing
+            </f:facet>
 
-                    <p:outputLabel for="address" value="Address: " />
-                    <p:password id="address" value="#{adminBean.address}" placeholder="Address" />
-                    
-                    <p:outputLabel for="password" value="Password: " />
-                    <p:password id="password" value="#{adminBean.password}" placeholder="Password" />
+            <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs" />
+            <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs" />
 
+            <p:column headerText="UserId">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{admin.userId}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput" value="#{admin.userId}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Forename">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{admin.forename}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{admin.forename}" style="width:100%" label="Forename"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Surname">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{admin.surname}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{admin.surname}" style="width:100%" label="Surname"/></f:facet>
+                </p:cellEditor>
+            </p:column> 
+
+            <p:column headerText="Email">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{admin.email}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{admin.email}" style="width:100%" label="Email"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Password">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{admin.password}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{admin.password}" style="width:100%" label="Password"/></f:facet>
+                </p:cellEditor>
+            </p:column> 
+
+            <p:column style="width:35px">
+                <p:rowEditor />
+            </p:column>
+        </p:dataTable>
+    </h:form>        
+            
+            
                     
-                    <p:commandButton value="Create Administrator" action="#{adminBean.createAdmin()}"  />
-                </p:panelGrid>
-            </h:form>
                 
-                <h:form id="frmBooks">
-           <p:growl id="msgs" showDetail="true"/>
-
-           <p:dataTable id="books1" var="car" value="#{adminBean.books}" editable="true" style="margin-bottom:20px">
-               <f:facet name="header">
-                   Row Editing
-               </f:facet>
-
-               <p:column headerText="Id">
-                   <p:cellEditor>
-                       <f:facet name="output"><h:outputText value="#{book.id}" /></f:facet>
-                       <f:facet name="input"><p:inputText id="modelInput" value="#{book.id}" style="width:100%"/></f:facet>
-                   </p:cellEditor>
-               </p:column>
-
-               <p:column headerText="Year">
-                   <p:cellEditor>
-                       <f:facet name="output"><h:outputText value="#{book.title}" /></f:facet>
-                       <f:facet name="input"><p:inputText value="#{book.title}" style="width:100%" label="Year"/></f:facet>
-                   </p:cellEditor>
-               </p:column>
-
-               <p:column style="width:35px">
-                   <p:rowEditor />
-               </p:column>
-           </p:dataTable>
+               
         
-            </h:form>   
-        </div>
-    </div>
 </h:body>
 </html>

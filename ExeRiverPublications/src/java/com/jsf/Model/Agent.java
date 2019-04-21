@@ -8,7 +8,7 @@ package com.jsf.Model;
  *
  * @author clair
  */
-public class Agent extends User {
+public class Agent extends User  implements UserInterface{
     
     /**
      *
@@ -52,5 +52,8 @@ public class Agent extends User {
     public void setSubject(Book copy) {
        this.book=copy;    
     }
-    
+    public void setBook(Book book) {
+        this.book = book;
+        this.book.register(this);
+    }    
 }

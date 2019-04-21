@@ -3,6 +3,8 @@ package com.jsf.Controller;
 
 import com.jsf.Model.Administrator;
 import com.jsf.Model.Book;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -40,16 +42,21 @@ public class AdminBean implements Serializable{
     return "Admin user created (" + forename + " " + surname + ")";
     }
     
-    /*public Administrator getAdmins(){
-        var admins = new List<Administrator>();
-    }*/
+    //public Administrator getAdmins(){
+        //var observers = Book.class.get
+        //var admins = new List<Administrator>();
+        /*com.jsf.Model.Administrator.class.
+        Administrator.forEach((o)->System.out.println(o));*/
+    //}
     
     /**
      *
      */
-    public AdminBean() {
-        
+    public AdminBean() {    
+       
     }
+        
+    
         
      
     public List<String> getBooks() {

@@ -1,6 +1,7 @@
 
 package com.jsf.Model;
 
+import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,8 +10,10 @@ import java.util.Date;
  *
  * @author clair
  */
-public abstract class User implements UserInterface{
-
+public abstract class User implements Serializable{
+    
+    protected ArrayList observers;
+    
     /**
      *
      */
@@ -202,10 +205,10 @@ public abstract class User implements UserInterface{
      *
      * @param book
      */
-    public void setBook(Book book) {
+    /*public void setBook(Book book) {
         this.book = book;
         this.book.register(this);
-    }
+    }*/
     
     public ArrayList getBookList() {
         return bookList;
@@ -231,5 +234,8 @@ public abstract class User implements UserInterface{
     public String toString() {
         return name;
     }
-        
+    
+    public boolean authenticate(String username, String pass) {
+        return this.email.equals(username) && this.password.equals(pass); 
+    }
 }
