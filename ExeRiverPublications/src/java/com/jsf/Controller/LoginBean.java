@@ -29,8 +29,8 @@ public class LoginBean implements Serializable {
     public Book book1;
     @PostConstruct
     public void init() {
-        Book.initialiseData();
-        System.out.println("data created");
+        //Book.initialiseData();
+        //System.out.println("data created");
     }
     /**
      *
@@ -93,12 +93,7 @@ public class LoginBean implements Serializable {
         return "Users created";
     }
     
-    public ArrayList bookList(){
-        return bookList;
-    }
-    public List<LoginBean> books() {
-	return Book.getAllBooks();		
-    }
+    
     
     public String getBook(){
         /*try{

@@ -5,11 +5,13 @@
  */
 package com.jsf.Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author clair
  */
-public class Administrator extends User  implements UserInterface{
+public class Administrator extends User  implements UserInterface, Serializable{
 
     /**
      *

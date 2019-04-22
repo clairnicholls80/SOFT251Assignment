@@ -27,13 +27,22 @@ public class Book implements BookInterface, Serializable{
     private Feedback feedback;
     private Meeting meeting;
     ArrayList observers;
+    public static ArrayList<Book> bookList;
+
+    public static ArrayList<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(ArrayList<Book> bookList) {
+        this.bookList = bookList;
+    }
 
     /**
      *
      */
     public Book(){
         this.observers=new ArrayList<UserInterface>();
-        bookList=new ArrayList();
+        //bookList=new ArrayList();
     }    
 
     /**
@@ -61,6 +70,10 @@ public class Book implements BookInterface, Serializable{
         //bookList.add(this.title);
         //bookList = Arrays.asList(this.title);
     }  
+
+    public Book(int i, String ford, int i0, String red, double d, String sold) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      *
@@ -265,7 +278,6 @@ public class Book implements BookInterface, Serializable{
     private static Author author1, author2, author3;
     private static Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private static Agent agent1;
-    private static List<LoginBean> bookList;
     //public ArrayList<User> = new ArrayList<>();
     public static void initialiseData()
     {
@@ -280,6 +292,18 @@ public class Book implements BookInterface, Serializable{
         book8 = new Book(8, "Lines of order");
         book9 = new Book(9, "The story of my life");
         book10 = new Book(10, "Village life");
+        
+//        bookList.add(book1);
+//        bookList.add(book2);
+//        bookList.add(book3);
+//        bookList.add(book4);
+//        bookList.add(book5);
+//        bookList.add(book6);
+//        bookList.add(book7);
+//        bookList.add(book8);
+//        bookList.add(book9);
+//        bookList.add(book10);
+
         
         
         /* Create users */
@@ -392,27 +416,22 @@ public class Book implements BookInterface, Serializable{
         book10.register(reviewer4);
         book10.notifyObservers();
         
+     
+        
+        
         System.out.println("Data initialised");
         
-        try {
-            FileOutputStream fs = new FileOutputStream("book1.ser");
-            ObjectOutputStream os = new ObjectOutputStream(fs);
-            os.writeObject(book1);
-            os.close();
-        } 
-        catch(Exception ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//            FileOutputStream fs = new FileOutputStream("book1.ser");
+//            ObjectOutputStream os = new ObjectOutputStream(fs);
+//            os.writeObject(book1);
+//            os.close();
+//        } 
+//        catch(Exception ex) {
+//            ex.printStackTrace();
+//        }
     }
         
 
-    public static List<LoginBean> getAllBooks() {
-	//return bookList;
-        List<LoginBean> books = bookList;
-        if (books != null && books.size() > 0) {			
-                return books;
-        } else {
-                return null;
-        }
-    }
+   
 }

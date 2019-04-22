@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 package com.jsf.Model;
+
+import java.io.Serializable;
+
 /**
  *
  * @author clair
  */
-public class Author extends User  implements UserInterface {
+public class Author extends User  implements UserInterface, Serializable {
+    private static final long serialVersionUID = 1L;
 
     /**
      *
@@ -56,4 +60,6 @@ public class Author extends User  implements UserInterface {
         this.book = book;
         this.book.register(this);
     }
+    
+ 
 }

@@ -238,4 +238,13 @@ public abstract class User implements Serializable{
     public boolean authenticate(String username, String pass) {
         return this.email.equals(username) && this.password.equals(pass); 
     }
+    
+//    public User clone() {
+//            return new User(userId, name);
+//    }
+
+    public void restore(User user) {
+            this.userId = user.getUserId();
+            this.name = user.getName();
+    }
 }

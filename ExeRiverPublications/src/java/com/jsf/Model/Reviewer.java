@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package com.jsf.Model;
+
+import java.io.Serializable;
+
 /**
  *
  * @author clair
  */
-public class Reviewer extends User  implements UserInterface{
+public class Reviewer extends User  implements UserInterface, Serializable{
          
     /**
      *
