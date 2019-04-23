@@ -38,3 +38,8 @@ and open the template in the editor.
 	background:none repeat scroll 0 0 #F9F9F9;
 	border-top:1px solid #BBBBBB;
 }
+.row{margin:0!important;}
+.footer-bar{background-color: #0b69b1; color:#f6d42a;margin-top:25px;}
+.h3, h3{font-size: 1.4em!important; color: #0b69b1;}
+.h4, h4{font-size: 1.2em!important; color: #0b69b1;}
+.btn-info{background-color:#0b69b1;border-color:#0b69b1;}

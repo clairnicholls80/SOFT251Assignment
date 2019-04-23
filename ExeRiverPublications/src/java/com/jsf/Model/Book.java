@@ -16,10 +16,13 @@ public class Book implements BookInterface, Serializable{
     
     private String message;
     private boolean changed;
-    private final Object MUTEX= new Object(); 
-    
+    private final Object MUTEX= new Object();    
     private int bookId;
     private String title;
+    private Author author;
+//    private Agent agent;
+//    private ArrayList<Reviewer> reviewers;
+//    private Editor editor;
     private String fileName;
     private String location;
     private State state = State.Registered;
@@ -42,7 +45,6 @@ public class Book implements BookInterface, Serializable{
      */
     public Book(){
         this.observers=new ArrayList<UserInterface>();
-        //bookList=new ArrayList();
     }    
 
     /**
@@ -107,6 +109,37 @@ public class Book implements BookInterface, Serializable{
         this.title = title;
     }
 
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+//
+//    public Agent getAgent() {
+//        return agent;
+//    }
+//
+//    public void setAgent(Agent agent) {
+//        this.agent = agent;
+//    }
+//
+//    public ArrayList<Reviewer> getReviewers() {
+//        return reviewers;
+//    }
+//
+//    public void setReviewers(ArrayList<Reviewer> reviewers) {
+//        this.reviewers = reviewers;
+//    }
+//
+//    public Editor getEditor() {
+//        return editor;
+//    }
+//
+//    public void setEditor(Editor editor) {
+//        this.editor = editor;
+//    }
     /**
      *
      * @return
@@ -271,6 +304,11 @@ public class Book implements BookInterface, Serializable{
         return title;
     }
         
+    public void restore(Book book) {
+        this.bookId = book.getBookId();
+        this.title = book.getTitle();
+    }
+    
     //declare variables for data initialisation
     private static Book book1, book2, book3, book4, book5, book6, book7, book8, book9, book10;
     private static Administrator admin1;
@@ -415,9 +453,6 @@ public class Book implements BookInterface, Serializable{
         book10.register(reviewer1);
         book10.register(reviewer4);
         book10.notifyObservers();
-        
-     
-        
         
         System.out.println("Data initialised");
         

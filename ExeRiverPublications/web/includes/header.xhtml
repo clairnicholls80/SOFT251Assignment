@@ -2,9 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-
+    
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
@@ -12,26 +11,21 @@
         <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet> 
         <h:outputStylesheet library="css" name="exeRiver.css" ></h:outputStylesheet> 
         <h:outputScript library="js" name="bootstrap.min.js" ></h:outputScript>
-        <title>Exe River Template</title>
+        <title>Exe River Publications</title>
     </h:head>
 
     <h:body>
-        <div id="header-container">
-            <div id="header">
-                <ui:insert name="header">
-                        <ui:include src="includes/header.xhtml" />
-                </ui:insert>
+        <div class="row">
+            <div class="col-md-8">
+                <a href="" class="nolinkborder">
+                    <img src="http://localhost:8080/ExeRiverPublications/resources/images/exeLogo.jpg" width="75px" alt="River Exe Logo"/>
+                </a>
+                <img src="http://localhost:8080/ExeRiverPublications/resources/images/ExeText.jpg" width="500px" alt="River Exe Publications"/>
             </div>
-	</div>        
-        <div>
-            <div id="content" class="right_content">
-                <ui:insert name="content"></ui:insert>
-            </div>        
+
+            <div class="col-md-4" style="margin-top: 25px;">
+                Logged in as:   <span id="userName"><h:outputLabel class="successText" value="#{loginBean.userName}" /></span>
+            </div>  
         </div>
-            <div id="footer">
-                <ui:insert name="footer">
-                        <ui:include src="includes/footer.xhtml" />
-                </ui:insert>
-            </div>
     </h:body>
 </html>

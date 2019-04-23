@@ -29,8 +29,8 @@ public class LoginBean implements Serializable {
     public Book book1;
     @PostConstruct
     public void init() {
-        //Book.initialiseData();
-        //System.out.println("data created");
+        Book.initialiseData();
+        System.out.println("data created");
     }
     /**
      *
