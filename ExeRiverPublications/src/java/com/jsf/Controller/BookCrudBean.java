@@ -97,4 +97,6 @@ public class BookCrudBean implements Serializable {
     public boolean isEdit() {
         return this.edit;
     }
+    
+    
 }

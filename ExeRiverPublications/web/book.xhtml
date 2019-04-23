@@ -47,11 +47,14 @@
                                 <div class="col">Filename:</div><div class="col"><h:inputText value="#{bookCrudBean.item.fileName}"  size="50" /></div>
                             </div><br />
                             <div class="row">
-                                <div class="col">Author:</div><div class="col"><p:selectOneListbox id="basic" value="#{item.author}">
-                                    <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                    <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                    <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                </p:selectOneListbox></div>
+                                <div class="col">Author:</div>                 
+                                <div class="col">
+                                    <p:selectOneListbox id="basic" var="auth" value="#{bookCrudBean.item.author}">
+                                        <f:selectItem itemLabel="" itemValue="null" />
+                                        <f:selectItems value="#{authorCrudBean.list}" var="author"
+                                            itemLabel="#{author.email}" itemValue="#{author}" />                                    
+                                    </p:selectOneListbox>
+                                </div>
                             </div><br />
                                     
                             <div class="row">
@@ -76,12 +79,14 @@
                                 <div class="col">Filename:</div><div class="col"><h:inputText value="#{bookCrudBean.item.fileName}"  size="50" /></div>
                             </div><br /> 
                             <div class="row">
-                                <div class="col">Author:</div><div class="col">
-                                    <p:selectOneListbox id="basic" value="#{item.author}">
-                                        <f:selectItem itemLabel="Option 1" itemValue="1" />
-                                        <f:selectItem itemLabel="Option 2" itemValue="2" />
-                                        <f:selectItem itemLabel="Option 3" itemValue="3" />
-                                    </p:selectOneListbox></div>
+                                <div class="col">Author:</div>
+                                <div class="col">
+                                    <p:selectOneListbox id="basic" var="auth" value="#{bookCrudBean.item.author}">
+                                        <f:selectItem itemLabel="" itemValue="null" />
+                                        <f:selectItems value="#{authorCrudBean.list}" var="author"
+                                            itemLabel="#{author.name}" itemValue="#{author}" />                                    
+                                    </p:selectOneListbox>
+                                </div>
                             </div><br />
                             <div class="row">
                                 <div class="col">State:</div><div class="col"><h:inputText value="#{bookCrudBean.item.state}"  size="50" /></div>
