@@ -151,5 +151,11 @@ public class BookCrudBean implements Serializable {
             ex.getMessage(), null));
         }
         return null;
-   }
+   }    
+    public UIPanel getResultPanel() {
+      return resultPanel;
+    }
+    public void setResultPanel(UIPanel resultPanel) {
+      this.resultPanel = resultPanel;
+    }
 }
