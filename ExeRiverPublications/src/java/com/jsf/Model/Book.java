@@ -1,14 +1,16 @@
 package com.jsf.Model;
 import com.jsf.Controller.LoginBean;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import java.util.Scanner;
 /**
  * @author clair
  */
@@ -31,7 +33,9 @@ public class Book implements BookInterface, Serializable{
     private Meeting meeting;
     ArrayList observers;
     public static ArrayList<Book> bookList;
-
+    private String result;
+    private SaveData thisSaveData = new SaveData();
+    private String user;
     public static ArrayList<Book> getBookList() {
         return bookList;
     }
@@ -313,7 +317,8 @@ public class Book implements BookInterface, Serializable{
     private static Book book1, book2, book3, book4, book5, book6, book7, book8, book9, book10;
     private static Administrator admin1;
     private static Editor editor1, editor2;
-    private static Author author1, author2, author3;
+    private static Author author1, author2, author3;    
+    private static List<Author> authorList;
     private static Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private static Agent agent1;
     //public ArrayList<User> = new ArrayList<>();
@@ -331,19 +336,6 @@ public class Book implements BookInterface, Serializable{
         book9 = new Book(9, "The story of my life");
         book10 = new Book(10, "Village life");
         
-//        bookList.add(book1);
-//        bookList.add(book2);
-//        bookList.add(book3);
-//        bookList.add(book4);
-//        bookList.add(book5);
-//        bookList.add(book6);
-//        bookList.add(book7);
-//        bookList.add(book8);
-//        bookList.add(book9);
-//        bookList.add(book10);
-
-        
-        
         /* Create users */
         //create Administrator
         admin1 = new Administrator("Clair", "Nicholls", "clair@gmail.com", "8 Copper Meadows, Redruth, TR152NX", "letmein");
@@ -354,12 +346,26 @@ public class Book implements BookInterface, Serializable{
         editor2 = new Editor("Phillipa", "Frost", "pfrost@exeriverpublishing.co.uk", "13 Prospect Street, Exeter EX2 4RR", "prospects");
         editor2.setName(editor1.forename, editor1.surname);
         //Create authors
+        
         author1 = new Author("Coleen", "Cole", "ccole@gmail.com", "6 Castle Court, Exeter, EX1 1DS", "castles");
+        //author1.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
         author1.setName(author1.forename, author1.surname);
+        author1.setData();
+        author1.saveResults();
+        //authorList.add(author1);
+        //author1 = new Author();
         author2 = new Author("Anna", "Alyn", "anna_a@hotmail.co.uk", "79 Grammercy Lane, Exeter EX7 7SA", "lollipops");
-        author2.setName(author1.forename, author1.surname);
+        //author2.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
+        author2.setName(author2.forename, author2.surname);
+        author2.setData();
+        author2.saveResults();
+        //authorList.add(author2);
         author3 = new Author("Steve", "Robins", "steverobins@live.co.uk", "22 New Lane, Exeter EX4 9PQ", "mountain1");
-        author3.setName(author1.forename, author1.surname);
+        //author3.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
+        author3.setName(author3.forename, author3.surname);        
+        author3.setData();
+        author3.saveResults();
+        //authorList.add(author3);
         //create reviewers
         reviewer1 = new Reviewer("Sarah", "Barkins", "sbarkins@exeriverpublishing.co.uk", "47 Rockne Drive, Exeter EX3 7NV", "creative10");
         reviewer1.setName(reviewer1.forename, reviewer1.surname);
@@ -467,6 +473,78 @@ public class Book implements BookInterface, Serializable{
 //        }
     }
         
+public void loadResults() throws IOException 
+   {
+       String filename = "author.ser";
+       SaveData newSaver = null;
+       Scanner sc = null;
+       String output = null;
+       try
+       { 
+            File file= new File(filename);
+            FileInputStream fin = new FileInputStream(filename);
+            ObjectInputStream ois = new ObjectInputStream(fin);
+                        
+            newSaver = (SaveData) ois.readObject();
+            newSaver = (SaveData) ois.readObject();
+            newSaver = (SaveData) ois.readObject();
+            newSaver = (SaveData) ois.readObject();
+            newSaver = (SaveData) ois.readObject();
+            
+                        
+//            sc = new Scanner(fin, "UTF-8");
+//            while (sc.hasNextLine()){
+//                output += sc.nextLine();
+//            }
+//            if (sc.ioException() != null){
+//                throw sc.ioException();             
+//            }
+                  
+            //ObjectInputStream ois = new ObjectInputStream(fin);
+                        
+            //newSaver = (SaveData) ois.readObject();
+            //ois.close();
+ 
+            //System.out.println(newSaver.getdata());		   
+        }
+            
+        catch(Exception ex)
+        {
+            ex.printStackTrace(); 
+	} 
+       
+       setResult(newSaver.getdata());
+       System.out.println("The result saved was: " + result);
+   }
+       
+   public String getResult() {
+      return result;
+   }
 
+   public void setResult(String result1) {
+      result = result1;
+   }
+    
+   public void saveResults() 
+   {
+        String filename = "author.ser";
+        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
+     
+        try
+        {
+            FileOutputStream fout = new FileOutputStream(filename,true);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);  
+            oos.writeObject(thisSaveData);
+            oos.close();
+            System.out.println("Done");
+        }
+        catch(Exception ex)
+        {
+             ex.printStackTrace();
+        } 
+
+        thisSaveData.cleardata();
+   }
+   
    
 }

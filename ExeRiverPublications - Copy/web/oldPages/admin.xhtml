@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Exe River Publications</title>
+    <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet> 
+    <h:outputStylesheet library="css" name="exeRiver.css" ></h:outputStylesheet> 
+    <h:outputScript library="js" name="bootstrap.min.js" ></h:outputScript>
+</h:head>
+<h:body>
+    <div id="result" class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <a href="" class="nolinkborder">
+                    <img src="resources/images/exeLogo.jpg" width="100px" alt="River Exe Logo"/>
+                </a>
+                <img src="resources/images/ExeText.jpg" width="500px" alt="River Exe Publications"/>
+            </div>
+        </div>
+        <div>    
+            <h1>Administrator</h1>
+            <p>This page will add the admins</p>
+            <form>
+                Forename:<input type="text" value="forename" placeholder="forename" />
+                Surname:<input type="text" value="surname" placeholder="surname" />
+                Email:<input type="text" value="email" placeholder="email" />
+                Password:<input type="text" value="password" placeholder="password" />
+                <input type="submit" value="Submit" name="submit" />
+            </form>
+        </div>    
+            
+    </div>        
+            
+            
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true"/>
+
+        <p:dataTable id="admins" var="admin" value="#{dtEditView.admin}" editable="true" style="margin-bottom:20px">
+            <f:facet name="header">
+                Row Editing
+            </f:facet>
+
+            <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs" />
+            <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs" />
+
+            <p:column headerText="UserId">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{admin.userId}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput" value="#{admin.userId}" style="width:100%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Forename">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{admin.forename}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{admin.forename}" style="width:100%" label="Forename"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Surname">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{admin.surname}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{admin.surname}" style="width:100%" label="Surname"/></f:facet>
+                </p:cellEditor>
+            </p:column> 
+
+            <p:column headerText="Email">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{admin.email}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{admin.email}" style="width:100%" label="Email"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Password">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{admin.password}" /></f:facet>
+                    <f:facet name="input"><p:inputText value="#{admin.password}" style="width:100%" label="Password"/></f:facet>
+                </p:cellEditor>
+            </p:column> 
+
+            <p:column style="width:35px">
+                <p:rowEditor />
+            </p:column>
+        </p:dataTable>
+    </h:form>        
+            
+            
+                    
+                
+               
+        
+</h:body>
+</html>

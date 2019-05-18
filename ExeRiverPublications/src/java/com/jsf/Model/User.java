@@ -1,6 +1,10 @@
 
 package com.jsf.Model;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -13,7 +17,6 @@ import java.util.Date;
 public abstract class User implements Serializable{
     
     protected ArrayList observers;
-    
     /**
      *
      */
@@ -247,4 +250,7 @@ public abstract class User implements Serializable{
             this.userId = user.getUserId();
             this.name = user.getName();
     }
+    
+    
+   
 }
