@@ -30,7 +30,7 @@ public class AuthorCrudBean implements Serializable {
     private List<Author> authorList;
     private Author item = new Author();
     private Author beforeEditItem = null;
-    private boolean edit;
+    private boolean edit;    
     //private UIPanel resultPanel;
 
     @ManagedProperty(value="#{commonUtils}")
@@ -38,40 +38,50 @@ public class AuthorCrudBean implements Serializable {
     public void setUtil(CommonUtils util) {
             this.util = util;
     }
-        
     @PostConstruct
     public void init() {
-        authorList = new ArrayList<Author>();
-    }
-    //public AuthorCrudBean(){}
+        //authorList = new ArrayList<Author>();
         
-//    public String saveResults() {
-//        FacesContext ctx = FacesContext.getCurrentInstance();
-//        try {
-//            item.saveResults();
-//            //resultPanel.setRendered(true);
-//            ctx.addMessage(null, new
-//               FacesMessage(FacesMessage.SEVERITY_INFO,
-//            "Results Saved", null));
-//        } catch (Exception ex) {
-//            //resultPanel.setRendered(false);
-//            ctx.addMessage(null, new
-//               FacesMessage(FacesMessage.SEVERITY_ERROR,
-//            ex.getMessage(), null));
-//        }
-//        return null;
-//   }
+        authorList =  new ArrayList<Author>();
+        item = new Author(1,"Coleen", "Cole", "ccole@gmail.com", "6 Castle Court, Exeter, EX1 1DS", "castles");
+        //author1.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
+        //item.setName(item.forename, item.surname);
+        item.setData();
+        item.saveResults();
+        authorList.add(item);
+        //author1.setAuthors(authorList);
+
+        //authorList.add(author1);
+        //author1 = new Author();
+        item = new Author(2,"Anna", "Alyn", "anna_a@hotmail.co.uk", "79 Grammercy Lane, Exeter EX7 7SA", "lollipops");
+        //author2.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
+        //author2.setName(author2.forename, author2.surname);
+        item.setData();
+        item.saveResults();
+        authorList.add(item);
+        //author2.setAuthors(authorList);
+        
+        item = new Author(3,"Steve", "Robins", "steverobins@live.co.uk", "22 New Lane, Exeter EX4 9PQ", "mountain1");
+        //author3.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
+        item.setName(item.getForename(), item.getSurname());        
+        item.setData();
+        item.saveResults();
+        authorList.add(item);
+        item.setAuthors((ArrayList<Author>) authorList);//save to the model list
+        resetAdd();
+        //item = new Author(4,"","","","","");
+        //item.setData();
+        
+        //item = new Author();
+        //authorList =  item.getAuthors(); // = getList();
+    }
+    
     
     public void add() {
-    	// DAO save the add
-        //item.setUserId(list.isEmpty() ? 1 : list.get(list.size() - 1).getUserId() + 1);
-        //list.add(item);
-        //item = new Author();
-        //FacesContext ctx = FacesContext.getCurrentInstance();
-                
+
         FacesContext ctx = FacesContext.getCurrentInstance();
         try {
-            item.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
+            //item.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
             
             item.setData();
             item.saveResults();
@@ -91,6 +101,8 @@ public class AuthorCrudBean implements Serializable {
 
     public void resetAdd() {
     	item = new Author();
+        item.setForename(null);
+        item.setSurname(null);
     }
 
     public void edit(Author item) {
@@ -127,27 +139,4 @@ public class AuthorCrudBean implements Serializable {
     public boolean isEdit() {
         return this.edit;
     }
-
-//    public UIPanel getResultPanel() {
-//      return resultPanel;
-//    }
-//    public void setResultPanel(UIPanel resultPanel) {
-//      this.resultPanel = resultPanel;
-//    }
-     public String loadResults() {
-      FacesContext ctx = FacesContext.getCurrentInstance();
-      try {
-         item.loadResults();
-         //resultPanel.setRendered(true);
-         ctx.addMessage(null, new
-               FacesMessage(FacesMessage.SEVERITY_INFO,
-            "loaded results", null));
-      } catch (Exception ex) {
-         //resultPanel.setRendered(false);
-         ctx.addMessage(null, new
-               FacesMessage(FacesMessage.SEVERITY_ERROR,
-            ex.getMessage(), null));
-         }
-         return null;
-   }
 }

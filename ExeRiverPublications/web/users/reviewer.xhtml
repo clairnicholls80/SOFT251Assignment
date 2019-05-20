@@ -9,15 +9,15 @@
         <ui:composition template="../exeTemplate.xhtml">
             <ui:define name="content">
                 <div class="container text-left">
-                    <div class="col-md-10">                    
+                    <div class="col-md-12">                    
                         <div class="clear">&nbsp;</div>                    
                         <div class="row">
                             <div class="col-md-8"><h3>Reviewer Maintenance</h3></div>
                             <div class="col-md-4 text-right"><a class="btn btn-warning btn-sm" href="../adminHome.xhtml">Back to menu</a></div>  
                         </div>                    
                     <hr></hr>
-                    <h:form rendered="#{not empty reviewerCrudBean.list}">
-                        <h:dataTable value="#{reviewerCrudBean.list}" var="item" styleClass="order-table" class="text-left"
+                    <h:form rendered="#{not empty reviewerCrudBean.reviewerList}">
+                        <h:dataTable value="#{reviewerCrudBean.reviewerList}" var="item" styleClass="order-table" class="text-left"
                             headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
                             <h:column><f:facet name="header">ID</f:facet>#{item.userId}</h:column>
                             <h:column><f:facet name="header">Forename</f:facet>#{item.forename}</h:column>
@@ -32,7 +32,7 @@
                             </h:column>
                         </h:dataTable>
                     </h:form>
-                    <h:panelGroup rendered="#{empty reviewerCrudBean.list}">
+                    <h:panelGroup rendered="#{empty reviewerCrudBean.reviewerList}">
                             <p>No reviewers! Please add reviewers.</p>
                     </h:panelGroup>
                     <hr></hr>

@@ -9,8 +9,10 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 /**
  * @author clair
  */
@@ -32,18 +34,26 @@ public class Book implements BookInterface, Serializable{
     private Feedback feedback;
     private Meeting meeting;
     ArrayList observers;
-    public static ArrayList<Book> bookList;
+    private List<Book> bookList;
     private String result;
+    private List<Book> listResult;
     private SaveData thisSaveData = new SaveData();
     private String book;
-    public static ArrayList<Book> getBookList() {
+    private List<Book> data;
+    
+    public List<Book> getBookList() {
         return bookList;
     }
 
-    public void setBookList(ArrayList<Book> bookList) {
+    public void setBookList(List<Book> bookList) {
         this.bookList = bookList;
+        //setListResult(this.bookList);
+        //setdata(listResult);
     }
-
+    public void setdata( List<Book> thisdata)
+    {
+        data = thisdata;
+    } 
     /**
      *
      */
@@ -328,7 +338,7 @@ public class Book implements BookInterface, Serializable{
     private static Administrator admin1;
     private static Editor editor1, editor2;
     private static Author author1, author2, author3;    
-    private static List<Author> authorList;
+    private static ArrayList<Author> authorList;
     private static Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private static Agent agent1;
     //public ArrayList<User> = new ArrayList<>();
@@ -348,45 +358,52 @@ public class Book implements BookInterface, Serializable{
         
         /* Create users */
         //create Administrator
-        admin1 = new Administrator("Clair", "Nicholls", "clair@gmail.com", "8 Copper Meadows, Redruth, TR152NX", "letmein");
+        admin1 = new Administrator(1, "Clair", "Nicholls", "clair@gmail.com", "8 Copper Meadows, Redruth, TR152NX", "letmein");
         admin1.setName(admin1.forename, admin1.surname);
         //create Editors
-        editor1 = new Editor("Edward", "Richey", "erichey@exeriverpublishing.co.uk", "1a Long Drive, Exmouth EX10 3ER", "richness");
+        editor1 = new Editor(1,"Edward", "Richey", "erichey@exeriverpublishing.co.uk", "1a Long Drive, Exmouth EX10 3ER", "richness");
         editor1.setName(editor1.forename, editor1.surname);        
-        editor2 = new Editor("Phillipa", "Frost", "pfrost@exeriverpublishing.co.uk", "13 Prospect Street, Exeter EX2 4RR", "prospects");
+        editor2 = new Editor(2,"Phillipa", "Frost", "pfrost@exeriverpublishing.co.uk", "13 Prospect Street, Exeter EX2 4RR", "prospects");
         editor2.setName(editor1.forename, editor1.surname);
         //Create authors
         
-        author1 = new Author("Coleen", "Cole", "ccole@gmail.com", "6 Castle Court, Exeter, EX1 1DS", "castles");
+        authorList =  new ArrayList<Author>();
+        author1 = new Author(1,"Coleen", "Cole", "ccole@gmail.com", "6 Castle Court, Exeter, EX1 1DS", "castles");
         //author1.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
         author1.setName(author1.forename, author1.surname);
         author1.setData();
         author1.saveResults();
+        authorList.add(author1);
+        //author1.setAuthors(authorList);
+
         //authorList.add(author1);
         //author1 = new Author();
-        author2 = new Author("Anna", "Alyn", "anna_a@hotmail.co.uk", "79 Grammercy Lane, Exeter EX7 7SA", "lollipops");
+        author2 = new Author(2,"Anna", "Alyn", "anna_a@hotmail.co.uk", "79 Grammercy Lane, Exeter EX7 7SA", "lollipops");
         //author2.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
         author2.setName(author2.forename, author2.surname);
         author2.setData();
         author2.saveResults();
-        //authorList.add(author2);
-        author3 = new Author("Steve", "Robins", "steverobins@live.co.uk", "22 New Lane, Exeter EX4 9PQ", "mountain1");
+        authorList.add(author2);
+        //author2.setAuthors(authorList);
+        
+        author3 = new Author(3,"Steve", "Robins", "steverobins@live.co.uk", "22 New Lane, Exeter EX4 9PQ", "mountain1");
         //author3.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
         author3.setName(author3.forename, author3.surname);        
         author3.setData();
         author3.saveResults();
-        //authorList.add(author3);
+        authorList.add(author3);
+        author3.setAuthors(authorList);//save to the model list
         //create reviewers
-        reviewer1 = new Reviewer("Sarah", "Barkins", "sbarkins@exeriverpublishing.co.uk", "47 Rockne Drive, Exeter EX3 7NV", "creative10");
+        reviewer1 = new Reviewer(1,"Sarah", "Barkins", "sbarkins@exeriverpublishing.co.uk", "47 Rockne Drive, Exeter EX3 7NV", "creative10");
         reviewer1.setName(reviewer1.forename, reviewer1.surname);
-        reviewer2 = new Reviewer("Pete", "Chinn", "pchinn@exeriverpublishing.co.uk", "62 Woodside Court, Exeter, EX4 8DF", "woodward");
+        reviewer2 = new Reviewer(2,"Pete", "Chinn", "pchinn@exeriverpublishing.co.uk", "62 Woodside Court, Exeter, EX4 8DF", "woodward");
         reviewer2.setName(reviewer1.forename, reviewer1.surname);
-        reviewer3 = new Reviewer("Zelpah", "Ashton", "zashton@exeriverpublishing.co.uk", "67 Greenbelt Way, Exeter EX3 5 DF", "alpine50");
+        reviewer3 = new Reviewer(3,"Zelpah", "Ashton", "zashton@exeriverpublishing.co.uk", "67 Greenbelt Way, Exeter EX3 5 DF", "alpine50");
         reviewer3.setName(reviewer1.forename, reviewer1.surname);
-        reviewer4 = new Reviewer("Martin", "Hicks", "mhicks@exeriverpublishing.co.uk", "32 South Bank Avenue, Exeter EX2 1DK", "bank12345");
+        reviewer4 = new Reviewer(4,"Martin", "Hicks", "mhicks@exeriverpublishing.co.uk", "32 South Bank Avenue, Exeter EX2 1DK", "bank12345");
         reviewer4.setName(reviewer1.forename, reviewer1.surname);         
         //create agent
-        agent1 = new Agent("Philip", "Davey", "pdavey@publishinghouse.co.uk", "33 Station Road, Exeter EX1 1AB", "davesrbest");
+        agent1 = new Agent(1,"Philip", "Davey", "pdavey@publishinghouse.co.uk", "33 Station Road, Exeter EX1 1AB", "davesrbest");
         agent1.setName(agent1.forename, agent1.surname);
         
         //register users to books (register observers)
@@ -530,11 +547,15 @@ public void loadResults() throws IOException
    public String getResult() {
       return result;
    }
-
+   public List<Book> getListResult() {
+      return listResult;
+   }
    public void setResult(String result1) {
       result = result1;
    }
-
+   public void setListResult(List<Book> result1) {
+      listResult = result1;
+   }
    public void saveResults() 
    {
         String filename = "book.ser";
@@ -545,6 +566,27 @@ public void loadResults() throws IOException
             FileOutputStream fout = new FileOutputStream(filename,true);
             ObjectOutputStream oos = new ObjectOutputStream(fout);  
             oos.writeObject(thisSaveData);
+            oos.close();
+            System.out.println("Done");
+        }
+        catch(Exception ex)
+        {
+             ex.printStackTrace();
+        } 
+
+        thisSaveData.cleardata();
+   }
+   
+   public void saveListResults() 
+   {
+        String filename = "bookList3.ser";
+        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
+     
+        try
+        {
+            FileOutputStream fout = new FileOutputStream(filename,true);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);  
+            oos.writeObject(data.toArray());
             oos.close();
             System.out.println("Done");
         }

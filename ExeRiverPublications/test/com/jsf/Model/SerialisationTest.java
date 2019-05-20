@@ -29,7 +29,7 @@ public class SerialisationTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        agent = new Agent("Philip", "Davey", "pdavey@publishinghouse.co.uk", "33 Station Road, Exeter EX1 1AB", "davesrbest");
+        agent = new Agent(1,"Philip", "Davey", "pdavey@publishinghouse.co.uk", "33 Station Road, Exeter EX1 1AB", "davesrbest");
         agent.setName(agent.forename, agent.surname);
     }
     

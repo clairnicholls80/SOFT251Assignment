@@ -5,7 +5,6 @@
  */
 package com.jsf.Controller;
 
-import com.jsf.Model.Author;
 import com.jsf.Model.Editor;
 import java.io.IOException;
 import java.io.Serializable;
@@ -24,7 +23,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class EditorCrudBean implements Serializable {
     private static final long serialVersionUID = 1L;
-    private List<Editor> list;
+    private List<Editor> editorList;
     private Editor item = new Editor();
     private Editor beforeEditItem = null;
     private boolean edit;
@@ -37,14 +36,29 @@ public class EditorCrudBean implements Serializable {
         
     @PostConstruct
     public void init() {
-        list = new ArrayList<Editor>();
+        editorList = new ArrayList<Editor>();
+        
+        item = new Editor(1,"Edward", "Richey", "erichey@exeriverpublishing.co.uk", "1a Long Drive, Exmouth EX10 3ER", "richness");
+        item.setName(item.getForename(), item.getSurname());         
+        item.setData();
+        item.saveResults();
+        editorList.add(item);
+        item = new Editor(2,"Phillipa", "Frost", "pfrost@exeriverpublishing.co.uk", "13 Prospect Street, Exeter EX2 4RR", "prospects");
+        item.setName(item.getForename(), item.getSurname());
+        item.setData();
+        item.saveResults();
+        editorList.add(item);
+               
+        item.setEditors((ArrayList<Editor>) editorList);//save to the model list
+        resetAdd();
+        
     }
     public EditorCrudBean(){}
     
     public void add() {
     	// DAO save the add
-        item.setUserId(list.isEmpty() ? 1 : list.get(list.size() - 1).getUserId() + 1);
-        list.add(item);
+        item.setUserId(editorList.isEmpty() ? 1 : editorList.get(editorList.size() - 1).getUserId() + 1);
+        editorList.add(item);
         item = new Editor();
 
         //util.redirectWithGet();
@@ -82,15 +96,18 @@ public class EditorCrudBean implements Serializable {
 
     public void delete(Editor item) throws IOException {
     	// DAO save the delete
-        list.remove(item);
+        editorList.remove(item);
 
         //util.redirectWithGet();
     }
 
-    public List<Editor> getList() {
-        return list;
+    public List<Editor> getEditorList() {
+        return editorList;
     }
-
+  public void setEditorList(List<Editor> editorList) {
+        this.editorList = editorList;
+    }
+    
     public Editor getItem() {
         return this.item;
     }

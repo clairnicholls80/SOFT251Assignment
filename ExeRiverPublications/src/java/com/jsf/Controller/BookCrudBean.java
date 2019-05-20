@@ -45,17 +45,7 @@ public class BookCrudBean implements Serializable {
     @PostConstruct
     public void init() {
         bookList = new ArrayList<Book>();
-//        Author author;
-//        try{ 
-//            FileInputStream fin = new FileInputStream("author.ser");
-//            ObjectInputStream ois = new ObjectInputStream(fin);
-//            author = (Author) ois.readObject();
-//            ois.close();
-//            System.out.println(author);
-//        }
-//        catch(Exception ex){
-//                ex.printStackTrace(); 
-//        } 
+        //bookList = getList();
     }
     public BookCrudBean(){}
     
@@ -64,10 +54,12 @@ public class BookCrudBean implements Serializable {
         //item.setBookId(list.isEmpty() ? 1 : list.get(list.size() - 1).getBookId() + 1);
         FacesContext ctx = FacesContext.getCurrentInstance();
         try {
-            //item.setBookId(list.isEmpty() ? 1 : list.get(list.size() - 1).getBookId()+ 1);
+            //item.setBookId(bookList.isEmpty() ? 1 : bookList.get(bookList.size() - 1).getBookId()+ 1);
             item.setData();
             item.saveResults();
             bookList.add(item);
+//            item.setBookList(bookList);
+//            item.saveListResults();
             item = new Book();
             //resultPanel.setRendered(true);
             ctx.addMessage(null, new

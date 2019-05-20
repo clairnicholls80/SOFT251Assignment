@@ -35,7 +35,7 @@ public class HomeBean implements Serializable{
      */
     public HomeBean() {
         Book.initialiseData();
-        list=Book.getBookList();
+        //list=Book.getBookList();
 //        try{
 //            ObjectInputStream os = new ObjectInputStream(new FileInputStream("book1.ser"));
 //            Book book1 = (Book) os.readObject();;

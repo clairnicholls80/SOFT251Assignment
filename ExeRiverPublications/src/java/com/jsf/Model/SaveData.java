@@ -6,6 +6,7 @@
 package com.jsf.Model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -20,7 +21,10 @@ public class SaveData implements Serializable{
     {
         data = thisdata;
     }
-    
+//    public void setListData( List<Book> thisdata)
+//    {
+//        data = thisdata;
+//    }    
     public String getdata()
     {
         return data;

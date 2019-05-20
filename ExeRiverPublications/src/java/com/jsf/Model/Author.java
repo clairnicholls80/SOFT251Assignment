@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,9 +24,17 @@ public class Author extends User implements UserInterface, Serializable {
     //private static final long serialVersionUID = 1L;
 
     private String result;
-    private List<Author> resultList;
+    private ArrayList<Author> authors;
     private SaveData thisSaveData = new SaveData();
     private String user;
+    
+    public ArrayList<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(ArrayList<Author> authors) {
+        this.authors = authors;
+    }
     /**
      *
      */
@@ -39,7 +48,8 @@ public class Author extends User implements UserInterface, Serializable {
      * @param address
      * @param password
      */
-    public Author(String forename, String surname, String email, String address, String password) {
+    public Author(int userId, String forename, String surname, String email, String address, String password) {
+        this.userId = userId;
         this.forename = forename;
         this.surname = surname;
         this.email = email;
@@ -88,9 +98,9 @@ public class Author extends User implements UserInterface, Serializable {
       result = result1;
    }
    
-   public void setResultList(List<Author> list){
-       resultList = list;
-   }
+//   public void setResultList(List<Author> list){
+//       resultList = list;
+//   }
     
    public void saveResults() 
    {

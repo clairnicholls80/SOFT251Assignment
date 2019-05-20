@@ -1,8 +1,10 @@
 package com.jsf.Controller;
  
+import com.jsf.Model.Author;
 import com.jsf.Model.Book;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,7 +20,9 @@ public class LoginBean implements Serializable {
     private String password;
     private ArrayList bookList;
     public Book book1;
-    @PostConstruct
+    private Author author;
+    
+    @PostConstruct    
     public void init() {
         Book.initialiseData();
         System.out.println("data created");
@@ -54,7 +58,7 @@ public class LoginBean implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
- 
+     
     /**
      *
      * @return
@@ -64,7 +68,8 @@ public class LoginBean implements Serializable {
         String navResult = "";
         System.out.println("Entered Username is= " + userName + ", password is= " + password);
         //book1.observers.forEach((o)->System.out.println(o));
-        
+        userName = "Clair";
+        password="z";
         if (userName.equalsIgnoreCase("clair") && password.equals("z")) {
             navResult = "success";
         } else {

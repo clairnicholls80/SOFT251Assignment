@@ -25,7 +25,7 @@ public class EditorTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        editor = new Editor("Phillipa", "Frost", "pfrost@exeriverpublishing.co.uk", "13 Prospect Street, Exeter EX2 4RR", "prospects");
+        editor = new Editor(1,"Phillipa", "Frost", "pfrost@exeriverpublishing.co.uk", "13 Prospect Street, Exeter EX2 4RR", "prospects");
         editor.setName(editor.forename, editor.surname);
         
     }

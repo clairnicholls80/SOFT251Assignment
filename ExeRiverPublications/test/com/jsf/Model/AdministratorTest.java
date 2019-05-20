@@ -46,7 +46,7 @@ public class AdministratorTest {
     @Before
     public void setUp() {
         //setup and administrator to test
-        admin = new Administrator("Clair", "Nicholls", "clair@gmail.com", "8 Copper Meadows, Redruth, TR152NX", "letmein");
+        admin = new Administrator(1,"Clair", "Nicholls", "clair@gmail.com", "8 Copper Meadows, Redruth, TR152NX", "letmein");
         admin.setName(admin.forename, admin.surname);
     }    
 

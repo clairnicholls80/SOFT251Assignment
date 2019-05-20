@@ -31,7 +31,7 @@ public class AuthorTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        author = new Author("Coleen", "Cole", "ccole@gmail.com", "6 Castle Court, Exeter, EX1 1DS", "castles");
+        author = new Author(1,"Coleen", "Cole", "ccole@gmail.com", "6 Castle Court, Exeter, EX1 1DS", "castles");
         author.setName(author.forename, author.surname);
     }
     

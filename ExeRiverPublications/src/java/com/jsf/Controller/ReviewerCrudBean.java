@@ -5,6 +5,7 @@
  */
 package com.jsf.Controller;
 
+import com.jsf.Model.Administrator;
 import com.jsf.Model.Author;
 import com.jsf.Model.Reviewer;
 import java.io.IOException;
@@ -12,9 +13,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -24,7 +27,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ReviewerCrudBean implements Serializable {
     private static final long serialVersionUID = 1L;
-    private List<Reviewer> list;
+    private List<Reviewer> reviewerList;
     private Reviewer item = new Reviewer();
     private Reviewer beforeEditItem = null;
     private boolean edit;
@@ -37,18 +40,41 @@ public class ReviewerCrudBean implements Serializable {
         
     @PostConstruct
     public void init() {
-        list = new ArrayList<Reviewer>();
+        reviewerList = new ArrayList<Reviewer>();
+        
+        item = new Reviewer(1,"Sarah", "Barkins", "sbarkins@exeriverpublishing.co.uk", "47 Rockne Drive, Exeter EX3 7NV", "creative10");
+        item.setName(item.getForename(), item.getSurname());
+        item.setData();
+        item.saveResults(); 
+        reviewerList.add(item);
+        item = new Reviewer(2,"Pete", "Chinn", "pchinn@exeriverpublishing.co.uk", "62 Woodside Court, Exeter, EX4 8DF", "woodward");
+        item.setName(item.getForename(), item.getSurname());
+        item.setData();
+        item.saveResults();         
+        reviewerList.add(item);
+        item = new Reviewer(3,"Zelpah", "Ashton", "zashton@exeriverpublishing.co.uk", "67 Greenbelt Way, Exeter EX3 5 DF", "alpine50");
+        item.setName(item.getForename(), item.getSurname());
+        item.setData();
+        item.saveResults();         
+        reviewerList.add(item);
+        item = new Reviewer(4,"Martin", "Hicks", "mhicks@exeriverpublishing.co.uk", "32 South Bank Avenue, Exeter EX2 1DK", "bank12345");
+        item.setName(item.getForename(), item.getSurname());
+        item.setData();
+        item.saveResults(); 
+        reviewerList.add(item);  
+        item.setReviewers((ArrayList<Reviewer>) reviewerList);//save to the model list
+        resetAdd();
     }
     public ReviewerCrudBean(){}
     
-    public void add() {
-    	// DAO save the add
-        item.setUserId(list.isEmpty() ? 1 : list.get(list.size() - 1).getUserId() + 1);
-        list.add(item);
-        item = new Reviewer();
-
-        //util.redirectWithGet();
-    }
+//    public void add() {
+//    	// DAO save the add
+//        item.setUserId(reviewerList.isEmpty() ? 1 : reviewerList.get(reviewerList.size() - 1).getUserId() + 1);
+//        reviewerList.add(item);
+//        item = new Reviewer();
+//
+//        //util.redirectWithGet();
+//    }
 
     public void resetAdd() {
     	item = new Reviewer();
@@ -82,13 +108,13 @@ public class ReviewerCrudBean implements Serializable {
 
     public void delete(Reviewer item) throws IOException {
     	// DAO save the delete
-        list.remove(item);
+        reviewerList.remove(item);
 
         //util.redirectWithGet();
     }
 
     public List<Reviewer> getList() {
-        return list;
+        return reviewerList;
     }
 
     public Reviewer getItem() {
@@ -97,5 +123,40 @@ public class ReviewerCrudBean implements Serializable {
 
     public boolean isEdit() {
         return this.edit;
+    }
+    
+    public List<Reviewer> getReviewerList() {
+        return reviewerList;
+    }
+
+    public void setReviewerList(List<Reviewer> reviewerList) {
+        this.reviewerList = reviewerList;
+    }
+    
+    public void add() {
+    	// DAO save the add
+//        item.setUserId(list.isEmpty() ? 1 : list.get(list.size() - 1).getUserId() + 1);
+//        list.add(item);
+//        item = new Agent();
+
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        try {
+            //item.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
+            
+            item.setData();
+            item.saveResults();
+            reviewerList.add(item);
+            item = new Reviewer();
+            //resultPanel.setRendered(true);
+            ctx.addMessage(null, new
+               FacesMessage(FacesMessage.SEVERITY_INFO,
+            "Results Saved", null));
+        } catch (Exception ex) {
+            //resultPanel.setRendered(false);
+            ctx.addMessage(null, new
+               FacesMessage(FacesMessage.SEVERITY_ERROR,
+            ex.getMessage(), null));
+        }
+        //util.redirectWithGet();
     }
 }

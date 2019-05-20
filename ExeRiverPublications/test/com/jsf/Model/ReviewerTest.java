@@ -26,13 +26,13 @@ public class ReviewerTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        reviewer1 = new Reviewer("Sarah", "Barkins", "sbarkins@exeriverpublishing.co.uk", "47 Rockne Drive, Exeter EX3 7NV", "creative10");
+        reviewer1 = new Reviewer(1,"Sarah", "Barkins", "sbarkins@exeriverpublishing.co.uk", "47 Rockne Drive, Exeter EX3 7NV", "creative10");
         reviewer1.setName(reviewer1.forename, reviewer1.surname);
-        reviewer2 = new Reviewer("Pete", "Chinn", "pchinn@exeriverpublishing.co.uk", "62 Woodside Court, Exeter, EX4 8DF", "woodward");
+        reviewer2 = new Reviewer(2,"Pete", "Chinn", "pchinn@exeriverpublishing.co.uk", "62 Woodside Court, Exeter, EX4 8DF", "woodward");
         reviewer2.setName(reviewer1.forename, reviewer1.surname);
-        reviewer3 = new Reviewer("Zelpah", "Ashton", "zashton@exeriverpublishing.co.uk", "67 Greenbelt Way, Exeter EX3 5 DF", "alpine50");
+        reviewer3 = new Reviewer(3,"Zelpah", "Ashton", "zashton@exeriverpublishing.co.uk", "67 Greenbelt Way, Exeter EX3 5 DF", "alpine50");
         reviewer3.setName(reviewer1.forename, reviewer1.surname);
-        reviewer4 = new Reviewer("Martin", "Hicks", "mhicks@exeriverpublishing.co.uk", "32 South Bank Avenue, Exeter EX2 1DK", "bank12345");
+        reviewer4 = new Reviewer(4,"Martin", "Hicks", "mhicks@exeriverpublishing.co.uk", "32 South Bank Avenue, Exeter EX2 1DK", "bank12345");
         reviewer4.setName(reviewer1.forename, reviewer1.surname);   
         reviewers.add(reviewer1);
         reviewers.add(reviewer2);

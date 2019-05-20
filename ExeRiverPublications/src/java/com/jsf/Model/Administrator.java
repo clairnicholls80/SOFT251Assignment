@@ -5,14 +5,28 @@
  */
 package com.jsf.Model;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
  * @author clair
  */
 public class Administrator extends User  implements UserInterface, Serializable{
+    private String result;
+    private ArrayList<Administrator> admins;
+    private SaveData thisSaveData = new SaveData();
+    private String user;
+    
+    public ArrayList<Administrator> getAdmins() {
+        return admins;
+    }
 
+    public void setAdmins(ArrayList<Administrator> admins) {
+        this.admins = admins;
+    }
     /**
      *
      */
@@ -27,7 +41,8 @@ public class Administrator extends User  implements UserInterface, Serializable{
      * @param address
      * @param password
      */
-    public Administrator(String forename, String surname, String email, String address, String password) {
+    public Administrator(int userId, String forename, String surname, String email, String address, String password) {
+        this.userId = userId;
         this.forename = forename;
         this.surname = surname;
         this.email = email;
@@ -61,5 +76,46 @@ public class Administrator extends User  implements UserInterface, Serializable{
     }
 
  
+    public void setData(){
+        //setResult(this.toString());
+        
+        user=this.forename + ", " + this.surname + ", " + this.email + ", " + this.address;
+        setResult(user);
+        thisSaveData.setdata(result);
+    }
+       
+   public String getResult() {
+      return result;
+   }
+
+   public void setResult(String result1) {
+      result = result1;
+   }
+   
+//   public void setResultList(List<Author> list){
+//       resultList = list;
+//   }
+    
+   public void saveResults() 
+   {
+        String filename = "admins.ser";
+        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
+     
+        try
+        {
+            FileOutputStream fout = new FileOutputStream(filename,true);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);  
+            oos.writeObject(thisSaveData);
+            oos.close();
+            System.out.println("Done");
+        }
+        catch(Exception ex)
+        {
+             ex.printStackTrace();
+        } 
+
+        thisSaveData.cleardata();
+   }
+   
     
 }
