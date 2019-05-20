@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -22,6 +23,7 @@ public class Author extends User implements UserInterface, Serializable {
     //private static final long serialVersionUID = 1L;
 
     private String result;
+    private List<Author> resultList;
     private SaveData thisSaveData = new SaveData();
     private String user;
     /**
@@ -77,13 +79,17 @@ public class Author extends User implements UserInterface, Serializable {
         setResult(user);
         thisSaveData.setdata(result);
     }
-    
+       
    public String getResult() {
       return result;
    }
 
    public void setResult(String result1) {
       result = result1;
+   }
+   
+   public void setResultList(List<Author> list){
+       resultList = list;
    }
     
    public void saveResults() 
@@ -123,23 +129,7 @@ public class Author extends User implements UserInterface, Serializable {
             newSaver = (SaveData) ois.readObject();
             newSaver = (SaveData) ois.readObject();
             newSaver = (SaveData) ois.readObject();
-            newSaver = (SaveData) ois.readObject();
-            
-                        
-//            sc = new Scanner(fin, "UTF-8");
-//            while (sc.hasNextLine()){
-//                output += sc.nextLine();
-//            }
-//            if (sc.ioException() != null){
-//                throw sc.ioException();             
-//            }
-                  
-            //ObjectInputStream ois = new ObjectInputStream(fin);
-                        
-            //newSaver = (SaveData) ois.readObject();
-            //ois.close();
- 
-            //System.out.println(newSaver.getdata());		   
+            newSaver = (SaveData) ois.readObject();                        	   
         }
             
         catch(Exception ex)
@@ -150,27 +140,5 @@ public class Author extends User implements UserInterface, Serializable {
        setResult(newSaver.getdata());
        System.out.println("The result saved was: " + result);
    }
-   
-//   public void loadResults() 
-//   {
-//       String filename = "author.ser";
-//       SaveData newSaveData = null;
-//       
-//       try
-//       {
-//            FileInputStream fin = new FileInputStream(filename);
-//            ObjectInputStream ois = new ObjectInputStream(fin);
-//            newSaveData = (SaveData) ois.readObject();
-//            ois.close();
-//            System.out.println(newSaveData.getdata());  
-//        }
-//        catch(Exception ex)
-//        {
-//            ex.printStackTrace(); 
-//	} 
-//       
-//       setResult(newSaveData.getdata());
-//       System.out.println("The result saved was: " + result);
-//   }
- 
+    
 }

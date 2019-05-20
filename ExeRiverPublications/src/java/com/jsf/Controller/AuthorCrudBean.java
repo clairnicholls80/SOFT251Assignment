@@ -31,7 +31,7 @@ public class AuthorCrudBean implements Serializable {
     private Author item = new Author();
     private Author beforeEditItem = null;
     private boolean edit;
-    private UIPanel resultPanel;
+    //private UIPanel resultPanel;
 
     @ManagedProperty(value="#{commonUtils}")
     private CommonUtils util;
@@ -44,8 +44,7 @@ public class AuthorCrudBean implements Serializable {
         authorList = new ArrayList<Author>();
     }
     //public AuthorCrudBean(){}
-    
-    
+        
 //    public String saveResults() {
 //        FacesContext ctx = FacesContext.getCurrentInstance();
 //        try {
@@ -69,8 +68,7 @@ public class AuthorCrudBean implements Serializable {
         //list.add(item);
         //item = new Author();
         //FacesContext ctx = FacesContext.getCurrentInstance();
-        
-        
+                
         FacesContext ctx = FacesContext.getCurrentInstance();
         try {
             item.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
@@ -89,35 +87,6 @@ public class AuthorCrudBean implements Serializable {
                FacesMessage(FacesMessage.SEVERITY_ERROR,
             ex.getMessage(), null));
         }
-        //return null;
-//        try {
-//            item.setData();
-//            item.saveResults();
-//            //resultPanel.setRendered(true);
-//            ctx.addMessage(null, new
-//                  FacesMessage(FacesMessage.SEVERITY_INFO,
-//            "Results Saved", null));
-//        } catch (Exception ex) {
-//            //resultPanel.setRendered(false);
-//            ctx.addMessage(null, new
-//               FacesMessage(FacesMessage.SEVERITY_ERROR,
-//            ex.getMessage(), null));
-//        }
-        //return null;
-        //item.saveResults();
-        //util.redirectWithGet();
-        
-        
-//        try{ 
-//            FileOutputStream fout = new FileOutputStream("author.ser");
-//            ObjectOutputStream oos = new ObjectOutputStream(fout);   
-//            oos.writeObject(this);
-//            oos.close();
-//            System.out.println("Done");
-//
-//        }catch(Exception ex){
-//               ex.printStackTrace();
-//        } 
     }
 
     public void resetAdd() {
@@ -159,22 +128,22 @@ public class AuthorCrudBean implements Serializable {
         return this.edit;
     }
 
-    public UIPanel getResultPanel() {
-      return resultPanel;
-    }
-    public void setResultPanel(UIPanel resultPanel) {
-      this.resultPanel = resultPanel;
-    }
+//    public UIPanel getResultPanel() {
+//      return resultPanel;
+//    }
+//    public void setResultPanel(UIPanel resultPanel) {
+//      this.resultPanel = resultPanel;
+//    }
      public String loadResults() {
       FacesContext ctx = FacesContext.getCurrentInstance();
       try {
          item.loadResults();
-         resultPanel.setRendered(true);
+         //resultPanel.setRendered(true);
          ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_INFO,
             "loaded results", null));
       } catch (Exception ex) {
-         resultPanel.setRendered(false);
+         //resultPanel.setRendered(false);
          ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_ERROR,
             ex.getMessage(), null));

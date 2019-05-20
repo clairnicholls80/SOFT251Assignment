@@ -35,7 +35,7 @@ public class Book implements BookInterface, Serializable{
     public static ArrayList<Book> bookList;
     private String result;
     private SaveData thisSaveData = new SaveData();
-    private String user;
+    private String book;
     public static ArrayList<Book> getBookList() {
         return bookList;
     }
@@ -313,6 +313,16 @@ public class Book implements BookInterface, Serializable{
         this.title = book.getTitle();
     }
     
+    
+    public void setData(){
+        //setResult(this.toString());
+        
+        book=this.title + ", " + this.fileName + ", " + this.state;
+        setResult(book);
+        thisSaveData.setdata(result);
+    }
+    
+    
     //declare variables for data initialisation
     private static Book book1, book2, book3, book4, book5, book6, book7, book8, book9, book10;
     private static Administrator admin1;
@@ -524,10 +534,10 @@ public void loadResults() throws IOException
    public void setResult(String result1) {
       result = result1;
    }
-    
+
    public void saveResults() 
    {
-        String filename = "author.ser";
+        String filename = "book.ser";
         System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
      
         try

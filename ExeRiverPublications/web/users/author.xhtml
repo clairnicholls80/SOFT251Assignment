@@ -63,15 +63,7 @@
                             </div>
                         </h:form>
                     </h:panelGroup>
-                    <h:panelGroup
-                        binding="#{authorCrudBean.resultPanel}"
-                            rendered="false">
-                        <h4>Result</h4>
-                        <h:panelGrid columns="1">
-                            <h:outputText value="Loaded Result
-                              #{authorCrudBean.item.result}"/>
-                        </h:panelGrid>
-                    </h:panelGroup>
+                        
                     <h:panelGroup rendered="#{authorCrudBean.edit}">
                         <h4>Edit Author #{bean.item.userId}</h4>
                         <h:form>

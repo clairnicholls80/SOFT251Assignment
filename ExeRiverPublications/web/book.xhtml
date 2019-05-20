@@ -48,24 +48,8 @@
                             </div><br />
                             <div class="row">
                                 <div class="col">Author:</div>                 
-                                <div class="col">
-                                    <h:panelGroup
-                                        binding="#{bookCrudBean.resultPanel}"
-                                            rendered="false">
-                                        <h4>Result</h4>
-                                        <h:panelGrid columns="1">
-                                           <h:outputText value="Result
-                                              #{bookCrudBean.converter.result}"/>
-                                        </h:panelGrid>
-                                     </h:panelGroup>
-                                    <h:commandButton value="  Load  " action="#{bookCrudBean.loadAuthorResults()}" class="btn btn-dark btn-sm" />
-                                
-                                    
-                                    <h:selectOneMenu id="authorList" value="">
-                                        <f:selectItem itemValue="Kozani" itemLabel="City - Kozani" />
-                                        <f:selectItem itemValue="Kavala" itemLabel="City - Kavala" />
-                                        <f:selectItem itemValue="Thessaloniki" itemLabel="City - Thessaloniki" />                                    
-                                    </h:selectOneMenu>  
+                                <div class="col">                                                                         
+
                                 </div>
                             </div><br />
                                     
@@ -76,21 +60,12 @@
                                 <div class="col"></div>
                                 <div class="col">
                                     <h:commandButton value="    Add    " action="#{bookCrudBean.add}"  class="btn btn-info btn-sm" />&nbsp;&nbsp;
-                                    <h:commandButton value="    Reset    " action="#{bookCrudBean.resetAdd}" class="btn btn-dark btn-sm" />
-                                    <h:commandButton value="    Load    " action="#{bookCrudBean.loadResults()}" class="btn btn-info btn-sm"  />&nbsp;&nbsp;
+                                    <h:commandButton value="    Reset    " action="#{bookCrudBean.resetAdd}" class="btn btn-dark btn-sm" />                                    
                                 </div>
                             </div>
                         </h:form>
                     </h:panelGroup>
-                    <h:panelGroup
-                        binding="#{authorCrudBean.resultPanel}"
-                            rendered="false">
-                        <h4>Result</h4>
-                        <h:panelGrid columns="1">
-                            <h:outputText value="Loaded Result
-                              #{authorCrudBean.item.result}"/>
-                        </h:panelGrid>
-                    </h:panelGroup>
+
                     <h:panelGroup rendered="#{bookCrudBean.edit}">
                         <h4>Edit Book #{bookCrudBean.item.userId}</h4>
                         <h:form>
@@ -103,11 +78,7 @@
                             <div class="row">
                                 <div class="col">Author:</div>
                                 <div class="col">
-                                    <p:selectOneListbox id="basic" var="auth" value="#{bookCrudBean.item.author}">
-                                        <f:selectItem itemLabel="" itemValue="null" />
-                                        <f:selectItems value="#{authorCrudBean.list}" var="author"
-                                            itemLabel="#{author.name}" itemValue="#{author}" />                                    
-                                    </p:selectOneListbox>
+
                                 </div>
                             </div><br />
                             <div class="row">
