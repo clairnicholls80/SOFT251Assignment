@@ -16,4 +16,47 @@ public class Payment implements Serializable{
     private String paymentType;
     private Integer amount;
     private Boolean paymentComplete;
+    private Book book;
+
+
+    public Long getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(Long paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+
+    public Boolean getPaymentComplete() {
+        return paymentComplete;
+    }
+
+    public void setPaymentComplete(Boolean paymentComplete) {
+        this.paymentComplete = paymentComplete;
+    }
+    
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
 }

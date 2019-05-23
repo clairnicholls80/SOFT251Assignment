@@ -24,22 +24,27 @@ public class Book implements BookInterface, Serializable{
     private int bookId;
     private String title;
     private Author author;
-//    private Agent agent;
-//    private ArrayList<Reviewer> reviewers;
-//    private Editor editor;
+    private Agent agent;
+    private Reviewer firstReviewer;
+    private Reviewer secondReviewer;
+
+    //private List<Reviewer> reviewers;
+    private Editor editor;
     private String fileName;
     private String location;
     private State state = State.Registered;
     private Payment payment;
     private Feedback feedback;
     private Meeting meeting;
-    ArrayList observers;
+    private ArrayList observers;
     private List<Book> bookList;
     private String result;
     private List<Book> listResult;
     private SaveData thisSaveData = new SaveData();
     private String book;
-    private List<Book> data;
+    private List<Book> data;    
+    private ArrayList<Book> books;
+    //private String user;
     
     public List<Book> getBookList() {
         return bookList;
@@ -54,6 +59,14 @@ public class Book implements BookInterface, Serializable{
     {
         data = thisdata;
     } 
+    
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
     /**
      *
      */
@@ -122,7 +135,7 @@ public class Book implements BookInterface, Serializable{
     public void setTitle(String title) {
         this.title = title;
     }
-
+    
     public Author getAuthor() {
         return author;
     }
@@ -130,27 +143,59 @@ public class Book implements BookInterface, Serializable{
     public void setAuthor(Author author) {
         this.author = author;
     }
-//
+
+    public Agent getAgent() {
+        return agent;
+    }
+
+    public void setAgent(Agent agent) {
+        this.agent = agent;
+    }
+
+    public Reviewer getFirstReviewer() {
+        return firstReviewer;
+    }
+
+    public void setFirstReviewer(Reviewer firstReviewer) {
+        this.firstReviewer = firstReviewer;
+    }
+
+    public Reviewer getSecondReviewer() {
+        return secondReviewer;
+    }
+
+    public void setSecondReviewer(Reviewer secondReviewer) {
+        this.secondReviewer = secondReviewer;
+    }
+    public ArrayList getObservers() {
+        return observers;
+    }
+
+    public void setObservers(ArrayList observers) {
+        this.observers = observers;
+    }
+    
+//    public Author getAuthor() {
+//        return author;
+//    }
+//    public void setAuthor(Author author) {
+//        this.author = author;
+//    }
 //    public Agent getAgent() {
 //        return agent;
 //    }
-//
 //    public void setAgent(Agent agent) {
 //        this.agent = agent;
 //    }
-//
 //    public ArrayList<Reviewer> getReviewers() {
 //        return reviewers;
 //    }
-//
 //    public void setReviewers(ArrayList<Reviewer> reviewers) {
 //        this.reviewers = reviewers;
 //    }
-//
 //    public Editor getEditor() {
 //        return editor;
 //    }
-//
 //    public void setEditor(Editor editor) {
 //        this.editor = editor;
 //    }
@@ -259,12 +304,16 @@ public class Book implements BookInterface, Serializable{
         return this.message;    
     } 
         
+    public void setObservers(){
+        this.observers = new ArrayList();
+    }
+    
     /**
      *
      * @param observer
      */
     public void register(UserInterface observer) {
-        if(observer == null) throw new NullPointerException("No Observer identified");
+        //if(observer == null) throw new NullPointerException("No Observer identified");
         if(!observers.contains(observer)) {
             observers.add(observer);
         }
@@ -330,6 +379,36 @@ public class Book implements BookInterface, Serializable{
         book=this.title + ", " + this.fileName + ", " + this.state;
         setResult(book);
         thisSaveData.setdata(result);
+    }
+    
+    
+    public String getResult() {
+       return result;
+    }
+
+    public void setResult(String result1) {
+       result = result1;
+    }
+    
+    public void saveResults() 
+    {
+        String filename = "book.ser";
+        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
+     
+        try
+        {
+            FileOutputStream fout = new FileOutputStream(filename,true);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);  
+            oos.writeObject(thisSaveData);
+            oos.close();
+            System.out.println("Done");
+        }
+        catch(Exception ex)
+        {
+             ex.printStackTrace();
+        } 
+
+        thisSaveData.cleardata();
     }
     
     
@@ -500,103 +579,103 @@ public class Book implements BookInterface, Serializable{
 //        }
     }
         
-public void loadResults() throws IOException 
-   {
-       String filename = "author.ser";
-       SaveData newSaver = null;
-       Scanner sc = null;
-       String output = null;
-       try
-       { 
-            File file= new File(filename);
-            FileInputStream fin = new FileInputStream(filename);
-            ObjectInputStream ois = new ObjectInputStream(fin);
-                        
-            newSaver = (SaveData) ois.readObject();
-            newSaver = (SaveData) ois.readObject();
-            newSaver = (SaveData) ois.readObject();
-            newSaver = (SaveData) ois.readObject();
-            newSaver = (SaveData) ois.readObject();
-            
-                        
-//            sc = new Scanner(fin, "UTF-8");
-//            while (sc.hasNextLine()){
-//                output += sc.nextLine();
-//            }
-//            if (sc.ioException() != null){
-//                throw sc.ioException();             
-//            }
-                  
-            //ObjectInputStream ois = new ObjectInputStream(fin);
-                        
-            //newSaver = (SaveData) ois.readObject();
-            //ois.close();
- 
-            //System.out.println(newSaver.getdata());		   
-        }
-            
-        catch(Exception ex)
-        {
-            ex.printStackTrace(); 
-	} 
+//public void loadResults() throws IOException 
+//   {
+//       String filename = "author.ser";
+//       SaveData newSaver = null;
+//       Scanner sc = null;
+//       String output = null;
+//       try
+//       { 
+//            File file= new File(filename);
+//            FileInputStream fin = new FileInputStream(filename);
+//            ObjectInputStream ois = new ObjectInputStream(fin);
+//                        
+//            newSaver = (SaveData) ois.readObject();
+//            newSaver = (SaveData) ois.readObject();
+//            newSaver = (SaveData) ois.readObject();
+//            newSaver = (SaveData) ois.readObject();
+//            newSaver = (SaveData) ois.readObject();
+//            
+//                        
+////            sc = new Scanner(fin, "UTF-8");
+////            while (sc.hasNextLine()){
+////                output += sc.nextLine();
+////            }
+////            if (sc.ioException() != null){
+////                throw sc.ioException();             
+////            }
+//                  
+//            //ObjectInputStream ois = new ObjectInputStream(fin);
+//                        
+//            //newSaver = (SaveData) ois.readObject();
+//            //ois.close();
+// 
+//            //System.out.println(newSaver.getdata());		   
+//        }
+//            
+//        catch(Exception ex)
+//        {
+//            ex.printStackTrace(); 
+//	} 
+//       
+//       setResult(newSaver.getdata());
+//       System.out.println("The result saved was: " + result);
+//   }
        
-       setResult(newSaver.getdata());
-       System.out.println("The result saved was: " + result);
-   }
-       
-   public String getResult() {
-      return result;
-   }
-   public List<Book> getListResult() {
-      return listResult;
-   }
-   public void setResult(String result1) {
-      result = result1;
-   }
-   public void setListResult(List<Book> result1) {
-      listResult = result1;
-   }
-   public void saveResults() 
-   {
-        String filename = "book.ser";
-        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
-     
-        try
-        {
-            FileOutputStream fout = new FileOutputStream(filename,true);
-            ObjectOutputStream oos = new ObjectOutputStream(fout);  
-            oos.writeObject(thisSaveData);
-            oos.close();
-            System.out.println("Done");
-        }
-        catch(Exception ex)
-        {
-             ex.printStackTrace();
-        } 
-
-        thisSaveData.cleardata();
-   }
-   
-   public void saveListResults() 
-   {
-        String filename = "bookList3.ser";
-        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
-     
-        try
-        {
-            FileOutputStream fout = new FileOutputStream(filename,true);
-            ObjectOutputStream oos = new ObjectOutputStream(fout);  
-            oos.writeObject(data.toArray());
-            oos.close();
-            System.out.println("Done");
-        }
-        catch(Exception ex)
-        {
-             ex.printStackTrace();
-        } 
-
-        thisSaveData.cleardata();
-   }
+//   public String getResult() {
+//      return result;
+//   }
+//   public List<Book> getListResult() {
+//      return listResult;
+//   }
+//   public void setResult(String result1) {
+//      result = result1;
+//   }
+//   public void setListResult(List<Book> result1) {
+//      listResult = result1;
+//   }
+//   public void saveResults() 
+//   {
+//        String filename = "book.ser";
+//        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
+//     
+//        try
+//        {
+//            FileOutputStream fout = new FileOutputStream(filename,true);
+//            ObjectOutputStream oos = new ObjectOutputStream(fout);  
+//            oos.writeObject(thisSaveData);
+//            oos.close();
+//            System.out.println("Done");
+//        }
+//        catch(Exception ex)
+//        {
+//             ex.printStackTrace();
+//        } 
+//
+//        thisSaveData.cleardata();
+//   }
+//   
+//   public void saveListResults() 
+//   {
+//        String filename = "bookList3.ser";
+//        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
+//     
+//        try
+//        {
+//            FileOutputStream fout = new FileOutputStream(filename,true);
+//            ObjectOutputStream oos = new ObjectOutputStream(fout);  
+//            oos.writeObject(data.toArray());
+//            oos.close();
+//            System.out.println("Done");
+//        }
+//        catch(Exception ex)
+//        {
+//             ex.printStackTrace();
+//        } 
+//
+//        thisSaveData.cleardata();
+//   }
    
    
 }

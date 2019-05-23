@@ -68,13 +68,41 @@ public class LoginBean implements Serializable {
         String navResult = "";
         System.out.println("Entered Username is= " + userName + ", password is= " + password);
         //book1.observers.forEach((o)->System.out.println(o));
-        userName = "Clair";
-        password="z";
-        if (userName.equalsIgnoreCase("clair") && password.equals("z")) {
-            navResult = "success";
-        } else {
-            navResult = "failure";
+        //userName = "clair";
+        //password="z";
+        
+        switch(userName)
+        {
+            case "clair":
+                if (password.equals("z"))
+                    navResult="admin";
+                break;
+            case "agent":
+                if (password.equals("z"))
+                    navResult="agent";
+                break;
+            case "author":
+                if (password.equals("z"))
+                    navResult="author";
+                break;
+            case "reviewer":
+                if (password.equals("z"))
+                    navResult="reviewer";
+                break;
+            case "editor":
+                if (password.equals("z"))
+                    navResult="editor";
+                break;      
+            default:
+                navResult= "failure";
+                break;
         }
+            
+//        if (userName.equalsIgnoreCase("clair") && password.equals("z")) {
+//            navResult = "success";
+//        } else {
+//            navResult = "failure";
+//        }
         //Book.initialiseData();
         //System.out.println("data created");
         return navResult;

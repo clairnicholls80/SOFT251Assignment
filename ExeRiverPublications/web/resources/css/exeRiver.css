@@ -24,7 +24,7 @@ and open the template in the editor.
 	text-align:center;
 	background:none repeat scroll 0 0 #E5E5E5;
 	border-bottom:1px solid #BBBBBB;
-	padding:16px;
+	padding:10px 0px;
 }
 
 .order-table-odd-row{
@@ -45,3 +45,4 @@ and open the template in the editor.
 .btn-info{background-color:#0b69b1;border-color:#0b69b1;}
 hr.header{background-color:#0b69b1;height: 1px;margin-top:5px;}
 .fontBlue{color:#0b69b1;}
+.right_content{margin:0px 30px!important;}

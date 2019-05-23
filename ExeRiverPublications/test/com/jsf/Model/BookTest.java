@@ -87,7 +87,7 @@ public class BookTest {
         agent1.setName(agent1.forename, agent1.surname);
         
         //register users to books (register observers)
-        book1.observers = new ArrayList();
+        book1.setObservers();// = new ArrayList();
         book1.register(admin1);
         book1.register(author1);
         book1.register(agent1);
@@ -95,7 +95,7 @@ public class BookTest {
         book1.register(reviewer2);
         book1.notifyObservers();
         
-        book2.observers = new ArrayList();
+        book2.setObservers(); //= new ArrayList();
         book2.register(admin1);
         book2.register(author2);
         book2.register(agent1);
@@ -103,7 +103,7 @@ public class BookTest {
         book2.register(reviewer4);
         book2.notifyObservers();
         
-        book3.observers = new ArrayList();
+        book3.setObservers();// = new ArrayList();
         book3.register(admin1);
         book3.register(author2);
         book3.register(agent1);
@@ -111,7 +111,7 @@ public class BookTest {
         book3.register(reviewer4);
         book3.notifyObservers();
         
-        book4.observers = new ArrayList();
+        book4.setObservers();// = new ArrayList();
         book4.register(admin1);
         book4.register(author3);
         book4.register(agent1);
@@ -119,7 +119,7 @@ public class BookTest {
         book4.register(reviewer2);
         book4.notifyObservers();
         
-        book5.observers = new ArrayList();
+        book5.setObservers();// = new ArrayList();
         book5.register(admin1);
         book5.register(author3);
         book5.register(agent1);
@@ -127,7 +127,7 @@ public class BookTest {
         book5.register(reviewer4);
         book5.notifyObservers();
         
-        book6.observers = new ArrayList();
+        book6.setObservers();// = new ArrayList();
         book6.register(admin1);
         book6.register(author3);
         book6.register(agent1);
@@ -135,7 +135,7 @@ public class BookTest {
         book6.register(reviewer3);
         book6.notifyObservers();
         
-        book7.observers = new ArrayList();
+        book7.setObservers();// = new ArrayList();
         book7.register(admin1);
         book7.register(author2);
         book7.register(agent1);
@@ -143,7 +143,7 @@ public class BookTest {
         book7.register(reviewer4);
         book7.notifyObservers();
         
-        book8.observers = new ArrayList();
+        book8.setObservers();// = new ArrayList();
         book8.register(admin1);
         book8.register(author3);
         book8.register(agent1);
@@ -151,7 +151,7 @@ public class BookTest {
         book8.register(reviewer2);
         book8.notifyObservers();
         
-        book9.observers = new ArrayList();
+        book9.setObservers();// = new ArrayList();
         book9.register(admin1);
         book9.register(author2);
         book9.register(agent1);
@@ -159,7 +159,7 @@ public class BookTest {
         book9.register(reviewer4);
         book9.notifyObservers();
         
-        book10.observers = new ArrayList();
+        book10.setObservers();// = new ArrayList();
         book10.register(admin1);
         book10.register(author1);
         book10.register(agent1);
@@ -417,43 +417,43 @@ public class BookTest {
                
         System.out.println("Book1 is: " + book1.getTitle()); 
         System.out.println("Observers are:");
-        book1.observers.forEach((o)->System.out.println(o));
+        book1.getObservers().forEach((o)->System.out.println(o));
         System.out.println("-----");
         System.out.println("Book2 is: " + book2.getTitle());  
         System.out.println("Observers are:");      
-        book2.observers.forEach((o)->System.out.println(o));
+        book2.getObservers().forEach((o)->System.out.println(o));
         System.out.println("-----");
         System.out.println("Book3 is: " + book3.getTitle()); 
         System.out.println("Observers are:");
-        book3.observers.forEach((o)->System.out.println(o));
+        book3.getObservers().forEach((o)->System.out.println(o));
         System.out.println("-----");
         System.out.println("Book4 is: " + book4.getTitle());  
         System.out.println("Observers are:");      
-        book4.observers.forEach((o)->System.out.println(o));
+        book4.getObservers().forEach((o)->System.out.println(o));
         System.out.println("-----");        
         System.out.println("Book5 is: " + book5.getTitle()); 
         System.out.println("Observers are:");
-        book5.observers.forEach((o)->System.out.println(o));
+        book5.getObservers().forEach((o)->System.out.println(o));
         System.out.println("-----");
         System.out.println("Book6 is: " + book6.getTitle());  
         System.out.println("Observers are:");      
-        book6.observers.forEach((o)->System.out.println(o));
+        book6.getObservers().forEach((o)->System.out.println(o));
         System.out.println("-----");
         System.out.println("Book7 is: " + book7.getTitle()); 
         System.out.println("Observers are:");
-        book7.observers.forEach((o)->System.out.println(o));
+        book7.getObservers().forEach((o)->System.out.println(o));
         System.out.println("-----");
         System.out.println("Book8 is: " + book8.getTitle());  
         System.out.println("Observers are:");      
-        book8.observers.forEach((o)->System.out.println(o));
+        book8.getObservers().forEach((o)->System.out.println(o));
         System.out.println("-----");                
         System.out.println("Book9 is: " + book9.getTitle()); 
         System.out.println("Observers are:");
-        book9.observers.forEach((o)->System.out.println(o));
+        book9.getObservers().forEach((o)->System.out.println(o));
         System.out.println("-----");
         System.out.println("Book10 is: " + book10.getTitle());  
         System.out.println("Observers are:");      
-        book10.observers.forEach((o)->System.out.println(o));
+        book10.getObservers().forEach((o)->System.out.println(o));
         System.out.println("-----");
         
         System.out.println("BookList: " + bookList);

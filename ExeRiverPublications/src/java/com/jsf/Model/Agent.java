@@ -27,6 +27,8 @@ public class Agent extends User  implements UserInterface, Serializable{
     public void setAgents(ArrayList<Agent> authors) {
         this.agents = agents;
     }
+    
+    
     /**
      *
      */
