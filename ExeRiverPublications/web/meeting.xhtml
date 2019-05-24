@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition template="exeTemplate.xhtml">
+            <ui:define name="content">
+                <div class="container text-left">
+                    <div class="col-md-12">                 
+                        <div class="row">
+                            <div class="col-md-8"><h3>Meetings</h3></div>
+                        </div>                   
+                    <hr></hr>
+                    <h:form rendered="#{not empty meetingCrudBean.meetingList}">
+                        <h:dataTable value="#{meetingCrudBean.meetingList}" var="item" styleClass="order-table" class="text-left col-md-12"
+                            headerClass="order-table-header text-left" rowClasses="order-table-odd-row text-left,order-table-even-row text-left">
+                            <h:column><f:facet name="header">ID</f:facet>#{item.meetingId}</h:column>
+                            <h:column><f:facet name="header">Notes</f:facet>#{item.notes}</h:column>
+                            <h:column><f:facet name="header">Book</f:facet>#{item.book}</h:column>
+                            <h:column>
+                                    <h:commandButton value="  Edit  " action="#{meetingCrudBean.edit(item)}" class="btn btn-warning btn-sm" />
+                            </h:column>
+                            <h:column>
+                                    <h:commandButton value="  Delete  " action="#{meetingCrudBean.delete(item)}" class="btn btn-danger btn-sm" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                    <h:panelGroup rendered="#{empty meetingCrudBean.meetingList}">
+                            <p>No meetings! Please add meetings.</p>
+                    </h:panelGroup>
+                    <hr></hr>
+                    <div class="col-md-8">
+                    <h:panelGroup rendered="#{!meetingCrudBean.edit}">
+                        <h4>Add Meeting</h4>
+                        <h:form>
+                            <div class="row">
+                                <div class="col">Notes:</div><div class="col"><h:inputText value="#{paymentCrudBean.item.paymentType}"  size="50" /></div>
+                            </div><br />
+                            <div class="row">
+                                <div class="col">Book:</div><div class="col"><h:inputText value="#{paymentCrudBean.item.book.toString()}"  size="50" /></div>
+                            </div><br />
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col">
+                                    <h:commandButton value="    Add    " action="#{meetingCrudBean.add}" class="btn btn-info btn-sm" />&nbsp;&nbsp;
+                                    <h:commandButton value="    Reset    " action="#{meetingCrudBean.resetAdd}" class="btn btn-dark btn-sm" />
+                                </div>
+                            </div>
+                        </h:form>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{meetingCrudBean.edit}">
+                        <h4>Edit Payment #{meetingCrudBean.item.meetingId}</h4>
+                        <h:form>
+                            <div class="row">
+                                <div class="col">Notes:</div><div class="col"><h:inputText value="#{meetingCrudBean.item.notes}" size="50" /></div>
+                            </div><br />
+                            <div class="row">
+                                <div class="col">Book:</div><div class="col"><h:inputText value="#{meetingCrudBean.item.book.toString()}" size="50" /></div>
+                            </div><br />
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col">
+                                   <h:commandButton value="  Save  " action="#{meetingCrudBean.saveEdit}" class="btn btn-info btn-sm" />  &nbsp;&nbsp;
+                                    <h:commandButton value="  Cancel  " action="#{meetingCrudBean.cancelEdit}" class="btn btn-dark btn-sm"  />
+                                </div>
+                            </div>
+                        </h:form>
+                    </h:panelGroup>
+                    </div>
+                </div>
+            </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

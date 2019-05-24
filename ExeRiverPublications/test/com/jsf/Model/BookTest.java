@@ -35,14 +35,9 @@ public class BookTest {
      */
     public BookTest() {
     }
-    
-    /**
-     *
-     */
     @BeforeClass
-    public static void setUpClass() {
-              
-                //create objects of books
+    public static void setUpClass() {              
+        //create objects of books
         book1 = new Book(1, "The witch and the wand");
         book2 = new Book(2, "Darcy's Doughnuts");
         book3 = new Book(3, "We're going on a turtle adventure");
@@ -53,9 +48,6 @@ public class BookTest {
         book8 = new Book(8, "Lines of order");
         book9 = new Book(9, "The story of my life");
         book10 = new Book(10, "Village life");
-        
-        
-
         
         /* Create users */
         //create Administrator
@@ -167,10 +159,7 @@ public class BookTest {
         book10.register(reviewer4);
         book10.notifyObservers();
         
-        //link users to books
-        //admin1.setSubject(book2);  
-        //admin1.update(); 
-        
+        //link users to books        
         author1.setSubject(book1);
         author1.setSubject(book10);
         //author1.update();

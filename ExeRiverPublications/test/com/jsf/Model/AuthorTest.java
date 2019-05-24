@@ -34,45 +34,21 @@ public class AuthorTest {
         author = new Author(1,"Coleen", "Cole", "ccole@gmail.com", "6 Castle Court, Exeter, EX1 1DS", "castles");
         author.setName(author.forename, author.surname);
     }
-    
-    /**
-     *
-     */
     @AfterClass
     public static void tearDownClass() {
     }
-    
-    /**
-     *
-     */
     @Before
     public void setUp() {
     }
-    
-    /**
-     *
-     */
     @After
     public void tearDown() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testUpdate() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testSetSubject() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testIsComplete()
     {

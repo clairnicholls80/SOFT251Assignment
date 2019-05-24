@@ -83,6 +83,7 @@ public class ReviewerTest {
     {
         System.out.println("Reviewer Name is: " + reviewer1.getName());
         System.out.println("Reviewer Details are: " + reviewer1.getUserDetails()); 
+        //*** Iterate through list of reviewers created in the setup ***
         for (Reviewer reviewer : reviewers) {
             System.out.println(reviewer.getUserDetails());
         }

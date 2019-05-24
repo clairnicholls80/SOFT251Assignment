@@ -49,31 +49,15 @@ public class AdministratorTest {
         admin = new Administrator(1,"Clair", "Nicholls", "clair@gmail.com", "8 Copper Meadows, Redruth, TR152NX", "letmein");
         admin.setName(admin.forename, admin.surname);
     }    
-
-    /**
-     *
-     */
     @After
     public void tearDown() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testUpdate() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testSetSubject() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testIsComplete()
     {

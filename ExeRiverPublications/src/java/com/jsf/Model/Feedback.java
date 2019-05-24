@@ -5,7 +5,11 @@
  */
 package com.jsf.Model;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +21,10 @@ public class Feedback implements Serializable {
     private Integer rating;
     private Book book;
     private Reviewer reviewer;
+    private String feedback;
+    private String result;
+    private List<Feedback> feedbackHistory;
+    private SaveData thisSaveData = new SaveData();
 
 
     public Feedback(int feedbackId, String comments, Integer rating, Book book, Reviewer reviewer) {
@@ -25,6 +33,9 @@ public class Feedback implements Serializable {
         this.rating = rating;
         this.book = book;
         this.reviewer = reviewer;
+    }
+
+    public Feedback() {
     }
 
 
@@ -52,12 +63,12 @@ public class Feedback implements Serializable {
         this.rating = rating;
     }
     
-    public Book getBook() {
-        return book;
+    public List<Feedback> getFeedbackList() {
+        return feedbackHistory;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setFeedbackList(List<Feedback> feedbackHistory) {
+        this.feedbackHistory = feedbackHistory;
     }
     
     public Reviewer getReviewer() {
@@ -67,9 +78,60 @@ public class Feedback implements Serializable {
     public void setReviewer(Reviewer reviewer) {
         this.reviewer = reviewer;
     }
+    
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
         
     @Override
     public String toString() {
         return feedbackId + ", " + comments + ", " + rating;
     }
+
+    public void restore(Feedback fb) {        
+        this.feedbackId = fb.getFeedbackId();
+        this.comments = fb.getComments();
+        this.rating = fb.getRating();
+        this.reviewer = fb.getReviewer();
+    }
+    
+    public void setData(){
+        //setResult(this.toString());
+        
+        feedback=this.comments + ", " + this.rating + ", " + this.reviewer + ", " + this.book;
+        setResult(feedback);
+        thisSaveData.setdata(result);
+    }
+    public String getResult() {
+       return result;
+    }
+
+    public void setResult(String result1) {
+       result = result1;
+    }
+    public void saveResults() 
+   {
+        String filename = "feedback.ser";
+        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
+     
+        try
+        {
+            FileOutputStream fout = new FileOutputStream(filename,true);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);  
+            oos.writeObject(thisSaveData);
+            oos.close();
+            System.out.println("Done");
+        }
+        catch(Exception ex)
+        {
+             ex.printStackTrace();
+        } 
+
+        thisSaveData.cleardata();
+   }
 }

@@ -28,45 +28,21 @@ public class AgentTest {
         agent = new Agent(1,"Philip", "Davey", "pdavey@publishinghouse.co.uk", "33 Station Road, Exeter EX1 1AB", "davesrbest");
         agent.setName(agent.forename, agent.surname);
     }
-    
-    /**
-     *
-     */
     @AfterClass
     public static void tearDownClass() {
     }    
-
-    /**
-     *
-     */
     @Before
     public void setUp() {
     }    
-
-    /**
-     *
-     */
     @After
     public void tearDown() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testUpdate() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testSetSubject() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testIsComplete()
     {

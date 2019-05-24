@@ -16,20 +16,22 @@ import static org.junit.Assert.*;
  *
  * @author clair
  */
-public class MeetingTest {
-        
-    private static Meeting meeting1, meeting2, meeting3;
+public class PaymentTest {
+    
+    private static Payment payment1, payment2, payment3;
     private static Book book1, book2;
     
-    public MeetingTest() {
-    }    
-    @BeforeClass
-    public static void setUpClass() {
+    public PaymentTest() {
         book1 = new Book(1, "The witch and the wand");
         book2 = new Book(2, "Darcy's Doughnuts");
-        meeting1 = new Meeting(1, "These are the initial meeting notes", book1);        
-        meeting2 = new Meeting(2, "These are the second meeting notes", book1);
-        meeting3 = new Meeting(3, "These are the first notes for this book.", book2);
+        payment1 = new Payment(1,"Advance", 100, false, book1);        
+        payment2 = new Payment(2, "Final", 500, true,book1);
+        payment3 = new Payment(3, "Advance", 150, false, book2);
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+        
     }
     
     @AfterClass
@@ -42,15 +44,16 @@ public class MeetingTest {
     
     @After
     public void tearDown() {
-    }
-        
+    } 
+    
     @Test
     public void testIsComplete(){
         System.out.println("Book: " + book1);
-        System.out.println("Meeting 1: " + meeting1.toString() + " Book: " + meeting1.getBook().toString());
-        System.out.println("Meeting 2: " + meeting2.toString() + " Book: " + meeting2.getBook().toString());
+        System.out.println("Payment 1: " + payment1.toString() + " Book: " + payment1.getBook().toString());
+        System.out.println("Payment 2: " + payment2.toString() + " Book: " + payment2.getBook().toString());
         System.out.println("Book: " + book2);
-        System.out.println("Meeting 3: " + meeting3.toString() + " Book: " + meeting3.getBook().toString());
+        System.out.println("Payment 3: " + payment3.toString() + " Book: " + payment3.getBook().toString());
         
     }
+    
 }

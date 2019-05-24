@@ -31,19 +31,11 @@ public class SerialisationTest {
     public static void setUpClass() {
         agent = new Agent(1,"Philip", "Davey", "pdavey@publishinghouse.co.uk", "33 Station Road, Exeter EX1 1AB", "davesrbest");
         agent.setName(agent.forename, agent.surname);
-    }
-    
-    /**
-     *
-     */
+    }    
     @AfterClass
     public static void tearDownClass() {
         agent=null;
-    }    
-
-    /**
-     *
-     */
+    }   
     @Before
     public void setUp() {
         try {

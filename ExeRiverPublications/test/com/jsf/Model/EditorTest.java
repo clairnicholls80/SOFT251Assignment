@@ -19,55 +19,25 @@ public class EditorTest {
      */
     public EditorTest() {
     }
-    
-    /**
-     *
-     */
     @BeforeClass
     public static void setUpClass() {
         editor = new Editor(1,"Phillipa", "Frost", "pfrost@exeriverpublishing.co.uk", "13 Prospect Street, Exeter EX2 4RR", "prospects");
-        editor.setName(editor.forename, editor.surname);
-        
+        editor.setName(editor.forename, editor.surname);        
     }
-    
-    /**
-     *
-     */
     @AfterClass
     public static void tearDownClass() {
     }
-    
-    /**
-     *
-     */
     @Before
-    public void setUp() {
-    }
-    
-    /**
-     *
-     */
+    public void setUp() {    }
     @After
     public void tearDown() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testUpdate() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testSetSubject() {
     }
-
-    /**
-     *
-     */
     @Test
     public void testIsComplete()
     {
