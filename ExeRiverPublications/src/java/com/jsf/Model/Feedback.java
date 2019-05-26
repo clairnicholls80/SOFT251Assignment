@@ -38,6 +38,13 @@ public class Feedback implements Serializable {
     public Feedback() {
     }
 
+    public Feedback(int i, String this_is_my_first_comment, int i0, Book book1) {
+        this.feedbackId = feedbackId;
+        this.comments = comments;
+        this.rating = rating;
+        this.book = book;
+    }
+
 
     public int getFeedbackId() {
         return feedbackId;

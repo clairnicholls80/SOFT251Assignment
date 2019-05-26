@@ -93,103 +93,7 @@ public class FeedbackCrudBean implements Serializable {
         
         item.setFeedbackList((ArrayList<Feedback>) feedbackList);//save to the model list
         resetAdd();
-//        
-//        
-//        item = new Book(1, "The witch and the wand");
-//        item.setData();
-//        item.saveResults();
-//        bookList.add(item);  
-//        item.setObservers();
-//        item.register(author1);
-//        item.setAuthor(author1);      
-//        item.setAgent(agent1);
-//        item.setFirstReviewer(reviewer1);
-//        item.setSecondReviewer(reviewer2);        
-//        item.notifyObservers();
-//        item = new Book(2, "Darcy's Doughnuts");
-//        item.setData();
-//        item.saveResults();
-//        bookList.add(item);  
-//        item.setAuthor(author2);
-//        item.setAgent(agent1);
-//        item.setFirstReviewer(reviewer3);
-//        item.setSecondReviewer(reviewer4);
-//        item.notifyObservers();
-//        item = new Book(3, "We're going on a turtle adventure");
-//        item.setData();
-//        item.saveResults();
-//        bookList.add(item);   
-//        item.setAuthor(author2);
-//        item.setAgent(agent1);
-//        item.setFirstReviewer(reviewer1);
-//        item.setSecondReviewer(reviewer4);
-//        item.notifyObservers();
-//        item = new Book(4, "Diary of a cool kid");
-//        item.setData();
-//        item.saveResults();
-//        bookList.add(item); 
-//        item.setAuthor(author3);
-//        item.setAgent(agent1);
-//        item.setFirstReviewer(reviewer3);
-//        item.setSecondReviewer(reviewer2);
-//        item.notifyObservers();        
-//        item = new Book(5, "Wonky Donky");
-//        item.setData();
-//        item.saveResults();
-//        bookList.add(item);  
-//        item.setAuthor(author3);
-//        item.setAgent(agent1);
-//        item.setFirstReviewer(reviewer2);
-//        item.setSecondReviewer(reviewer4);
-//        item.notifyObservers();        
-//        item = new Book(6, "Cornish Coves");
-//        item.setData();
-//        item.saveResults();
-//        bookList.add(item); 
-//        item.setAuthor(author3);
-//        item.setAgent(agent1);
-//        item.setFirstReviewer(reviewer1);
-//        item.setSecondReviewer(reviewer3);
-//        item.notifyObservers();        
-//        item = new Book(7, "Dark tides");
-//        item.setData();
-//        item.saveResults();
-//        bookList.add(item);
-//        item.setAuthor(author2);
-//        item.setAgent(agent1);
-//        item.setFirstReviewer(reviewer2);
-//        item.setSecondReviewer(reviewer4);
-//        item.notifyObservers();        
-//        item = new Book(8, "Lines of order");
-//        item.setData();
-//        item.saveResults();
-//        bookList.add(item);  
-//        item.setAuthor(author3);
-//        item.setAgent(agent1);
-//        item.setFirstReviewer(reviewer1);
-//        item.setSecondReviewer(reviewer2);
-//        item.notifyObservers();        
-//        item = new Book(9, "The story of my life");
-//        item.setData();
-//        item.saveResults();
-//        bookList.add(item); 
-//        item.setAuthor(author2);
-//        item.setAgent(agent1);
-//        item.setFirstReviewer(reviewer3);
-//        item.setSecondReviewer(reviewer4);
-//        item.notifyObservers();
-//        item = new Book(10, "Village life");
-//        item.setData();
-//        item.saveResults();
-//        bookList.add(item);  
-//        item.setAuthor(author2);
-//        item.setAgent(agent1);
-//        item.setFirstReviewer(reviewer1);
-//        item.setSecondReviewer(reviewer4);
-//        item.notifyObservers();        
-//        item.setBooks((ArrayList<Book>) bookList);//save to the model list
-//        resetAdd();        
-        //bookList = getList();
+
     }
     public FeedbackCrudBean(){}
     
@@ -280,4 +184,5 @@ public class FeedbackCrudBean implements Serializable {
     public void setReviewerList(List<Reviewer> reviewerList) {
         this.reviewerList = reviewerList;
     }
+
 }

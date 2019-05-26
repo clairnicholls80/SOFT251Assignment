@@ -27,6 +27,9 @@ public class Author extends User implements UserInterface, Serializable {
     private ArrayList<Author> authors;
     private SaveData thisSaveData = new SaveData();
     private String user;
+    private String msg = null;
+
+
     
     public ArrayList<Author> getAuthors() {
         return authors;
@@ -62,7 +65,8 @@ public class Author extends User implements UserInterface, Serializable {
      */
     @Override
     public void update(State state) {
-        String msg = (String) book.getUpdate(this);
+        setMsg((String) book.getUpdate(this));
+        //String msg = (String) book.getUpdate(this);
         if(msg == null){
             System.out.println(name+":: No new message");
         }else
@@ -150,5 +154,12 @@ public class Author extends User implements UserInterface, Serializable {
        setResult(newSaver.getdata());
        System.out.println("The result saved was: " + result);
    }
-    
+   
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 }

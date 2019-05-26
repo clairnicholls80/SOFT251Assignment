@@ -12,6 +12,8 @@
                     <div class="col-md-12">                                
                         <div class="row">
                             <div class="col-md-8"><h3>Feedback History</h3></div>
+                            <div class="col-md-4 text-right"><a class="btn btn-warning btn-sm" href="#{loginBean.userName}Home.xhtml">Back to menu</a></div>  
+
                         </div>                   
                         <hr />
                         <h:form rendered="#{not empty feedbackCrudBean.feedbackList}">
@@ -42,7 +44,7 @@
                                     <div class="col">Comments:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.comments}"  size="50" /></div>
                                 </div><br />
                                 <div class="row">
-                                    <div class="col">Rating:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.rating}"  size="50" /></div>
+                                    <div class="col">Rating:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.rating}"  size="50" /> (5-Excellent....1-Poor)</div>
                                 </div><br />
                                 <div class="row">               
                                     <div class="col">Book:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.book.toString()}"  size="50" /></div>
@@ -67,7 +69,7 @@
                                 <div class="col">Comments:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.comments}"  size="50" /></div>
                             </div><br />                            
                             <div class="row">
-                                <div class="col">Rating:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.rating}"  size="50" /></div>
+                                <div class="col">Rating:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.rating}"  size="50" /> (5-Excellent....1-Poor)</div>
                             </div><br /> 
                             <div class="row">               
                                  <div class="col">Book:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.book.toString()}"  size="50" /></div>

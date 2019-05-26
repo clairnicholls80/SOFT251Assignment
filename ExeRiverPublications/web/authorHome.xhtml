@@ -18,18 +18,23 @@
         <div class="container">
             <h3>Author Homepage</h3>
             <div class="clear">&nbsp;</div>
-            
-            <h4>Feedback History</h4><br />
-            <a class="btn btn-warning" href="feedbackView.xhtml">Feedback</a>&nbsp;&nbsp;<br />
-            <div class="clear">&nbsp;</div>
-                        
-            <h4>Payment History</h4><br />
-            <a class="btn btn-warning" href="paymentView.xhtml">Payments</a>&nbsp;&nbsp;<br />
-            <div class="clear">&nbsp;</div>
-            
-            <h4>Upload Revision</h4><br />
-            <a class="btn btn-warning" href="book.xhtml">Books</a>&nbsp;&nbsp;<br />
-            <div class="clear">&nbsp;</div>
+            <div class="col-md-4>">
+                <div class="jumbotron">Message:  #{authorCrudBean.message}<br>&nbsp;</br>Meeting notes: #{authorCrudBean.feedback}</div>
+            </div>            
+            <div class="col-md-4>">
+                <h4>Feedback History</h4><br />
+                <a class="btn btn-warning" href="feedbackView.xhtml">Feedback</a>&nbsp;&nbsp;<br />
+                <div class="clear">&nbsp;</div>
+
+                <h4>Payment History</h4><br />
+                <a class="btn btn-warning" href="paymentView.xhtml">Payments</a>&nbsp;&nbsp;<br />
+                <div class="clear">&nbsp;</div>
+
+                <h4>Upload Revision</h4><br />
+                <a class="btn btn-warning" href="book.xhtml">Books</a>&nbsp;&nbsp;<br />
+                <div class="clear">&nbsp;</div>
+            </div>
+
         </div>
     </ui:define>
 </ui:composition>

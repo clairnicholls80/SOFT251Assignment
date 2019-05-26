@@ -6,6 +6,9 @@
 package com.jsf.Controller;
 
 import com.jsf.Model.Author;
+import com.jsf.Model.Book;
+import com.jsf.Model.Feedback;
+import com.jsf.Model.State;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -31,6 +34,10 @@ public class AuthorCrudBean implements Serializable {
     private Author item = new Author();
     private Author beforeEditItem = null;
     private boolean edit;    
+    private Book book1;
+    private String message = null;
+    private Feedback feedback = new Feedback();
+    private String fb=null;
     //private UIPanel resultPanel;
 
     @ManagedProperty(value="#{commonUtils}")
@@ -68,12 +75,25 @@ public class AuthorCrudBean implements Serializable {
         item.saveResults();
         authorList.add(item);
         item.setAuthors((ArrayList<Author>) authorList);//save to the model list
-        resetAdd();
-        //item = new Author(4,"","","","","");
-        //item.setData();
+ 
         
-        //item = new Author();
-        //authorList =  item.getAuthors(); // = getList();
+        book1 = new Book(1, "The witch and the wand");
+        book1.setObservers();// = new ArrayList();
+        book1.register(item);          
+        item.setSubject(book1);
+        book1.setState(State.Accepted);
+        book1.notifyObservers();
+        item.update(State.Accepted);
+        
+        
+        feedback = new Feedback();
+        feedback = new Feedback(1, "This is my first comment", 4, book1);
+        feedback.setData();
+        feedback.saveResults();
+        setMessage("Book state updated to '" + book1.getState() + "' for book: " + book1.toString());
+        setFeedback("This is my first comment.  Rating:4  Book: " + book1.toString());
+        resetAdd();        
+        
     }
     
     
@@ -138,5 +158,17 @@ public class AuthorCrudBean implements Serializable {
 
     public boolean isEdit() {
         return this.edit;
+    }
+    public String setMessage(String message){
+        return this.message = message;
+    }   
+    public String getMessage(){
+        return message;
+    }
+    public String setFeedback(String message){
+        return this.fb = message;
+    }   
+    public String getFeedback(){
+        return fb;
     }
 }

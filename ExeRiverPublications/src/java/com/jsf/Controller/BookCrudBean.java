@@ -11,6 +11,7 @@ import com.jsf.Model.Author;
 import com.jsf.Model.Book;
 import com.jsf.Model.Editor;
 import com.jsf.Model.Reviewer;
+import com.jsf.Model.State;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -25,6 +26,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIPanel;
 import javax.faces.context.FacesContext;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 /**
  *
@@ -278,4 +280,22 @@ public class BookCrudBean implements Serializable {
     public void setReviewerList(List<Reviewer> reviewerList) {
         this.reviewerList = reviewerList;
     }
+    
+    public State[] stateList;
+	
+    public State[] getStateList() {
+        stateList = State.values();
+        return stateList;
+        
+//        stateList = new State[3];
+//        ForEach(String s in State.values())
+//        stateList[0] = new State("Coffee3 - Cream Latte", "Cream Latte");
+//        stateList[1] = new State("Coffee3 - Extreme Mocha", "Extreme Mocha");
+//        stateList[2] = new State("Coffee3 - Buena Vista", "Buena Vista");
+//
+//        return stateList;	
+    }
+        public State[] setStateList() {
+            return this.stateList = State.values();
+        }
 }
