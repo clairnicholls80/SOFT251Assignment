@@ -42,12 +42,14 @@
                         <div class="col-md-8">
                         <h:panelGroup rendered="#{!bookCrudBean.edit}">
                             <h4>Add Book</h4>
-                            <h:form>
+                            <h:form enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col">Title:</div><div class="col"><h:inputText value="#{bookCrudBean.item.title}"  size="50" /></div>
                                 </div><br />
                                 <div class="row">
-                                    <div class="col">Filename:</div><div class="col"><h:inputText value="#{bookCrudBean.item.fileName}"  size="50" /></div>
+                                    <div class="col-md-4">Filename:</div><div class="col">
+                                        <h:inputFile value="#{bookCrudBean.uploadedFile}" required="true" requiredMessage="Please upload a file" alt="upload file"></h:inputFile>  
+                                    </div>
                                 </div><br />
                                 <div class="row">               
                                     <div class="col">Author:</div><div class="col"><h:inputText value="#{bookCrudBean.item.author}"  size="50" /></div>
@@ -76,12 +78,14 @@
 
                         <h:panelGroup rendered="#{bookCrudBean.edit}">
                         <h4>Edit Book #{bookCrudBean.item.bookId}</h4>
-                        <h:form>
+                        <h:form enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col">Title:</div><div class="col"><h:inputText value="#{bookCrudBean.item.title}"  size="50" /></div>
                             </div><br />                            
                             <div class="row">
-                                <div class="col">Filename:</div><div class="col"><h:inputText value="#{bookCrudBean.item.fileName}"  size="50" /></div>
+                                <div class="col-md-4">Filename:</div><div class="col">
+                                    <h:inputFile value="#{bookCrudBean.uploadedFile}" required="true" requiredMessage="Please upload a file" alt="upload file"></h:inputFile>  
+                                </div>
                             </div><br /> 
                             <div class="row">               
                                  <div class="col">Author:</div><div class="col"><h:inputText value="#{bookCrudBean.item.author}"  size="50" /></div>

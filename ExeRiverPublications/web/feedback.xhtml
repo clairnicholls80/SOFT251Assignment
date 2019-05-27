@@ -22,7 +22,8 @@
                                 <h:column><f:facet name="header">ID</f:facet>#{item.feedbackId}</h:column>
                                 <h:column><f:facet name="header">Comments</f:facet>#{item.comments}</h:column>
                                 <h:column><f:facet name="header">Rating</f:facet>#{item.rating}</h:column>
-                                <h:column><f:facet name="header">Book</f:facet>#{item.book.toString()}</h:column>
+                                <h:column><f:facet name="header">Book</f:facet>#{item.book.title}</h:column>
+                                <h:column><f:facet name="header">Book State</f:facet>#{item.book.state}</h:column>
                                 <h:column><f:facet name="header">Reviewer</f:facet>#{item.reviewer.toString()}</h:column>
                                 <h:column>
                                         <h:commandButton value="  Edit  " action="#{feedbackCrudBean.edit(item)}"  class="btn btn-warning btn-sm" />
@@ -41,16 +42,25 @@
                             <h4>Add Feedback</h4>
                             <h:form>
                                 <div class="row">
-                                    <div class="col">Comments:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.comments}"  size="50" /></div>
+                                    <div class="col">Comments:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.comments}"  size="52" /></div>
                                 </div><br />
                                 <div class="row">
-                                    <div class="col">Rating:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.rating}"  size="50" /> (5-Excellent....1-Poor)</div>
+                                    <div class="col">Rating:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.rating}"  size="52" /> (5-Excellent....1-Poor)</div>
                                 </div><br />
                                 <div class="row">               
-                                    <div class="col">Book:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.book.toString()}"  size="50" /></div>
+                                    <div class="col">Book:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.book.title}"  size="52" /></div>
+                                </div><br />
+                                <div class="row"> 
+                                   <div class="col-md-4">State:</div>
+                                   <div class="col">
+                                       <h:selectOneMenu value="#{feedbackCrudBean.item.book.state}">
+                                           <f:selectItems value="#{bookCrudBean.stateList}" var="state"
+                                                          itemLabel="#{state}" itemValue="#{state}" class="text-left" />
+                                       </h:selectOneMenu>
+                                   </div>
                                 </div><br />
                                 <div class="row">               
-                                    <div class="col">Reviewer:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.reviewer.toString()}"  size="50" /></div>
+                                    <div class="col">Reviewer:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.reviewer.toString()}"  size="52"/></div>
                                 </div><br />
                                 <div class="row">
                                     <div class="col"></div>
@@ -66,16 +76,25 @@
                             <h4>Edit Book #{feedbackCrudBean.item.feedbackId}</h4>
                         <h:form>
                             <div class="row">
-                                <div class="col">Comments:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.comments}"  size="50" /></div>
+                                <div class="col">Comments:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.comments}"  size="52" /></div>
                             </div><br />                            
                             <div class="row">
-                                <div class="col">Rating:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.rating}"  size="50" /> (5-Excellent....1-Poor)</div>
+                                <div class="col">Rating:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.rating}"  size="52" /> (5-Excellent....1-Poor)</div>
                             </div><br /> 
                             <div class="row">               
-                                 <div class="col">Book:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.book.toString()}"  size="50" /></div>
+                                <div class="col">Book:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.book.title}"  size="52" /></div>
+                             </div><br />
+                             <div class="row"> 
+                                <div class="col-md-4">State:</div>
+                                <div class="col">
+                                    <h:selectOneMenu value="#{feedbackCrudBean.item.book.state}">
+                                        <f:selectItems value="#{bookCrudBean.stateList}" var="state"
+                                        itemLabel="#{state}" itemValue="#{state}" />
+                                    </h:selectOneMenu>
+                                </div>
                              </div><br />
                              <div class="row">               
-                                 <div class="col">Reviewer:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.reviewer.toString()}"  size="50" /></div>
+                                 <div class="col">Reviewer:</div><div class="col"><h:inputText value="#{feedbackCrudBean.item.reviewer.toString()}"  size="52" /></div>
                              </div><br />
                             <div class="row">
                                 <div class="col"></div>

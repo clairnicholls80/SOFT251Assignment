@@ -73,24 +73,24 @@ public class LoginBean implements Serializable {
         
         switch(userName)
         {
-            case "clair":
-                if (password.equals("z"))
+            case "admin":
+                if (password.equals("adminPassword"))
                     navResult="admin";
                 break;
             case "agent":
-                if (password.equals("z"))
+                if (password.equals("agentPassword"))
                     navResult="agent";
                 break;
             case "author":
-                if (password.equals("z"))
+                if (password.equals("authorPassword"))
                     navResult="author";
                 break;
             case "reviewer":
-                if (password.equals("z"))
+                if (password.equals("reviewerPassword"))
                     navResult="reviewer";
                 break;
             case "editor":
-                if (password.equals("z"))
+                if (password.equals("editorPassword"))
                     navResult="editor";
                 break;      
             default:

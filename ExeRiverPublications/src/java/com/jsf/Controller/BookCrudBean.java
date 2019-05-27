@@ -12,10 +12,13 @@ import com.jsf.Model.Book;
 import com.jsf.Model.Editor;
 import com.jsf.Model.Reviewer;
 import com.jsf.Model.State;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +30,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIPanel;
 import javax.faces.context.FacesContext;
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
-
+import javax.servlet.http.Part;
 /**
  *
  * @author clair
@@ -47,6 +50,9 @@ public class BookCrudBean implements Serializable {
     private Author author1, author2, author3;    
     private Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private Agent agent1;
+    private Part uploadedFile;
+    private String folder = "c:\\temp2";
+
     //private List<Author> authors;
     //private UIPanel resultPanel;
 
@@ -96,6 +102,7 @@ public class BookCrudBean implements Serializable {
 //        
         bookList = new ArrayList<Book>();
         item = new Book(1, "The witch and the wand");
+        item.setFileName(folder + "\\manuscript1.docx");
         item.setData();
         item.saveResults();
         bookList.add(item);  
@@ -107,6 +114,7 @@ public class BookCrudBean implements Serializable {
         item.setSecondReviewer(reviewer2);        
         item.notifyObservers();
         item = new Book(2, "Darcy's Doughnuts");
+        item.setFileName(folder + "\\manuscript2.docx");
         item.setData();
         item.saveResults();
         bookList.add(item);  
@@ -116,6 +124,7 @@ public class BookCrudBean implements Serializable {
         item.setSecondReviewer(reviewer4);
         item.notifyObservers();
         item = new Book(3, "We're going on a turtle adventure");
+        item.setFileName(folder + "\\manuscript3.docx");
         item.setData();
         item.saveResults();
         bookList.add(item);   
@@ -125,6 +134,7 @@ public class BookCrudBean implements Serializable {
         item.setSecondReviewer(reviewer4);
         item.notifyObservers();
         item = new Book(4, "Diary of a cool kid");
+        item.setFileName(folder + "\\manuscript4.docx");
         item.setData();
         item.saveResults();
         bookList.add(item); 
@@ -134,6 +144,7 @@ public class BookCrudBean implements Serializable {
         item.setSecondReviewer(reviewer2);
         item.notifyObservers();        
         item = new Book(5, "Wonky Donky");
+        item.setFileName(folder + "\\manuscript5.docx");
         item.setData();
         item.saveResults();
         bookList.add(item);  
@@ -143,6 +154,7 @@ public class BookCrudBean implements Serializable {
         item.setSecondReviewer(reviewer4);
         item.notifyObservers();        
         item = new Book(6, "Cornish Coves");
+        item.setFileName(folder + "\\manuscript62.docx");
         item.setData();
         item.saveResults();
         bookList.add(item); 
@@ -152,6 +164,7 @@ public class BookCrudBean implements Serializable {
         item.setSecondReviewer(reviewer3);
         item.notifyObservers();        
         item = new Book(7, "Dark tides");
+        item.setFileName(folder + "\\manuscript7.docx");
         item.setData();
         item.saveResults();
         bookList.add(item);
@@ -161,6 +174,7 @@ public class BookCrudBean implements Serializable {
         item.setSecondReviewer(reviewer4);
         item.notifyObservers();        
         item = new Book(8, "Lines of order");
+        item.setFileName(folder + "\\manuscript8.docx");
         item.setData();
         item.saveResults();
         bookList.add(item);  
@@ -170,6 +184,7 @@ public class BookCrudBean implements Serializable {
         item.setSecondReviewer(reviewer2);
         item.notifyObservers();        
         item = new Book(9, "The story of my life");
+        item.setFileName(folder + "\\manuscript9.docx");
         item.setData();
         item.saveResults();
         bookList.add(item); 
@@ -179,6 +194,7 @@ public class BookCrudBean implements Serializable {
         item.setSecondReviewer(reviewer4);
         item.notifyObservers();
         item = new Book(10, "Village life");
+        item.setFileName(folder + "\\manuscript10.docx");
         item.setData();
         item.saveResults();
         bookList.add(item);  
@@ -207,6 +223,10 @@ public class BookCrudBean implements Serializable {
         FacesContext ctx = FacesContext.getCurrentInstance();
         try {
             //item.setBookId(bookList.isEmpty() ? 1 : bookList.get(bookList.size() - 1).getBookId()+ 1);
+            InputStream input = uploadedFile.getInputStream();
+            String file = uploadedFile.getSubmittedFileName();
+            Files.copy(input, new File(folder, file).toPath());            
+            this.item.setFileName(folder + "\\" + file);
             item.setData();
             item.saveResults();
             bookList.add(item);
@@ -249,9 +269,17 @@ public class BookCrudBean implements Serializable {
 
     public void saveEdit() {
     	// DAO save the edit
-        this.item = new Book();
-        edit = false;
-        //util.redirectWithGet();
+        try {
+            InputStream input = uploadedFile.getInputStream();
+            String file = uploadedFile.getSubmittedFileName();
+            Files.copy(input, new File(folder, file).toPath());
+            this.item.setFileName(folder + "\\" + file);
+            this.item = new Book();
+            edit = false;           
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void delete(Book item) throws IOException {
@@ -272,7 +300,6 @@ public class BookCrudBean implements Serializable {
         return this.edit;
     }
   
-
     public List<Reviewer> getReviewerList() {
         return reviewerList;
     }
@@ -285,17 +312,18 @@ public class BookCrudBean implements Serializable {
 	
     public State[] getStateList() {
         stateList = State.values();
-        return stateList;
-        
-//        stateList = new State[3];
-//        ForEach(String s in State.values())
-//        stateList[0] = new State("Coffee3 - Cream Latte", "Cream Latte");
-//        stateList[1] = new State("Coffee3 - Extreme Mocha", "Extreme Mocha");
-//        stateList[2] = new State("Coffee3 - Buena Vista", "Buena Vista");
-//
-//        return stateList;	
+        return stateList;        	
     }
-        public State[] setStateList() {
-            return this.stateList = State.values();
-        }
+    
+    public State[] setStateList() {
+        return this.stateList = State.values();
+    }
+         
+    public Part getUploadedFile() {
+        return uploadedFile;
+    }
+
+    public void setUploadedFile(Part uploadedFile) {
+        this.uploadedFile = uploadedFile;
+    }
 }
