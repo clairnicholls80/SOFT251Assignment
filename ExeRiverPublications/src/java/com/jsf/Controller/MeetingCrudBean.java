@@ -39,13 +39,21 @@ public class MeetingCrudBean implements Serializable {
   
     @ManagedProperty(value="#{commonUtils}")
     private CommonUtils util;
+
+    /**
+     *
+     * @param util
+     */
     public void setUtil(CommonUtils util) {
             this.util = util;
     }
         
+    /**
+     *  initialise the data due to serialisation issues
+     */
     @PostConstruct
     public void init() {
-                //create books
+         //create books
         book1 = new Book(1, "The witch and the wand");
         book2 = new Book(2, "Darcy's Doughnuts");
         book3 = new Book(3, "We're going on a turtle adventure");
@@ -75,36 +83,42 @@ public class MeetingCrudBean implements Serializable {
         item.setData();
         item.saveResults();
         meetingList.add(item);
-        //item.setPayments((ArrayList<Payment>) paymentList);//save to the model list
         resetAdd();
         
-        
     }
+
+    /**
+     * empty constructor
+     */
     public MeetingCrudBean(){}
     
+    /**
+     *
+     * @return list of meetings
+     */
     public List<Meeting> getMeetingList() {
         return meetingList;
     }
 
+    /**
+     *
+     * @param meetingList
+     */
     public void setMeetingList(List<Meeting> meetingList) {
         this.meetingList = meetingList;
     }
     
+    /**
+     * adds the meeting
+     */
     public void add() {
-    	// DAO save the add
-//        item.setUserId(list.isEmpty() ? 1 : list.get(list.size() - 1).getUserId() + 1);
-//        list.add(item);
-//        item = new Agent();
 
         FacesContext ctx = FacesContext.getCurrentInstance();
         try {
-            //item.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
-            
             item.setData();
             item.saveResults();
             meetingList.add(item);
             item = new Meeting();
-            //resultPanel.setRendered(true);
             ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_INFO,
             "Results Saved", null));
@@ -114,54 +128,75 @@ public class MeetingCrudBean implements Serializable {
                FacesMessage(FacesMessage.SEVERITY_ERROR,
             ex.getMessage(), null));
         }
-        //util.redirectWithGet();
     }
 
+    /**
+     * resets the add
+     */
     public void resetAdd() {
     	item = new Meeting();
-
-    	//util.redirectWithGet();
     }
 
+    /**
+     *
+     * @param item
+     */
     public void edit(Meeting item) {
-    	//beforeEditItem = item.clone();
         this.item = item;
         edit = true;
-
-        //util.redirectWithGet();
     }
 
+    /**
+     * cancels the edit
+     */
     public void cancelEdit() {
     	this.item.restore(beforeEditItem);
         this.item = new Meeting();
         edit = false;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * saves the edit
+     */
     public void saveEdit() {
     	// DAO save the edit
         this.item = new Meeting();
         edit = false;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * removes the selected meeting
+     * @param item
+     * @throws IOException
+     */
     public void delete(Meeting item) throws IOException {
     	// DAO save the delete
         meetingList.remove(item);
 
-        //util.redirectWithGet();
     }
 
+    /**
+     *
+     * @return list of meetings
+     */
     public List<Meeting> getList() {
         return meetingList;
     }
 
+    /**
+     *
+     * @return item
+     */
     public Meeting getItem() {
         return this.item;
     }
 
+    /**
+     *
+     * @return edit
+     */
     public boolean isEdit() {
         return this.edit;
     }

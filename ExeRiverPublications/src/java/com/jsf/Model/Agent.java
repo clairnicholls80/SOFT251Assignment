@@ -20,23 +20,32 @@ public class Agent extends User  implements UserInterface, Serializable{
     private SaveData thisSaveData = new SaveData();
     private String user;
     
+    /**
+     *
+     * @return List of Agents
+     */
     public ArrayList<Agent> getAgents() {
         return agents;
     }
 
+    /**
+     *
+     * @param authors
+     */
     public void setAgents(ArrayList<Agent> authors) {
         this.agents = agents;
     }
     
     
     /**
-     *
+     * Empty constructor
      */
     public Agent() {
     }
     
     /**
-     *
+     * Constructor for the Agent method using parameters
+     * @param userId
      * @param forename
      * @param surname
      * @param email
@@ -54,6 +63,7 @@ public class Agent extends User  implements UserInterface, Serializable{
     
     /**
      *
+     * @param state
      */
     @Override
     public void update(State state) {
@@ -72,10 +82,19 @@ public class Agent extends User  implements UserInterface, Serializable{
     public void setSubject(Book copy) {
        this.book=copy;    
     }
+
+    /**
+     *
+     * @param book
+     */
     public void setBook(Book book) {
         this.book = book;
         this.book.register(this);
     }    
+
+    /**
+     * sets the data for the save method
+     */
     public void setData(){
         //setResult(this.toString());
         
@@ -84,13 +103,25 @@ public class Agent extends User  implements UserInterface, Serializable{
         thisSaveData.setdata(result);
     }
     
+    /**
+     *
+     * @return result
+     */
     public String getResult() {
        return result;
     }
 
+    /**
+     *
+     * @param result1
+     */
     public void setResult(String result1) {
        result = result1;
     }
+
+    /**
+     * Method to save the data to the serialised file
+     */
     public void saveResults() 
    {
         String filename = "agent.ser";

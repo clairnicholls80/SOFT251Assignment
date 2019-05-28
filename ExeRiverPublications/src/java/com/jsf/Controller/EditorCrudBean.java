@@ -30,10 +30,18 @@ public class EditorCrudBean implements Serializable {
 
     @ManagedProperty(value="#{commonUtils}")
     private CommonUtils util;
+
+    /**
+     *
+     * @param util
+     */
     public void setUtil(CommonUtils util) {
             this.util = util;
     }
         
+    /**
+     * initialises the data due to serialisation issues
+     */
     @PostConstruct
     public void init() {
         editorList = new ArrayList<Editor>();
@@ -53,65 +61,101 @@ public class EditorCrudBean implements Serializable {
         resetAdd();
         
     }
+
+    /**
+     * empty constructor
+     */
     public EditorCrudBean(){}
     
+    /**
+     * adds the editor
+     */
     public void add() {
     	// DAO save the add
         item.setUserId(editorList.isEmpty() ? 1 : editorList.get(editorList.size() - 1).getUserId() + 1);
         editorList.add(item);
         item = new Editor();
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * resets the add function
+     */
     public void resetAdd() {
     	item = new Editor();
 
     	//util.redirectWithGet();
     }
 
+    /**
+     *
+     * @param item
+     */
     public void edit(Editor item) {
     	//beforeEditItem = item.clone();
         this.item = item;
         edit = true;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * cancel the edit and restore to previous version
+     */
     public void cancelEdit() {
     	this.item.restore(beforeEditItem);
         this.item = new Editor();
         edit = false;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * save the edit
+     */
     public void saveEdit() {
     	// DAO save the edit
         this.item = new Editor();
         edit = false;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * remove the selected editor
+     * @param item
+     * @throws IOException
+     */
     public void delete(Editor item) throws IOException {
     	// DAO save the delete
         editorList.remove(item);
-
-        //util.redirectWithGet();
     }
 
+    /**
+     *
+     * @return list of editors
+     */
     public List<Editor> getEditorList() {
         return editorList;
     }
-  public void setEditorList(List<Editor> editorList) {
+
+    /**
+     *
+     * @param editorList
+     */
+    public void setEditorList(List<Editor> editorList) {
         this.editorList = editorList;
     }
     
+    /**
+     *
+     * @return item
+     */
     public Editor getItem() {
         return this.item;
     }
 
+    /**
+     *
+     * @return edit
+     */
     public boolean isEdit() {
         return this.edit;
     }

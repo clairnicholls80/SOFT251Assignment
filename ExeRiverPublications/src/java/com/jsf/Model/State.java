@@ -10,9 +10,29 @@ package com.jsf.Model;
  * @author clair
  */
 public enum State {
+
+    /**
+     * This stores the book state value
+     */
     Registered,
+
+    /**
+     *
+     */
     Revised,
+
+    /**
+     *
+     */
     Accepted,
+
+    /**
+     *
+     */
     Rejected,
+
+    /**
+     *
+     */
     Published
 }

@@ -29,22 +29,29 @@ public class Author extends User implements UserInterface, Serializable {
     private String user;
     private String msg = null;
 
-
-    
+    /**
+     *
+     * @return List of Authors
+     */
     public ArrayList<Author> getAuthors() {
         return authors;
     }
 
+    /**
+     *
+     * @param authors
+     */
     public void setAuthors(ArrayList<Author> authors) {
         this.authors = authors;
     }
     /**
-     *
+     * Empty constructor for Author
      */
     public Author() {
     }    
     /**
-     *
+     * Constructor for parameterised author
+     * @param userId
      * @param forename
      * @param surname
      * @param email
@@ -62,6 +69,7 @@ public class Author extends User implements UserInterface, Serializable {
     
     /**
      *
+     * @param state
      */
     @Override
     public void update(State state) {
@@ -81,11 +89,19 @@ public class Author extends User implements UserInterface, Serializable {
     public void setSubject(Book copy) {
        this.book=copy;    
     }
+
+    /**
+     *
+     * @param book
+     */
     public void setBook(Book book) {
         this.book = book;
         this.book.register(this);
     }
      
+    /**
+     * sets the data ready to be saved
+     */
     public void setData(){
         //setResult(this.toString());
         
@@ -94,20 +110,28 @@ public class Author extends User implements UserInterface, Serializable {
         thisSaveData.setdata(result);
     }
        
-   public String getResult() {
+    /**
+     *
+     * @return result
+     */
+    public String getResult() {
       return result;
    }
 
-   public void setResult(String result1) {
+    /**
+     *
+     * @param result1
+     */
+    public void setResult(String result1) {
       result = result1;
    }
    
-//   public void setResultList(List<Author> list){
-//       resultList = list;
-//   }
+    /**
+     * Saves the data to a serialised file
+     */
     
-   public void saveResults() 
-   {
+    public void saveResults() 
+    {
         String filename = "author.ser";
         System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
      
@@ -127,7 +151,11 @@ public class Author extends User implements UserInterface, Serializable {
         thisSaveData.cleardata();
    }
    
-   public void loadResults() throws IOException 
+    /**
+     * Method to load the data from the serialised file
+     * @throws IOException
+     */
+    public void loadResults() throws IOException 
    {
        String filename = "author.ser";
        SaveData newSaver = null;
@@ -155,10 +183,18 @@ public class Author extends User implements UserInterface, Serializable {
        System.out.println("The result saved was: " + result);
    }
    
+    /**
+     * Method used for getting the message on the home screen
+     * @return msg
+     */
     public String getMsg() {
         return msg;
     }
 
+    /**
+     * Method used for setting the message on the home screen
+     * @param msg
+     */
     public void setMsg(String msg) {
         this.msg = msg;
     }

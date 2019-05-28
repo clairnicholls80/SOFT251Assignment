@@ -8,9 +8,17 @@ import com.jsf.Model.Author;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
  
+/**
+ *
+ * @author clair
+ */
 public class WriteObject{
  
-	public static void main (String args[]) {
+    /**
+     *
+     * @param args
+     */
+    public static void main (String args[]) {
 	 
 	    Author author = new Author();
             author = new Author(1,"Coleen", "Cole", "ccole@gmail.com", "6 Castle Court, Exeter, EX1 1DS", "castles");

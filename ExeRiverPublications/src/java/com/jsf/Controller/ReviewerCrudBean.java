@@ -34,10 +34,18 @@ public class ReviewerCrudBean implements Serializable {
 
     @ManagedProperty(value="#{commonUtils}")
     private CommonUtils util;
+
+    /**
+     *
+     * @param util
+     */
     public void setUtil(CommonUtils util) {
             this.util = util;
     }
         
+    /**
+     *  initialise the data due to serialisation issues
+     */
     @PostConstruct
     public void init() {
         reviewerList = new ArrayList<Reviewer>();
@@ -65,98 +73,120 @@ public class ReviewerCrudBean implements Serializable {
         item.setReviewers((ArrayList<Reviewer>) reviewerList);//save to the model list
         resetAdd();
     }
+
+    /**
+     *
+     */
     public ReviewerCrudBean(){}
     
-//    public void add() {
-//    	// DAO save the add
-//        item.setUserId(reviewerList.isEmpty() ? 1 : reviewerList.get(reviewerList.size() - 1).getUserId() + 1);
-//        reviewerList.add(item);
-//        item = new Reviewer();
-//
-//        //util.redirectWithGet();
-//    }
 
+    /**
+     * resets the add
+     */
     public void resetAdd() {
     	item = new Reviewer();
-
-    	//util.redirectWithGet();
     }
 
+    /**
+     *
+     * @param item
+     */
     public void edit(Reviewer item) {
     	//beforeEditItem = item.clone();
         this.item = item;
         edit = true;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * cancels the edit
+     */
     public void cancelEdit() {
     	this.item.restore(beforeEditItem);
         this.item = new Reviewer();
         edit = false;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * saves the edit
+     */ 
     public void saveEdit() {
     	// DAO save the edit
         this.item = new Reviewer();
         edit = false;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * removes the reviewer
+     * @param item
+     * @throws IOException
+     */
     public void delete(Reviewer item) throws IOException {
     	// DAO save the delete
         reviewerList.remove(item);
 
-        //util.redirectWithGet();
     }
 
+    /**
+     *
+     * @return list of reviewers
+     */
     public List<Reviewer> getList() {
         return reviewerList;
     }
 
+    /**
+     *
+     * @return item
+     */
     public Reviewer getItem() {
         return this.item;
     }
 
+    /**
+     *
+     * @return edit
+     */
     public boolean isEdit() {
         return this.edit;
     }
     
+    /**
+     *
+     * @return list of reviewers
+     */
     public List<Reviewer> getReviewerList() {
         return reviewerList;
     }
 
+    /**
+     *
+     * @param reviewerList
+     */
     public void setReviewerList(List<Reviewer> reviewerList) {
         this.reviewerList = reviewerList;
     }
     
+    /**
+     * adds the reviewer
+     */
     public void add() {
-    	// DAO save the add
-//        item.setUserId(list.isEmpty() ? 1 : list.get(list.size() - 1).getUserId() + 1);
-//        list.add(item);
-//        item = new Agent();
 
         FacesContext ctx = FacesContext.getCurrentInstance();
         try {
-            //item.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
-            
             item.setData();
             item.saveResults();
             reviewerList.add(item);
             item = new Reviewer();
-            //resultPanel.setRendered(true);
             ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_INFO,
             "Results Saved", null));
         } catch (Exception ex) {
-            //resultPanel.setRendered(false);
             ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_ERROR,
             ex.getMessage(), null));
         }
-        //util.redirectWithGet();
     }
 }

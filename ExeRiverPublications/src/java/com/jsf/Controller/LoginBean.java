@@ -22,6 +22,9 @@ public class LoginBean implements Serializable {
     public Book book1;
     private Author author;
     
+    /**
+     * initialise the data due to serialisation issues
+     */
     @PostConstruct    
     public void init() {
         Book.initialiseData();
@@ -29,7 +32,7 @@ public class LoginBean implements Serializable {
     }
     /**
      *
-     * @return
+     * @return username
      */
     public String getUserName() {
         return userName;
@@ -45,7 +48,7 @@ public class LoginBean implements Serializable {
  
     /**
      *
-     * @return
+     * @return password
      */
     public String getPassword() {
         return password;
@@ -61,7 +64,7 @@ public class LoginBean implements Serializable {
      
     /**
      *
-     * @return
+     * @return result of check for logins
      */
     public String validateUserLogin() {
         System.out.println(setUpUsers());
@@ -98,13 +101,6 @@ public class LoginBean implements Serializable {
                 break;
         }
             
-//        if (userName.equalsIgnoreCase("clair") && password.equals("z")) {
-//            navResult = "success";
-//        } else {
-//            navResult = "failure";
-//        }
-        //Book.initialiseData();
-        //System.out.println("data created");
         return navResult;
     }
 
@@ -117,8 +113,10 @@ public class LoginBean implements Serializable {
         return "Users created";
     }
     
-    
-    
+    /**
+     *
+     * @return
+     */
     public String getBook(){
         /*try{
             ObjectInputStream os = new ObjectInputStream(new FileInputStream("book1.ser"));
@@ -133,6 +131,9 @@ public class LoginBean implements Serializable {
         return null;
     }
     
+    /**
+     *
+     */
     public void load(){
         /*try{
             ObjectInputStream os = new ObjectInputStream(new FileInputStream("book1.ser"));

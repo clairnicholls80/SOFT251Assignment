@@ -21,21 +21,30 @@ public class Reviewer extends User  implements UserInterface, Serializable{
     private SaveData thisSaveData = new SaveData();
     private String user;
     
+    /**
+     *
+     * @return List of reviewers
+     */
     public ArrayList<Reviewer> getReviewers() {
         return reviewers;
     }
 
+    /**
+     *
+     * @param reviewers
+     */
     public void setReviewers(ArrayList<Reviewer> reviewers) {
         this.reviewers = reviewers;
     }
     /**
-     *
+     * Empty constructor for Reviewer
      */
     public Reviewer() {
     }
     
     /**
-     *
+     * Parameterised constructor for reviewer
+     * @param userId
      * @param forename
      * @param surname
      * @param email
@@ -53,6 +62,7 @@ public class Reviewer extends User  implements UserInterface, Serializable{
     
     /**
      *
+     * @param state
      */
     @Override
     public void update(State state) {
@@ -71,13 +81,19 @@ public class Reviewer extends User  implements UserInterface, Serializable{
     public void setSubject(Book copy) {
        this.book=copy;    
     }
+
+    /**
+     *
+     * @param book
+     */
     public void setBook(Book book) {
         this.book = book;
         this.book.register(this);
     }
     
-    
- 
+    /**
+     * sets the data ready to save
+     */
     public void setData(){
         //setResult(this.toString());
         
@@ -86,17 +102,25 @@ public class Reviewer extends User  implements UserInterface, Serializable{
         thisSaveData.setdata(result);
     }
        
-   public String getResult() {
+    /**
+     *
+     * @return result
+     */
+    public String getResult() {
       return result;
    }
 
-   public void setResult(String result1) {
+    /**
+     *
+     * @param result1
+     */
+    public void setResult(String result1) {
       result = result1;
    }
    
-//   public void setResultList(List<Author> list){
-//       resultList = list;
-//   }
+    /**
+     * saves the results to a serialised file
+     */
     
    public void saveResults() 
    {

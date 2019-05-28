@@ -16,6 +16,7 @@ public interface UserInterface {
 
     /**
      *
+     * @param state
      */
     public void update(State state);
  

@@ -27,8 +27,6 @@ public class Book implements BookInterface, Serializable{
     private Agent agent;
     private Reviewer firstReviewer;
     private Reviewer secondReviewer;
-
-    //private List<Reviewer> reviewers;
     private Editor editor;
     private String fileName;
     private String location;
@@ -44,38 +42,58 @@ public class Book implements BookInterface, Serializable{
     private String book;
     private List<Book> data;    
     private ArrayList<Book> books;
-    //private String user;
     
+    /**
+     *
+     * @return bookList
+     */
     public List<Book> getBookList() {
         return bookList;
     }
 
+    /**
+     *
+     * @param bookList
+     */
     public void setBookList(List<Book> bookList) {
         this.bookList = bookList;
         //setListResult(this.bookList);
         //setdata(listResult);
     }
+
+    /**
+     *
+     * @param thisdata
+     */
     public void setdata( List<Book> thisdata)
     {
         data = thisdata;
     } 
     
+    /**
+     *
+     * @return List of Books
+     */
     public ArrayList<Book> getBooks() {
         return books;
     }
 
+    /**
+     *
+     * @param books
+     */
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
     }
     /**
-     *
+     * Sets the observers
      */
     public Book(){
         this.observers=new ArrayList<UserInterface>();
     }    
 
     /**
-     *
+     * Constructor for book
      * @param bookId
      * @param title
      */
@@ -85,7 +103,7 @@ public class Book implements BookInterface, Serializable{
     }
 
     /**
-     *
+     * Constructor for book
      * @param bookId
      * @param title
      * @param fileName
@@ -100,10 +118,7 @@ public class Book implements BookInterface, Serializable{
         //bookList = Arrays.asList(this.title);
     }  
 
-    public Book(int i, String ford, int i0, String red, double d, String sold) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+ 
     /**
      *
      * @return
@@ -136,72 +151,89 @@ public class Book implements BookInterface, Serializable{
         this.title = title;
     }
     
+    /**
+     *
+     * @return
+     */
     public Author getAuthor() {
         return author;
     }
 
+    /**
+     *
+     * @param author
+     */
     public void setAuthor(Author author) {
         this.author = author;
     }
 
+    /**
+     *
+     * @return
+     */
     public Agent getAgent() {
         return agent;
     }
 
+    /**
+     *
+     * @param agent
+     */
     public void setAgent(Agent agent) {
         this.agent = agent;
     }
 
+    /**
+     *
+     * @return firstReviewer
+     */
     public Reviewer getFirstReviewer() {
         return firstReviewer;
     }
 
+    /**
+     *
+     * @param firstReviewer
+     */
     public void setFirstReviewer(Reviewer firstReviewer) {
         this.firstReviewer = firstReviewer;
     }
 
+    /**
+     *
+     * @return secondReviewer
+     */
     public Reviewer getSecondReviewer() {
         return secondReviewer;
     }
 
+    /**
+     *
+     * @param secondReviewer
+     */
     public void setSecondReviewer(Reviewer secondReviewer) {
         this.secondReviewer = secondReviewer;
     }
+
+    /**
+     *
+     * @return List of observers
+     */
     public ArrayList getObservers() {
         return observers;
     }
 
+    /**
+     *
+     * @param observers
+     */
     public void setObservers(ArrayList observers) {
         this.observers = observers;
     }
-    
-//    public Author getAuthor() {
-//        return author;
-//    }
-//    public void setAuthor(Author author) {
-//        this.author = author;
-//    }
-//    public Agent getAgent() {
-//        return agent;
-//    }
-//    public void setAgent(Agent agent) {
-//        this.agent = agent;
-//    }
-//    public ArrayList<Reviewer> getReviewers() {
-//        return reviewers;
-//    }
-//    public void setReviewers(ArrayList<Reviewer> reviewers) {
-//        this.reviewers = reviewers;
-//    }
-//    public Editor getEditor() {
-//        return editor;
-//    }
-//    public void setEditor(Editor editor) {
-//        this.editor = editor;
-//    }
+
     /**
      *
-     * @return
+     * @return filename
      */
     public String getFileName() {
         return fileName;
@@ -217,7 +249,7 @@ public class Book implements BookInterface, Serializable{
 
     /**
      *
-     * @return
+     * @return location
      */
     public String getLocation() {
         return location;
@@ -233,7 +265,7 @@ public class Book implements BookInterface, Serializable{
 
     /**
      *
-     * @return
+     * @return state
      */
     public State getState() {
         return state;
@@ -249,7 +281,7 @@ public class Book implements BookInterface, Serializable{
 
     /**
      *
-     * @return
+     * @return payment
      */
     public Payment getPayment() {
         return payment;
@@ -265,7 +297,7 @@ public class Book implements BookInterface, Serializable{
 
     /**
      *
-     * @return
+     * @return feedback
      */
     public Feedback getFeedback() {
         return feedback;
@@ -281,7 +313,7 @@ public class Book implements BookInterface, Serializable{
 
     /**
      *
-     * @return
+     * @return meeting
      */
     public Meeting getMeeting() {
         return meeting;
@@ -298,12 +330,15 @@ public class Book implements BookInterface, Serializable{
     /**
      *
      * @param obj
-     * @return
+     * @return message
      */
     public Object getUpdate(UserInterface obj) {        
         return this.message;    
     } 
         
+    /**
+     * set the list of observers
+     */
     public void setObservers(){
         this.observers = new ArrayList();
     }
@@ -329,7 +364,7 @@ public class Book implements BookInterface, Serializable{
     } 
     
     /**
-     *
+     * Overridden method for the notifyObservers method from the BookInterface
      */
     @Override
     public void notifyObservers() {
@@ -349,7 +384,7 @@ public class Book implements BookInterface, Serializable{
     //method to post message to the topic
 
     /**
-     *
+     * Method to post message to the topic
      * @param msg
      */
     public void postMessage(String msg){
@@ -360,19 +395,25 @@ public class Book implements BookInterface, Serializable{
     }
         /**
      *
-     * @return
+     * @return title
      */
     @Override
     public String toString() {
         return title;
     }
         
+    /**
+     *
+     * @param book
+     */
     public void restore(Book book) {
         this.bookId = book.getBookId();
         this.title = book.getTitle();
     }
     
-    
+    /**
+     * set the data ready for saving
+     */
     public void setData(){
         //setResult(this.toString());
         
@@ -381,15 +422,25 @@ public class Book implements BookInterface, Serializable{
         thisSaveData.setdata(result);
     }
     
-    
+    /**
+     *
+     * @return result
+     */
     public String getResult() {
        return result;
     }
 
+    /**
+     *
+     * @param result1
+     */
     public void setResult(String result1) {
        result = result1;
     }
     
+    /**
+     * method to save the results
+     */
     public void saveResults() 
     {
         String filename = "book.ser";
@@ -420,7 +471,10 @@ public class Book implements BookInterface, Serializable{
     private static ArrayList<Author> authorList;
     private static Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private static Agent agent1;
-    //public ArrayList<User> = new ArrayList<>();
+
+    /**
+     * method to initialise the data due to serialisation issues
+     */
     public static void initialiseData()
     {
         //create objects of books
@@ -566,116 +620,6 @@ public class Book implements BookInterface, Serializable{
         book10.register(reviewer4);
         book10.notifyObservers();
         
-        System.out.println("Data initialised");
-        
-//        try {
-//            FileOutputStream fs = new FileOutputStream("book1.ser");
-//            ObjectOutputStream os = new ObjectOutputStream(fs);
-//            os.writeObject(book1);
-//            os.close();
-//        } 
-//        catch(Exception ex) {
-//            ex.printStackTrace();
-//        }
+        System.out.println("Data initialised");        
     }
-        
-//public void loadResults() throws IOException 
-//   {
-//       String filename = "author.ser";
-//       SaveData newSaver = null;
-//       Scanner sc = null;
-//       String output = null;
-//       try
-//       { 
-//            File file= new File(filename);
-//            FileInputStream fin = new FileInputStream(filename);
-//            ObjectInputStream ois = new ObjectInputStream(fin);
-//                        
-//            newSaver = (SaveData) ois.readObject();
-//            newSaver = (SaveData) ois.readObject();
-//            newSaver = (SaveData) ois.readObject();
-//            newSaver = (SaveData) ois.readObject();
-//            newSaver = (SaveData) ois.readObject();
-//            
-//                        
-////            sc = new Scanner(fin, "UTF-8");
-////            while (sc.hasNextLine()){
-////                output += sc.nextLine();
-////            }
-////            if (sc.ioException() != null){
-////                throw sc.ioException();             
-////            }
-//                  
-//            //ObjectInputStream ois = new ObjectInputStream(fin);
-//                        
-//            //newSaver = (SaveData) ois.readObject();
-//            //ois.close();
-// 
-//            //System.out.println(newSaver.getdata());		   
-//        }
-//            
-//        catch(Exception ex)
-//        {
-//            ex.printStackTrace(); 
-//	} 
-//       
-//       setResult(newSaver.getdata());
-//       System.out.println("The result saved was: " + result);
-//   }
-       
-//   public String getResult() {
-//      return result;
-//   }
-//   public List<Book> getListResult() {
-//      return listResult;
-//   }
-//   public void setResult(String result1) {
-//      result = result1;
-//   }
-//   public void setListResult(List<Book> result1) {
-//      listResult = result1;
-//   }
-//   public void saveResults() 
-//   {
-//        String filename = "book.ser";
-//        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
-//     
-//        try
-//        {
-//            FileOutputStream fout = new FileOutputStream(filename,true);
-//            ObjectOutputStream oos = new ObjectOutputStream(fout);  
-//            oos.writeObject(thisSaveData);
-//            oos.close();
-//            System.out.println("Done");
-//        }
-//        catch(Exception ex)
-//        {
-//             ex.printStackTrace();
-//        } 
-//
-//        thisSaveData.cleardata();
-//   }
-//   
-//   public void saveListResults() 
-//   {
-//        String filename = "bookList3.ser";
-//        System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
-//     
-//        try
-//        {
-//            FileOutputStream fout = new FileOutputStream(filename,true);
-//            ObjectOutputStream oos = new ObjectOutputStream(fout);  
-//            oos.writeObject(data.toArray());
-//            oos.close();
-//            System.out.println("Done");
-//        }
-//        catch(Exception ex)
-//        {
-//             ex.printStackTrace();
-//        } 
-//
-//        thisSaveData.cleardata();
-//   }
-   
-   
 }

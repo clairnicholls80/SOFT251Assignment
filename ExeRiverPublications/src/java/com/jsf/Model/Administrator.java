@@ -20,10 +20,18 @@ public class Administrator extends User  implements UserInterface, Serializable{
     private SaveData thisSaveData = new SaveData();
     private String user;
     
+    /**
+     *
+     * @return List of administrators
+     */
     public ArrayList<Administrator> getAdmins() {
         return admins;
     }
 
+    /**
+     *
+     * @param admins
+     */
     public void setAdmins(ArrayList<Administrator> admins) {
         this.admins = admins;
     }
@@ -35,6 +43,7 @@ public class Administrator extends User  implements UserInterface, Serializable{
 
     /**
      *
+     * @param userId
      * @param forename
      * @param surname
      * @param email
@@ -52,6 +61,7 @@ public class Administrator extends User  implements UserInterface, Serializable{
 
     /**
      *
+     * @param state
      */
     @Override
     public void update(State state) {
@@ -70,34 +80,47 @@ public class Administrator extends User  implements UserInterface, Serializable{
     public void setSubject(Book copy) {
        this.book=copy;    
     }
+
+    /**
+     *
+     * @param book
+     */
     public void setBook(Book book) {
         this.book = book;
         this.book.register(this);
     }
 
- 
-    public void setData(){
-        //setResult(this.toString());
-        
+    /**
+     *
+     * This method sets the data that needs to be serialised in the save method
+     */
+    public void setData(){        
         user=this.forename + ", " + this.surname + ", " + this.email + ", " + this.address;
         setResult(user);
         thisSaveData.setdata(result);
     }
        
-   public String getResult() {
+    /**
+     *
+     * @return result
+     */
+    public String getResult() {
       return result;
    }
 
-   public void setResult(String result1) {
+    /**
+     *
+     * @param result1
+     */
+    public void setResult(String result1) {
       result = result1;
    }
    
-//   public void setResultList(List<Author> list){
-//       resultList = list;
-//   }
-    
-   public void saveResults() 
-   {
+    /**
+     * This method saves the data to a serialised file for the admins
+     */    
+    public void saveResults() 
+    {
         String filename = "admins.ser";
         System.out.println("This is what we are trying to save: "+ thisSaveData.getdata());
      
@@ -113,9 +136,6 @@ public class Administrator extends User  implements UserInterface, Serializable{
         {
              ex.printStackTrace();
         } 
-
         thisSaveData.cleardata();
    }
-   
-    
 }

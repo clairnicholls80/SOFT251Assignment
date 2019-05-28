@@ -20,21 +20,30 @@ public class Editor extends User  implements UserInterface, Serializable{
     private SaveData thisSaveData = new SaveData();
     private String user;
     
+    /**
+     *
+     * @return List of Editors
+     */
     public ArrayList<Editor> getEditors() {
         return editors;
     }
 
+    /**
+     *
+     * @param editors
+     */
     public void setEditors(ArrayList<Editor> editors) {
         this.editors = editors;
     }
     /**
-     *
+     * Empty constructor for Editor
      */
     public Editor() {
     }
     
     /**
-     *
+     * Parameterised constructor for Editor
+     * @param userId
      * @param forename
      * @param surname
      * @param email
@@ -52,6 +61,7 @@ public class Editor extends User  implements UserInterface, Serializable{
     
     /**
      *
+     * @param state
      */
     @Override
     public void update(State state) {
@@ -70,12 +80,19 @@ public class Editor extends User  implements UserInterface, Serializable{
     public void setSubject(Book copy) {
        this.book=copy;    
     }
+
+    /**
+     *
+     * @param book
+     */
     public void setBook(Book book) {
         this.book = book;
         this.book.register(this);
     }
     
-    
+    /**
+     * Sets the data ready for saving
+     */
     public void setData(){
         //setResult(this.toString());
         
@@ -84,13 +101,25 @@ public class Editor extends User  implements UserInterface, Serializable{
         thisSaveData.setdata(result);
     }
     
+    /**
+     *
+     * @return result
+     */ 
     public String getResult() {
        return result;
     }
 
+    /**
+     *
+     * @param result1
+     */
     public void setResult(String result1) {
        result = result1;
     }
+
+    /**
+     * saves the results to a serialised file
+     */
     public void saveResults() 
    {
         String filename = "editor.ser";
@@ -108,7 +137,6 @@ public class Editor extends User  implements UserInterface, Serializable{
         {
              ex.printStackTrace();
         } 
-
         thisSaveData.cleardata();
    }
 }

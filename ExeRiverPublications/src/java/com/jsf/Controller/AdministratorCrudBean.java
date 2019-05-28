@@ -33,10 +33,18 @@ public class AdministratorCrudBean implements Serializable {
 
     @ManagedProperty(value="#{commonUtils}")
     private CommonUtils util;
+
+    /**
+     *
+     * @param util
+     */
     public void setUtil(CommonUtils util) {
             this.util = util;
     }
         
+    /**
+     * This sets up the data for the form due to serialisation issues
+     */
     @PostConstruct
     public void init() {
         adminList = new ArrayList<Administrator>();
@@ -49,31 +57,32 @@ public class AdministratorCrudBean implements Serializable {
         item.setAdmins((ArrayList<Administrator>) adminList);//save to the model list
         resetAdd();
     }
-    public AdministratorCrudBean(){}
-    
-//    public void add() {
-//    	// DAO save the add
-//        item.setUserId(adminList.isEmpty() ? 1 : adminList.get(adminList.size() - 1).getUserId() + 1);
-//        adminList.add(item);
-//        item = new Administrator();
-//
-//        //util.redirectWithGet();
-//    }
 
+    /**
+     *
+     */
+    public AdministratorCrudBean(){}
+
+    /**
+     * sets the new instance of Administrator
+     */
     public void resetAdd() {
     	item = new Administrator();
-
-    	//util.redirectWithGet();
     }
 
+    /**
+     *
+     * @param item
+     */
     public void edit(Administrator item) {
     	//beforeEditItem = item.clone();
         this.item = item;
         edit = true;
-
-        //util.redirectWithGet();
     }
 
+    /**
+     * restores the previous values to cancel the changes
+     */
     public void cancelEdit() {
     	this.item.restore(beforeEditItem);
         this.item = new Administrator();
@@ -82,56 +91,76 @@ public class AdministratorCrudBean implements Serializable {
         //util.redirectWithGet();
     }
 
+    /**
+     * saves the changes
+     */
     public void saveEdit() {
     	// DAO save the edit
         this.item = new Administrator();
         edit = false;
-
-        //util.redirectWithGet();
     }
 
+    /**
+     * removes the row selected
+     * @param item
+     * @throws IOException
+     */
     public void delete(Administrator item) throws IOException {
     	// DAO save the delete
         adminList.remove(item);
-
-        //util.redirectWithGet();
     }
 
+    /**
+     *
+     * @return List of admins
+     */
     public List<Administrator> getList() {
         return adminList;
     }
 
+    /**
+     *
+     * @return administrator
+     */
     public Administrator getItem() {
         return this.item;
     }
 
+    /**
+     *
+     * @return edit
+     */
     public boolean isEdit() {
         return this.edit;
     }    
     
+    /**
+     *
+     * @return List of admins
+     */
     public List<Administrator> getAdminList() {
         return adminList;
     }
 
+    /**
+     *
+     * @param adminList
+     */
     public void setAdminList(List<Administrator> adminList) {
         this.adminList = adminList;
     }
     
+    /**
+     * adds a new administrator
+     */
     public void add() {
-    	// DAO save the add
-//        item.setUserId(list.isEmpty() ? 1 : list.get(list.size() - 1).getUserId() + 1);
-//        list.add(item);
-//        item = new Agent();
-
+        
         FacesContext ctx = FacesContext.getCurrentInstance();
         try {
-            //item.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
-            
             item.setData();
             item.saveResults();
             adminList.add(item);
             item = new Administrator();
-            //resultPanel.setRendered(true);
             ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_INFO,
             "Results Saved", null));
@@ -141,6 +170,5 @@ public class AdministratorCrudBean implements Serializable {
                FacesMessage(FacesMessage.SEVERITY_ERROR,
             ex.getMessage(), null));
         }
-        //util.redirectWithGet();
     }
 }

@@ -47,15 +47,21 @@ public class FeedbackCrudBean implements Serializable {
     private Reviewer reviewer1, reviewer2, reviewer3, reviewer4;
     private Agent agent1;
     private Book book1, book2, book3, book4;
-    //private List<Author> authors;
-    //private UIPanel resultPanel;
 
     @ManagedProperty(value="#{commonUtils}")
     private CommonUtils util;
+
+    /**
+     *
+     * @param util
+     */
     public void setUtil(CommonUtils util) {
             this.util = util;
     }
         
+    /**
+     * initialise the data due to serialisation issues
+     */
     @PostConstruct
     public void init() {
         //create books
@@ -95,48 +101,62 @@ public class FeedbackCrudBean implements Serializable {
         resetAdd();
 
     }
+
+    /**
+     * empty constructor
+     */
     public FeedbackCrudBean(){}
     
+    /**
+     *
+     * @return List of feedback
+     */
     public List<Feedback> getFeedbackList() {
         return feedbackList;
     }
 
+    /**
+     *
+     * @param feedbackList
+     */
     public void setFeedbackList(List<Feedback> feedbackList) {
         this.feedbackList = feedbackList;
     }
     
+    /**
+     * adds the feedback to the system
+     */
     public void add() {
     	// DAO save the add
-        //item.setBookId(list.isEmpty() ? 1 : list.get(list.size() - 1).getBookId() + 1);
         FacesContext ctx = FacesContext.getCurrentInstance();
         try {
-            //item.setBookId(bookList.isEmpty() ? 1 : bookList.get(bookList.size() - 1).getBookId()+ 1);
             item.setData();
             item.saveResults();
             feedbackList.add(item);
-            //item.setBooks((ArrayList<Book>) bookList);//save to the model list
             resetAdd();
-//            item.setBookList(bookList);
-//            item.saveListResults();
             item = new Feedback();
-            //resultPanel.setRendered(true);
             ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_INFO,
             "Results Saved", null));
         } catch (Exception ex) {
-            //resultPanel.setRendered(false);
             ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_ERROR,
             ex.getMessage(), null));
         }
-        //util.redirectWithGet();
     }
 
+    /**
+     * resets the add
+     */
     public void resetAdd() {
     	item = new Feedback();
     	//util.redirectWithGet();
     }
 
+    /**
+     *
+     * @param item
+     */
     public void edit(Feedback item) {
     	//beforeEditItem = item.clone();
         this.item = item;
@@ -144,43 +164,70 @@ public class FeedbackCrudBean implements Serializable {
         //util.redirectWithGet();
     }
 
+    /**
+     * cancel the edit and restores the data
+     */
     public void cancelEdit() {
     	this.item.restore(beforeEditItem);
         this.item = new Feedback();
         edit = false;
-        //util.redirectWithGet();
     }
 
+    /**
+     * saves the edit
+     */
     public void saveEdit() {
     	// DAO save the edit
         this.item = new Feedback();
         edit = false;
-        //util.redirectWithGet();
     }
 
+    /**
+     * removes the selected feedback
+     * @param item
+     * @throws IOException
+     */
     public void delete(Feedback item) throws IOException {
     	// DAO save the delete
         feedbackList.remove(item);
-        //util.redirectWithGet();
     }
 
+    /**
+     *
+     * @return list of feedback
+     */
     public List<Feedback> getList() {
         return feedbackList;
     }
 
+    /**
+     *
+     * @return item
+     */
     public Feedback getItem() {
         return this.item;
     }
 
+    /**
+     *
+     * @return edit
+     */
     public boolean isEdit() {
         return this.edit;
     }
   
-
+    /**
+     *
+     * @return list of reviewers
+     */
     public List<Reviewer> getReviewerList() {
         return reviewerList;
     }
 
+    /**
+     *
+     * @param reviewerList
+     */
     public void setReviewerList(List<Reviewer> reviewerList) {
         this.reviewerList = reviewerList;
     }

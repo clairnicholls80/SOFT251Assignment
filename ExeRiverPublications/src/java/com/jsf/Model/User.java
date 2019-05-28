@@ -16,6 +16,9 @@ import java.util.Date;
  */
 public abstract class User implements Serializable{
     
+    /**
+     * 
+     */
     protected ArrayList observers;
     /**
      *
@@ -86,7 +89,7 @@ public abstract class User implements Serializable{
 
     /**
      *
-     * @return
+     * @return userId
      */
     public int getUserId() {
         return userId;
@@ -102,7 +105,7 @@ public abstract class User implements Serializable{
 
     /**
      *
-     * @return
+     * @return forename
      */
     public String getForename() {
         return forename;
@@ -118,7 +121,7 @@ public abstract class User implements Serializable{
 
     /**
      *
-     * @return
+     * @return surname
      */
     public String getSurname() {
         return surname;
@@ -134,7 +137,7 @@ public abstract class User implements Serializable{
 
     /**
      *
-     * @return
+     * @return email
      */
     public String getEmail() {
         return email;
@@ -150,7 +153,7 @@ public abstract class User implements Serializable{
 
     /**
      *
-     * @return
+     * @return address
      */
     public String getAddress() {
         return address;
@@ -166,7 +169,7 @@ public abstract class User implements Serializable{
 
     /**
      *
-     * @return
+     * @return password
      */
     public String getPassword() {
         return password;
@@ -182,7 +185,7 @@ public abstract class User implements Serializable{
 
     /**
      *
-     * @return
+     * @return lastLoginDate
      */
     public Date getLastLoginDate() {
         return lastLoginDate;
@@ -198,7 +201,7 @@ public abstract class User implements Serializable{
         
     /**
      *
-     * @return
+     * @return book
      */
     public Book getBook() {
         return book;
@@ -206,24 +209,24 @@ public abstract class User implements Serializable{
 
     /**
      *
-     * @param book
+     * @return List of books
      */
-    /*public void setBook(Book book) {
-        this.book = book;
-        this.book.register(this);
-    }*/
     
     public ArrayList getBookList() {
         return bookList;
     }
 
+    /**
+     *
+     * @param bookList
+     */
     public void setBookList(ArrayList bookList) {
         this.bookList.add(this);
     }
 
     /**
      *
-     * @return
+     * @return user details as string
      */
     public String getUserDetails(){
         return MessageFormat.format("{0} {1}, {2} ({3})", forename, surname, address, email);
@@ -231,26 +234,31 @@ public abstract class User implements Serializable{
 
     /**
      *
-     * @return
+     * @return name
      */
     @Override
     public String toString() {
         return name;
     }
     
+    /**
+     * Used for the login to check username and password
+     * @param username
+     * @param pass
+     * @return
+     */
     public boolean authenticate(String username, String pass) {
         return this.email.equals(username) && this.password.equals(pass); 
     }
     
-//    public User clone() {
-//            return new User(userId, name);
-//    }
+    /**
+     *
+     * @param user
+     */
 
     public void restore(User user) {
             this.userId = user.getUserId();
             this.name = user.getName();
     }
     
-    
-   
 }

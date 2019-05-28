@@ -53,27 +53,34 @@ public class BookCrudBean implements Serializable {
     private Part uploadedFile;
     private String folder = "c:\\temp2";
 
-    //private List<Author> authors;
-    //private UIPanel resultPanel;
 
     @ManagedProperty(value="#{commonUtils}")
     private CommonUtils util;
+
+    /**
+     *
+     * @param util
+     */
     public void setUtil(CommonUtils util) {
             this.util = util;
     }
         
+    /**
+     * initialises the data due to serialisation issues
+     */
     @PostConstruct
     public void init() {
         
         admin1 = new Administrator(1, "Clair", "Nicholls", "clair@gmail.com", "8 Copper Meadows, Redruth, TR152NX", "letmein");
         admin1.setName(admin1.getForename(), admin1.getSurname());
+        
         //create Editors
         editor1 = new Editor(1,"Edward", "Richey", "erichey@exeriverpublishing.co.uk", "1a Long Drive, Exmouth EX10 3ER", "richness");
         editor1.setName(editor1.getForename(), editor1.getSurname());        
         editor2 = new Editor(2,"Phillipa", "Frost", "pfrost@exeriverpublishing.co.uk", "13 Prospect Street, Exeter EX2 4RR", "prospects");
         editor2.setName(editor1.getForename(), editor1.getSurname());
-        //Create authors
-//        
+        
+        //Create authors        
         authorList =  new ArrayList<Author>();
         author1 = new Author(1,"Coleen", "Cole", "ccole@gmail.com", "6 Castle Court, Exeter, EX1 1DS", "castles");
         author1.setName(author1.getForename(), author1.getSurname());
@@ -96,10 +103,12 @@ public class BookCrudBean implements Serializable {
         reviewer3.setName(reviewer3.getForename(), reviewer3.getSurname());
         reviewer4 = new Reviewer(4,"Martin", "Hicks", "mhicks@exeriverpublishing.co.uk", "32 South Bank Avenue, Exeter EX2 1DK", "bank12345");
         reviewer4.setName(reviewer4.getForename(), reviewer4.getSurname());         
+        
         //create agent
         agent1 = new Agent(1,"Philip", "Davey", "pdavey@publishinghouse.co.uk", "33 Station Road, Exeter EX1 1AB", "davesrbest");
         agent1.setName(agent1.getForename(), agent1.getSurname());
-//        
+        
+        //create books        
         bookList = new ArrayList<Book>();
         item = new Book(1, "The witch and the wand");
         item.setFileName(folder + "\\manuscript1.docx");
@@ -205,18 +214,32 @@ public class BookCrudBean implements Serializable {
         item.notifyObservers();        
         item.setBooks((ArrayList<Book>) bookList);//save to the model list
         resetAdd();        
-        //bookList = getList();
     }
+
+    /**
+     * empty constructor
+     */
     public BookCrudBean(){}
     
+    /**
+     *
+     * @return List of books
+     */
     public List<Book> getBookList() {
         return bookList;
     }
 
+    /**
+     *
+     * @param bookList
+     */
     public void setBookList(List<Book> bookList) {
         this.bookList = bookList;
     }
     
+    /**
+     * adds the book to the system and uploads the manuscript
+     */
     public void add() {
     	// DAO save the add
         //item.setBookId(list.isEmpty() ? 1 : list.get(list.size() - 1).getBookId() + 1);
@@ -232,27 +255,29 @@ public class BookCrudBean implements Serializable {
             bookList.add(item);
             item.setBooks((ArrayList<Book>) bookList);//save to the model list
             resetAdd();
-//            item.setBookList(bookList);
-//            item.saveListResults();
             item = new Book();
-            //resultPanel.setRendered(true);
             ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_INFO,
             "Results Saved", null));
         } catch (Exception ex) {
-            //resultPanel.setRendered(false);
             ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_ERROR,
             ex.getMessage(), null));
         }
-        //util.redirectWithGet();
     }
 
+    /**
+     * resets the add for new book
+     */
     public void resetAdd() {
     	item = new Book();
     	//util.redirectWithGet();
     }
 
+    /**
+     *
+     * @param item
+     */
     public void edit(Book item) {
     	//beforeEditItem = item.clone();
         this.item = item;
@@ -260,6 +285,9 @@ public class BookCrudBean implements Serializable {
         //util.redirectWithGet();
     }
 
+    /**
+     * cancels the edit to restore to the previous version
+     */
     public void cancelEdit() {
     	this.item.restore(beforeEditItem);
         this.item = new Book();
@@ -267,6 +295,9 @@ public class BookCrudBean implements Serializable {
         //util.redirectWithGet();
     }
 
+    /**
+     * saves the edit and upload manuscript
+     */
     public void saveEdit() {
     	// DAO save the edit
         try {
@@ -282,47 +313,90 @@ public class BookCrudBean implements Serializable {
         }
     }
 
+    /**
+     * removes the selected book
+     * @param item
+     * @throws IOException
+     */
     public void delete(Book item) throws IOException {
     	// DAO save the delete
         bookList.remove(item);
-        //util.redirectWithGet();
     }
 
+    /**
+     *
+     * @return list of Books
+     */
     public List<Book> getList() {
         return bookList;
     }
 
+    /**
+     *
+     * @return item
+     */
     public Book getItem() {
         return this.item;
     }
 
+    /**
+     *
+     * @return edit
+     */
     public boolean isEdit() {
         return this.edit;
     }
   
+    /**
+     *
+     * @return List of Reviewers
+     */
     public List<Reviewer> getReviewerList() {
         return reviewerList;
     }
 
+    /**
+     *
+     * @param reviewerList
+     */
     public void setReviewerList(List<Reviewer> reviewerList) {
         this.reviewerList = reviewerList;
     }
     
+    /**
+     *
+     */
     public State[] stateList;
 	
+    /**
+     *
+     * @return list of states (enum)
+     */
     public State[] getStateList() {
         stateList = State.values();
         return stateList;        	
     }
     
+    /**
+     *
+     * @return list of states
+     */
     public State[] setStateList() {
         return this.stateList = State.values();
     }
          
+    /**
+     *
+     * @return uploaded file
+     */
     public Part getUploadedFile() {
         return uploadedFile;
     }
 
+    /**
+     *
+     * @param uploadedFile
+     */
     public void setUploadedFile(Part uploadedFile) {
         this.uploadedFile = uploadedFile;
     }

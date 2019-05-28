@@ -39,13 +39,21 @@ public class PaymentCrudBean implements Serializable {
   
     @ManagedProperty(value="#{commonUtils}")
     private CommonUtils util;
+
+    /**
+     *
+     * @param util
+     */
     public void setUtil(CommonUtils util) {
             this.util = util;
     }
         
+    /**
+     * initialise the data due to serialisation issues
+     */
     @PostConstruct
     public void init() {
-                //create books
+        //create books
         book1 = new Book(1, "The witch and the wand");
         book2 = new Book(2, "Darcy's Doughnuts");
         book3 = new Book(3, "We're going on a turtle adventure");
@@ -75,93 +83,121 @@ public class PaymentCrudBean implements Serializable {
         item.setData();
         item.saveResults();
         paymentList.add(item);
-        //item.setPayments((ArrayList<Payment>) paymentList);//save to the model list
         resetAdd();
-        
-        
+                
     }
+
+    /**
+     * empty constructor
+     */
     public PaymentCrudBean(){}
     
+    /**
+     *
+     * @return list of payments
+     */
     public List<Payment> getPaymentList() {
         return paymentList;
     }
 
+    /**
+     *
+     * @param paymentList
+     */
     public void setPaymentList(List<Payment> paymentList) {
         this.paymentList = paymentList;
     }
     
+    /**
+     * adds the payment
+     */
     public void add() {
-    	// DAO save the add
-//        item.setUserId(list.isEmpty() ? 1 : list.get(list.size() - 1).getUserId() + 1);
-//        list.add(item);
-//        item = new Agent();
-
         FacesContext ctx = FacesContext.getCurrentInstance();
         try {
-            //item.setUserId(authorList.isEmpty() ? 1 : authorList.get(authorList.size() - 1).getUserId() + 1);
-            
             item.setData();
             item.saveResults();
             paymentList.add(item);
             item = new Payment();
-            //resultPanel.setRendered(true);
             ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_INFO,
             "Results Saved", null));
         } catch (Exception ex) {
-            //resultPanel.setRendered(false);
             ctx.addMessage(null, new
                FacesMessage(FacesMessage.SEVERITY_ERROR,
             ex.getMessage(), null));
         }
-        //util.redirectWithGet();
     }
 
+    /**
+     * resets the add
+     */
     public void resetAdd() {
     	item = new Payment();
 
     	//util.redirectWithGet();
     }
 
+    /**
+     *
+     * @param item
+     */
     public void edit(Payment item) {
-    	//beforeEditItem = item.clone();
         this.item = item;
         edit = true;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * cancels the edit
+     */
     public void cancelEdit() {
     	this.item.restore(beforeEditItem);
         this.item = new Payment();
         edit = false;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * saves the edit
+     */
     public void saveEdit() {
     	// DAO save the edit
         this.item = new Payment();
         edit = false;
 
-        //util.redirectWithGet();
     }
 
+    /**
+     * removes the selected payment
+     * @param item
+     * @throws IOException
+     */
     public void delete(Payment item) throws IOException {
     	// DAO save the delete
         paymentList.remove(item);
 
-        //util.redirectWithGet();
     }
 
+    /**
+     *
+     * @return list of payments
+     */
     public List<Payment> getList() {
         return paymentList;
     }
 
+    /**
+     *
+     * @return item
+     */
     public Payment getItem() {
         return this.item;
     }
 
+    /**
+     *
+     * @return edit
+     */
     public boolean isEdit() {
         return this.edit;
     }

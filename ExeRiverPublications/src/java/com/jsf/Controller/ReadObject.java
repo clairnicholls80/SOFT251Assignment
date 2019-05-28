@@ -9,9 +9,17 @@ import com.jsf.Model.Author;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
  
+/**
+ *
+ * @author clair
+ */
 public class ReadObject{
  
-   public static void main (String args[]) {
+    /**
+     *
+     * @param args
+     */
+    public static void main (String args[]) {
  
 	   Author author;
 	   

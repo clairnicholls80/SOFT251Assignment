@@ -17,19 +17,27 @@ public class SaveData implements Serializable{
     
     private String data;
     
+    /**
+     *
+     * @param thisdata
+     */
     public void setdata( String thisdata)
     {
         data = thisdata;
     }
-//    public void setListData( List<Book> thisdata)
-//    {
-//        data = thisdata;
-//    }    
+    
+    /**
+     *
+     * @return data
+     */
     public String getdata()
     {
         return data;
     }
     
+    /**
+     * clears the data
+     */
     public void cleardata()
     {
         data = "";
